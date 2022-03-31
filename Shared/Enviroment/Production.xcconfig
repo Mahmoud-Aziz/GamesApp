@@ -1,0 +1,14 @@
+//
+//  Production.xcconfig
+//  GamesApp
+//
+//  Created by Mahmoud Aziz on 01/04/2022.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "GamesApp/Shared/Enviroment/Shared.xcconfig"
+
+API_BASE_URL = $(inherited)
+API_KEY = $(inherited)

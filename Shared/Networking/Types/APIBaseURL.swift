@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum APIBaseURL: String {
-    case rawgAPI = ""
+enum APIBaseURL {
+    static var baseURL: URL {
+        return try! URL(string: Configuration.value(for: "API_BASE_URL"))!
+    }
 }
-
