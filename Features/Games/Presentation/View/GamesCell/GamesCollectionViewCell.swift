@@ -16,11 +16,4 @@ class GamesCollectionViewCell: UICollectionViewCell {
         self.gameTitle.text = title
         self.gameImageView.setImage(url: imageURL, placeHolder: UIImage(named: "placeholder")!)
     }
-    
-//    var game: Response? {
-//        didSet {
-//            self.gameTitle.text = game?.name
-//        }
-//    }
-
 }
