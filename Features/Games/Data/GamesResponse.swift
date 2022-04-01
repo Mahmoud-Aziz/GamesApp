@@ -14,7 +14,7 @@ struct GamesResponse: Codable {
     let previous: JSONNull?
     let results: [Response]
     let seoTitle, seoDescription, seoKeywords, seoH1: String
-    let noindex, nofollow: Bool
+    let noindex, nofollow: Bool?
     let gamesResponseDescription: String
     let filters: Filters
     let nofollowCollections: [String]
@@ -105,8 +105,8 @@ struct Response: Codable {
 
 // MARK: - AddedByStatus
 struct AddedByStatus: Codable {
-    let yet, owned, beaten, toplay: Int
-    let dropped, playing: Int
+    let yet, owned, beaten, toplay: Int?
+    let dropped, playing: Int?
 }
 
 enum Color: String, Codable {
@@ -121,10 +121,10 @@ struct EsrbRating: Codable {
 
 // MARK: - Genre
 struct Genre: Codable {
-    let id: Int
-    let name, slug: String
-    let gamesCount: Int
-    let imageBackground: String
+    let id: Int?
+    let name, slug: String?
+    let gamesCount: Int?
+    let imageBackground: String?
     let domain: String?
     let language: Language?
 
@@ -142,12 +142,12 @@ enum Language: String, Codable {
 
 // MARK: - ParentPlatform
 struct ParentPlatform: Codable {
-    let platform: EsrbRating
+    let platform: EsrbRating?
 }
 
 // MARK: - PlatformElement
 struct PlatformElement: Codable {
-    let platform: PlatformPlatform
+    let platform: PlatformPlatform?
     let releasedAt: String?
     let requirementsEn, requirementsRu: Requirements?
 
