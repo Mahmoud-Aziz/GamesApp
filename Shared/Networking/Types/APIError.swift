@@ -8,8 +8,6 @@
 import Foundation
 
 enum APIError: Error {
-
-    // MARK: - Cases
     case unknown
     case unreachable
     case unauthorized
