@@ -6,16 +6,21 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class GamesViewController: UIViewController {
     
     // MARK: - IBOutlets:
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var searchbar: UISearchBar!
+    private var viewModel: GamesViewModelProtocol?
+    private let hud = JGProgressHUD()
     
     // MARK: - View life cycle methods:
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewModel = GamesViewModel(dataSource: GamesDataProvider(), statePresenter: self)
+        viewModel?.viewDidLoad()
         setupView()
     }
     
@@ -38,19 +43,25 @@ class GamesViewController: UIViewController {
 
 
 // MARK: - CollectionView datasource methods:
-extension GamesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension GamesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResuseIdentifiers.gamesCollectionViewCell.rawValue, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResuseIdentifiers.gamesCollectionViewCell.rawValue, for: indexPath) as! GamesCollectionViewCell
+        let gameTitle = (viewModel?.getTitle(for: indexPath.row))!
+        let image = viewModel?.getImage(for: indexPath.row)
+        cell.setupCell(title: gameTitle, imageURL: image!)
+     
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        30
+        viewModel?.numberOfItems ?? 0
     }
-    
+}
+
     // MARK: - CollectionView delegate methods:
     
     // MARK: - CollectionView layout methods:
+extension GamesViewController {
     func setupCollectionViewLayout() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -62,6 +73,40 @@ extension GamesViewController: UICollectionViewDataSource, UICollectionViewDeleg
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectionView!.collectionViewLayout = layout
+    }
+}
+
+// MARK: - State Presentable Protocol conformance:
+extension GamesViewController: StatePresentable {
+    func render(state: State) {
+        switch state {
+        case .error(let error):
+            show(error: error)
+            setEmptyView(state: .visible)
+        case .loaded:
+            collectionView?.reloadData()
+            setEmptyView(state: .hidden)
+        case .loading:
+            setEmptyView(state: .visible)
+        case .initial:
+            setEmptyView(state: .visible)
+        }
+    }
+    
+    func setEmptyView(state: EmptyState) {
+        switch state {
+        case .visible:
+            hud.show(in: view)
+        case .hidden:
+            hud.dismiss()
+        }
+    }
+    
+    func show(error: Error) {
+        let alertController = UIAlertController(title: "Error",
+                                                message: error.localizedDescription,
+                                                preferredStyle: .alert)
+        present(alertController, animated: true, completion: nil)
     }
 }
 
