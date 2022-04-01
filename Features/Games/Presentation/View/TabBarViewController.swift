@@ -18,10 +18,10 @@ class TabBarViewController: UITabBarController {
         let gamesTab = GamesViewController()
         let favoritesTab = FavoritesViewController() 
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        let tabBar = UITabBarController(nibName: "UITabBarController", bundle: nil)
+        let tabBar = UITabBarController()
         tabBar.modalPresentationStyle = .fullScreen
-        let gamesTabItem = UITabBarItem(title: "Games", image: Images.games.image, selectedImage: Images.gamesSelected.image)
-        let favoritesTabItem = UITabBarItem(title: "Favorites", image: Images.favorites.image, selectedImage: Images.favoritesSelected.image)
+        let gamesTabItem = UITabBarItem(title: TabBarItemTitle.games.rawValue, image: Images.games.image, selectedImage: Images.gamesSelected.image)
+        let favoritesTabItem = UITabBarItem(title: TabBarItemTitle.favorites.rawValue, image: Images.favorites.image, selectedImage: Images.favoritesSelected.image)
         gamesTab.tabBarItem = gamesTabItem
         favoritesTab.tabBarItem = favoritesTabItem
         self.viewControllers = [gamesTab, favoritesTab]
@@ -30,5 +30,10 @@ class TabBarViewController: UITabBarController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    enum TabBarItemTitle: String {
+        case games = "Games"
+        case favorites = "Favorites"
     }
 }
