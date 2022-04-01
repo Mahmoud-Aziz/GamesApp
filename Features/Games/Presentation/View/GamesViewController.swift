@@ -11,8 +11,8 @@ import JGProgressHUD
 class GamesViewController: UIViewController {
     
     // MARK: - IBOutlets:
-    @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var searchbar: UISearchBar!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var searchbar: UISearchBar!
     private var viewModel: GamesViewModelProtocol?
     private let hud = JGProgressHUD()
     
@@ -46,10 +46,8 @@ class GamesViewController: UIViewController {
 extension GamesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResuseIdentifiers.gamesCollectionViewCell.rawValue, for: indexPath) as! GamesCollectionViewCell
-        let gameTitle = (viewModel?.getTitle(for: indexPath.row))!
-        let image = viewModel?.getImage(for: indexPath.row)
-        cell.setupCell(title: gameTitle, imageURL: image!)
-     
+        guard let game = viewModel?.getGame(for: indexPath.row) else { return UICollectionViewCell() }
+        cell.game = game
         return cell
     }
     
@@ -58,9 +56,9 @@ extension GamesViewController: UICollectionViewDataSource {
     }
 }
 
-    // MARK: - CollectionView delegate methods:
-    
-    // MARK: - CollectionView layout methods:
+// MARK: - CollectionView delegate methods:
+
+// MARK: - CollectionView layout methods:
 extension GamesViewController {
     func setupCollectionViewLayout() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -104,7 +102,7 @@ extension GamesViewController: StatePresentable {
     
     func show(error: Error) {
         let alertController = UIAlertController(title: "Error",
-                                                message: error.localizedDescription,
+                                                message: ViewError.operationFaield.rawValue,
                                                 preferredStyle: .alert)
         present(alertController, animated: true, completion: nil)
     }
@@ -113,4 +111,9 @@ extension GamesViewController: StatePresentable {
 // MARK: - ResuseIdentifiers:
 enum ResuseIdentifiers: String {
     case gamesCollectionViewCell = "GamesCollectionViewCell"
+}
+
+// MARK: - View Error:
+enum ViewError: String {
+    case operationFaield = "The operation couldn't be completed"
 }

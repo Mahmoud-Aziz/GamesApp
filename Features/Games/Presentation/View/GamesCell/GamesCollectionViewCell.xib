@@ -21,24 +21,49 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CcQ-Eq-Z91">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ydJ-Mg-PNa">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ydJ-Mg-PNa">
                                 <rect key="frame" x="8" y="16" width="120" height="104"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egI-bq-EMe">
-                                <rect key="frame" x="136" y="16" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="136" y="16" width="51.5" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1d-fy-MEI" userLabel="Game Genre">
+                                <rect key="frame" x="136" y="104" width="33" height="16"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="metacritic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vWk-VG-UEt">
+                                <rect key="frame" x="136" y="79" width="67" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3P-NN-YJ5">
+                                <rect key="frame" x="206" y="75.5" width="47" height="22.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="O3P-NN-YJ5" secondAttribute="bottom" constant="38" id="EE0-tA-AGE"/>
                             <constraint firstItem="egI-bq-EMe" firstAttribute="top" secondItem="CcQ-Eq-Z91" secondAttribute="top" constant="16" id="NIr-ul-haW"/>
                             <constraint firstItem="ydJ-Mg-PNa" firstAttribute="top" secondItem="CcQ-Eq-Z91" secondAttribute="top" constant="16" id="NaP-n4-ki2"/>
+                            <constraint firstItem="u1d-fy-MEI" firstAttribute="top" secondItem="vWk-VG-UEt" secondAttribute="bottom" constant="8" id="WRI-hd-8M6"/>
                             <constraint firstItem="egI-bq-EMe" firstAttribute="leading" secondItem="ydJ-Mg-PNa" secondAttribute="trailing" constant="8" id="XDt-ql-fz1"/>
+                            <constraint firstItem="O3P-NN-YJ5" firstAttribute="firstBaseline" secondItem="vWk-VG-UEt" secondAttribute="firstBaseline" id="e28-Yn-2j1"/>
+                            <constraint firstItem="vWk-VG-UEt" firstAttribute="leading" secondItem="ydJ-Mg-PNa" secondAttribute="trailing" constant="8" id="gjI-tv-xUK"/>
+                            <constraint firstItem="O3P-NN-YJ5" firstAttribute="leading" secondItem="vWk-VG-UEt" secondAttribute="trailing" constant="3" id="hIU-dV-f64"/>
                             <constraint firstAttribute="bottom" secondItem="ydJ-Mg-PNa" secondAttribute="bottom" constant="16" id="hUK-ml-k5w"/>
                             <constraint firstAttribute="trailing" secondItem="ydJ-Mg-PNa" secondAttribute="trailing" constant="247" id="ihk-XQ-MCf"/>
+                            <constraint firstAttribute="bottom" secondItem="u1d-fy-MEI" secondAttribute="bottom" constant="16" id="no9-Fw-AKx"/>
                             <constraint firstItem="ydJ-Mg-PNa" firstAttribute="leading" secondItem="CcQ-Eq-Z91" secondAttribute="leading" constant="8" id="sog-rE-vkg"/>
+                            <constraint firstItem="u1d-fy-MEI" firstAttribute="leading" secondItem="ydJ-Mg-PNa" secondAttribute="trailing" constant="8" id="vJQ-TJ-06z"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -52,8 +77,10 @@
             </constraints>
             <size key="customSize" width="402" height="308"/>
             <connections>
+                <outlet property="gameGenre" destination="u1d-fy-MEI" id="Lja-Pm-cT1"/>
                 <outlet property="gameImageView" destination="ydJ-Mg-PNa" id="hm6-Re-6wf"/>
                 <outlet property="gameTitle" destination="egI-bq-EMe" id="Qiy-fK-9lE"/>
+                <outlet property="metacriticScore" destination="O3P-NN-YJ5" id="gQ7-5p-Wb0"/>
             </connections>
             <point key="canvasLocation" x="-117.39130434782609" y="237.05357142857142"/>
         </collectionViewCell>
@@ -61,6 +88,12 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
