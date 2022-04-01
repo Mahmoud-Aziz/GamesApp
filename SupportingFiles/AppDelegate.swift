@@ -14,8 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let viewController = GamesViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
+        let tabBarViewController = TabBarViewController()
+        let navigationController = UINavigationController(rootViewController: tabBarViewController)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         return true
