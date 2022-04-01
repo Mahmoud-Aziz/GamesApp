@@ -9,9 +9,18 @@ import UIKit
 
 class GamesCollectionViewCell: UICollectionViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet private weak var gameTitle: UILabel!
+    @IBOutlet private weak var gameImageView: UIImageView!
+    
+    func setupCell(title: String, imageURL: String) {
+        self.gameTitle.text = title
+        self.gameImageView.setImage(url: imageURL, placeHolder: UIImage(named: "placeholder")!)
     }
+    
+//    var game: Response? {
+//        didSet {
+//            self.gameTitle.text = game?.name
+//        }
+//    }
 
 }

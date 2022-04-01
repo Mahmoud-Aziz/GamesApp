@@ -12,32 +12,55 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="GamesCollectionViewCell" customModule="GamesApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="402" height="308"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="402" height="308"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JYX-SD-Mib">
-                        <rect key="frame" x="0.0" y="0.0" width="402" height="308"/>
-                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CcQ-Eq-Z91">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ydJ-Mg-PNa">
+                                <rect key="frame" x="8" y="16" width="120" height="104"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egI-bq-EMe">
+                                <rect key="frame" x="136" y="16" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="egI-bq-EMe" firstAttribute="top" secondItem="CcQ-Eq-Z91" secondAttribute="top" constant="16" id="NIr-ul-haW"/>
+                            <constraint firstItem="ydJ-Mg-PNa" firstAttribute="top" secondItem="CcQ-Eq-Z91" secondAttribute="top" constant="16" id="NaP-n4-ki2"/>
+                            <constraint firstItem="egI-bq-EMe" firstAttribute="leading" secondItem="ydJ-Mg-PNa" secondAttribute="trailing" constant="8" id="XDt-ql-fz1"/>
+                            <constraint firstAttribute="bottom" secondItem="ydJ-Mg-PNa" secondAttribute="bottom" constant="16" id="hUK-ml-k5w"/>
+                            <constraint firstAttribute="trailing" secondItem="ydJ-Mg-PNa" secondAttribute="trailing" constant="247" id="ihk-XQ-MCf"/>
+                            <constraint firstItem="ydJ-Mg-PNa" firstAttribute="leading" secondItem="CcQ-Eq-Z91" secondAttribute="leading" constant="8" id="sog-rE-vkg"/>
+                        </constraints>
                     </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="JYX-SD-Mib" secondAttribute="trailing" id="1S9-ic-yBf"/>
-                <constraint firstAttribute="bottom" secondItem="JYX-SD-Mib" secondAttribute="bottom" id="9xx-AJ-524"/>
-                <constraint firstItem="JYX-SD-Mib" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="McD-fF-2Hf"/>
-                <constraint firstItem="JYX-SD-Mib" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="h5I-HZ-e2k"/>
+                <constraint firstAttribute="trailing" secondItem="CcQ-Eq-Z91" secondAttribute="trailing" id="3Vu-Um-WNv"/>
+                <constraint firstItem="CcQ-Eq-Z91" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="TlN-aT-3Ac"/>
+                <constraint firstItem="CcQ-Eq-Z91" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="h4E-bf-tgP"/>
+                <constraint firstAttribute="bottom" secondItem="CcQ-Eq-Z91" secondAttribute="bottom" id="qgp-f7-dAy"/>
             </constraints>
             <size key="customSize" width="402" height="308"/>
+            <connections>
+                <outlet property="gameImageView" destination="ydJ-Mg-PNa" id="hm6-Re-6wf"/>
+                <outlet property="gameTitle" destination="egI-bq-EMe" id="Qiy-fK-9lE"/>
+            </connections>
             <point key="canvasLocation" x="-117.39130434782609" y="237.05357142857142"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>
