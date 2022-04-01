@@ -26,12 +26,7 @@ class TabBarViewController: UITabBarController {
         favoritesTab.tabBarItem = favoritesTabItem
         self.viewControllers = [gamesTab, favoritesTab]
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    
+
     enum TabBarItemTitle: String {
         case games = "Games"
         case favorites = "Favorites"
