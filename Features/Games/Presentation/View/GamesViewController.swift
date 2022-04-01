@@ -13,5 +13,4 @@ class GamesViewController: UIViewController {
         super.viewDidLoad()
 
     }
-
 }
