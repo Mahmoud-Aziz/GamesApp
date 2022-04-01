@@ -8,6 +8,5 @@
 import Foundation
 
 enum APIEndpoint: String {
-    // MARK: - Cases
-case endPoint = "games"
+    case games = "games"
 }

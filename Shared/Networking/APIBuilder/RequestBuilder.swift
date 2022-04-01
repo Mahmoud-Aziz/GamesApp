@@ -11,7 +11,7 @@ class RequestBuilder {
     private var baseURL: URL?
     private var endpoint: String?
     private var method: HTTPMethod = .get
-    private var headers: [String: String] = [:]
+    private var headers: [String: String] = ["Content-Type": "application/json"]
     private var parameters: [String: String] = [:]
     private var httpBodyParams: Data?
     // TODO: after finish setup for base url and config file

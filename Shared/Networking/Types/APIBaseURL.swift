@@ -8,7 +8,7 @@
 import Foundation
 
 enum APIBaseURL {
-    static var baseURL: URL {
-        return try! URL(string: Configuration.value(for: "API_BASE_URL"))!
+    static var baseURL: String {
+        return try! Configuration.value(for: "API_BASE_URL")
     }
 }
