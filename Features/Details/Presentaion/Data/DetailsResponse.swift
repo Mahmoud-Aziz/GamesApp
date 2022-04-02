@@ -14,12 +14,17 @@ struct DetailsResponse: Codable {
     let backgroundImage: String?
     let website: String?
     let redditUrl: String?
-
+    let metacritic: Int?
+    let genres: [Genre]?
+    
     enum CodingKeys: String, CodingKey {
         case name
         case description = "description"
         case backgroundImage = "background_image"
         case website
         case redditUrl = "reddit_url"
+        case metacritic
+        case genres
     }
 }
+
