@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailsViewController" customModule="GamesApp" customModuleProvider="target">
             <connections>
+                <outlet property="gameDescriptionLabel" destination="QgM-s3-6zf" id="I9S-sW-b1I"/>
+                <outlet property="gameImageView" destination="Dao-fz-IqY" id="QfT-42-MFB"/>
+                <outlet property="gameTitleLabel" destination="10R-a4-EIn" id="Aho-wl-Umd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dao-fz-IqY">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dao-fz-IqY">
                     <rect key="frame" x="0.0" y="44" width="414" height="300"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cfx-v0-bRz">
@@ -56,17 +59,20 @@
                         <constraint firstAttribute="height" constant="1" id="IYX-Ct-V30"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdC-3Z-95c">
-                    <rect key="frame" x="16" y="527" width="120" height="35"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdC-3Z-95c">
+                    <rect key="frame" x="16" y="527" width="135" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="K06-NM-tPu"/>
-                        <constraint firstAttribute="width" constant="120" id="Qra-Zg-C1E"/>
+                        <constraint firstAttribute="width" constant="135" id="Qra-Zg-C1E"/>
                     </constraints>
                     <color key="tintColor" systemColor="labelColor"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Visit Reddit">
+                    <buttonConfiguration key="configuration" style="plain" title="Visit Reddit" subtitle="">
                         <fontDescription key="titleFontDescription" type="system" pointSize="19"/>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="redditButtonTapped:" destination="-1" eventType="touchUpInside" id="sQe-9u-Ic1"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5q5-Qx-VGa">
                     <rect key="frame" x="16" y="578" width="398" height="1"/>
@@ -75,17 +81,20 @@
                         <constraint firstAttribute="height" constant="1" id="mNS-7S-HlY"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaA-ZO-4lM">
-                    <rect key="frame" x="16" y="595" width="120" height="35"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaA-ZO-4lM">
+                    <rect key="frame" x="16" y="595" width="135" height="35"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="120" id="3Tn-0i-MfF"/>
+                        <constraint firstAttribute="width" constant="135" id="3Tn-0i-MfF"/>
                         <constraint firstAttribute="height" constant="35" id="qjs-P2-Xwf"/>
                     </constraints>
                     <color key="tintColor" systemColor="labelColor"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Visit Reddit">
+                    <buttonConfiguration key="configuration" style="plain" title="Visit Website">
                         <fontDescription key="titleFontDescription" type="system" pointSize="19"/>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="websiteButtonTapped:" destination="-1" eventType="touchUpInside" id="Xza-Jd-e28"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NjC-Ln-FQh">
                     <rect key="frame" x="16" y="646" width="398" height="1"/>
@@ -94,11 +103,13 @@
                         <constraint firstAttribute="height" constant="1" id="fx7-o6-YK8"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10R-a4-EIn">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="10R-a4-EIn">
                     <rect key="frame" x="16" y="288" width="382" height="40"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="44"/>
+                    <color key="textColor" systemColor="systemBackgroundColor"/>
                     <nil key="highlightedColor"/>
+                    <color key="shadowColor" systemColor="systemGrayColor"/>
+                    <size key="shadowOffset" width="1" height="0.0"/>
                 </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
