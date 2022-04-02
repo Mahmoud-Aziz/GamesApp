@@ -12,6 +12,7 @@ enum Images {
     case gamesSelected
     case favorites
     case favoritesSelected
+    case placeholder
     
     var image: UIImage {
         switch self {
@@ -23,6 +24,9 @@ enum Images {
             return UIImage(named: "Favorites")!
         case .favoritesSelected:
             return UIImage(named: "Favorites-Selected")!
+        case .placeholder:
+            return UIImage(named: "placeholder")!
+
         }
     }
 }
