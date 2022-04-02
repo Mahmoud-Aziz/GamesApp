@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Swx-al-7Dc">
-                    <rect key="frame" x="0.0" y="180" width="414" height="632"/>
+                    <rect key="frame" x="0.0" y="180" width="414" height="682"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="myy-Zm-IoW">
                         <size key="itemSize" width="314" height="128"/>
@@ -42,28 +42,16 @@
                         <outlet property="delegate" destination="-1" id="trK-Xk-Uy9"/>
                     </connections>
                 </searchBar>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Games" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZH-Vj-Aw6">
-                    <rect key="frame" x="16" y="60" width="114" height="60"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Games" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZH-Vj-Aw6">
+                    <rect key="frame" x="16" y="60" width="114" height="41"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="34"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MWL-MV-we9">
-                    <rect key="frame" x="0.0" y="812" width="414" height="50"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="6LG-Jk-vMW"/>
-                    </constraints>
-                    <items>
-                        <tabBarItem systemItem="favorites" id="Rtu-b7-xjD"/>
-                        <tabBarItem systemItem="more" id="TSc-bP-J1U"/>
-                    </items>
-                </tabBar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="sIm-AC-17Z" firstAttribute="top" secondItem="WZH-Vj-Aw6" secondAttribute="bottom" constant="9" id="135-Ef-o67"/>
                 <constraint firstItem="sIm-AC-17Z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="3lE-Qk-PH7"/>
                 <constraint firstItem="Swx-al-7Dc" firstAttribute="top" secondItem="sIm-AC-17Z" secondAttribute="bottom" id="5W2-qa-7fE"/>
                 <constraint firstItem="WZH-Vj-Aw6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="GFd-Oq-DhZ"/>
@@ -72,13 +60,10 @@
                 <constraint firstItem="sIm-AC-17Z" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="MNI-IU-vKj"/>
                 <constraint firstItem="Swx-al-7Dc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="RkW-7h-dZE"/>
                 <constraint firstItem="sIm-AC-17Z" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="XZz-C6-SrC"/>
-                <constraint firstItem="MWL-MV-we9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Yng-nt-tIp"/>
                 <constraint firstItem="sIm-AC-17Z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ZpP-5R-jkb"/>
-                <constraint firstItem="MWL-MV-we9" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="c1c-Aw-v2B"/>
                 <constraint firstItem="sIm-AC-17Z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dJG-LV-y9Q"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Swx-al-7Dc" secondAttribute="trailing" id="pyy-hf-InO"/>
-                <constraint firstItem="MWL-MV-we9" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="uNM-Gk-EK5"/>
-                <constraint firstItem="MWL-MV-we9" firstAttribute="top" secondItem="Swx-al-7Dc" secondAttribute="bottom" id="wba-Qc-3j0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Swx-al-7Dc" secondAttribute="bottom" id="xlx-1r-wPX"/>
                 <constraint firstItem="sIm-AC-17Z" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="85" id="yq0-1N-BPF"/>
                 <constraint firstItem="Swx-al-7Dc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="180" id="zNc-cA-EzQ"/>
             </constraints>

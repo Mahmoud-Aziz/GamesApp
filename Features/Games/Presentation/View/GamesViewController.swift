@@ -13,6 +13,7 @@ class GamesViewController: UIViewController {
     // MARK: - IBOutlets:
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var searchBar: CustomSearchBar!
+    
     private var viewModel: GamesViewModelProtocol?
     private let hud = JGProgressHUD()
     
