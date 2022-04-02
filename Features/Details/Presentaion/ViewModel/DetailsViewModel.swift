@@ -18,20 +18,20 @@ protocol DetailsViewModelProtocol {
 }
 
 class DetailsViewModel: DetailsViewModelProtocol {
+    
+    //MARK: - Private properties:
     private let dataSource: DetailsUseCase
     private var gameDetails: DetailsResponse?
+    
+    //MARK: - Public properties:
     var state: StatePresentable?
     
+    //MARK: - Initializer:
     init(dataSource: DetailsUseCase) {
         self.dataSource = dataSource
     }
     
-    func viewDidLoad(statePresenter: StatePresentable) {
-        self.state = statePresenter
-        self.state?.render(state: .initial)
-        getDetails()
-    }
-
+    //MARK: - Use case execution:
     func getDetails() {
         dataSource.getDetails(completion: { [weak self] result in
             switch result {
@@ -40,9 +40,18 @@ class DetailsViewModel: DetailsViewModelProtocol {
                 self?.state?.render(state: .loaded)
             case .failure(let error):
                 self?.state?.render(state: .error(NetworkError.failedRequest.rawValue))
-                //TODO: Log error 
+                //TODO: Log error
             }
         })
+    }
+}
+
+//MARK: - DetailsViewModelProtocol conformance:
+extension DetailsViewModel {
+    func viewDidLoad(statePresenter: StatePresentable) {
+        self.state = statePresenter
+        self.state?.render(state: .initial)
+        getDetails()
     }
     
     func getTitle() -> String {
