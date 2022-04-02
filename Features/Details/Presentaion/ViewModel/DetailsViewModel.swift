@@ -15,6 +15,8 @@ protocol DetailsViewModelProtocol {
     func getReddit() -> String
     func getWebsite() -> String
     func getImage() -> String
+    func getScore() -> String
+    func getGenre() -> String
 }
 
 class DetailsViewModel: DetailsViewModelProtocol {
@@ -79,5 +81,17 @@ extension DetailsViewModel {
     func getImage() -> String {
         guard let image = gameDetails?.backgroundImage else { return ViewError.alert.rawValue }
         return image
+    }
+    
+    //MARK: - Additional Coredata attributes:
+    func getScore() -> String {
+        guard let score = gameDetails?.metacritic else { return ViewError.alert.rawValue }
+        return score.toString
+    }
+    
+    func getGenre() -> String {
+        guard let genre = gameDetails?.genres else { return ViewError.alert.rawValue }
+        guard let genreName = genre[safe: 0]?.name else { return ViewError.alert.rawValue }
+        return genreName
     }
 }
