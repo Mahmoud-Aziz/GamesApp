@@ -64,6 +64,12 @@ extension GamesViewController: UICollectionViewDataSource {
 }
 
 // MARK: - CollectionView delegate methods:
+extension GamesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = DetailsViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
 
 // MARK: - CollectionView layout methods:
 extension GamesViewController {
