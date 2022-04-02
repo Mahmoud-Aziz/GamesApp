@@ -66,7 +66,14 @@ extension GamesViewController: UICollectionViewDataSource {
 // MARK: - CollectionView delegate methods:
 extension GamesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        highlightCell(cell: cell)
         viewModel?.didSelectItem(at: indexPath.row)
+    }
+    
+    func highlightCell(cell: UICollectionViewCell?) {
+        cell?.layer.borderWidth = 2.0
+        cell?.layer.borderColor = UIColor.gray.cgColor
     }
 }
 
@@ -124,9 +131,4 @@ extension GamesViewController: StatePresentable {
         alertController.addAction(action)
         present(alertController, animated: true, completion: nil)
     }
-}
-
-// MARK: - ResuseIdentifiers:
-private enum ResuseIdentifiers: String {
-    case gamesCollectionViewCell = "GamesCollectionViewCell"
 }
