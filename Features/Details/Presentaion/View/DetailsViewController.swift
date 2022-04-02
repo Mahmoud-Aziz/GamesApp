@@ -48,7 +48,6 @@ private extension DetailsViewController {
         self.gameTitleLabel.text = viewModel.getTitle()
         self.gameDescriptionLabel.text = viewModel.getDescription()
         setupImageView()
-        setupDescriptionLabel()
     }
     
      func setupImageView() {
@@ -108,12 +107,11 @@ extension DetailsViewController {
     }
     
     @IBAction private func favoriteTapped(_ sender: UIButton) {
-        let game = Game(context: CoreDataStack.shared.viewContext)
-        game.title = viewModel.getTitle()
-        game.reddit = viewModel.getReddit()
-        game.website = viewModel.getWebsite()
-        game.fullDescription = viewModel.getDescription()
-        
+        let favorite = Favorite(context: CoreDataStack.shared.viewContext)
+        favorite.title = viewModel.getTitle()
+        favorite.image = viewModel.getImage()
+        favorite.score = viewModel.getScore()
+        favorite.genre = viewModel.getGenre()
         do {
             try CoreDataStack.shared.saveContext()
         }
