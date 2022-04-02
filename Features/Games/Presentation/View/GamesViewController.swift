@@ -12,7 +12,7 @@ class GamesViewController: UIViewController {
     
     // MARK: - IBOutlets:
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var searchbar: UISearchBar!
+    @IBOutlet private weak var searchBar: CustomSearchBar!
     private var viewModel: GamesViewModelProtocol?
     private let hud = JGProgressHUD()
     
@@ -23,21 +23,28 @@ class GamesViewController: UIViewController {
         viewModel?.viewDidLoad()
         setupView()
     }
-    
-    // MARK: - View setup methods:
-    
+}
+// MARK: - View setup methods:
+private extension GamesViewController {
     func setupView() {
         registerCell()
         setupCollectionViewLayout()
         setupNavigationController()
+        setupSearchBar()
     }
+    
     func registerCell() {
-        let cell = UINib(nibName: ResuseIdentifiers.gamesCollectionViewCell.rawValue, bundle: nil)
-        collectionView.register(cell, forCellWithReuseIdentifier: ResuseIdentifiers.gamesCollectionViewCell.rawValue)
+        collectionView.register(cellClass: GamesCollectionViewCell.self)
     }
     
     func setupNavigationController() {
         navigationController?.isNavigationBarHidden = true
+    }
+    
+    func setupSearchBar() {
+        self.searchBar.textDidChange = {[weak self] text in
+            self?.viewModel?.search(with: text)
+        }
     }
 }
 
@@ -45,8 +52,8 @@ class GamesViewController: UIViewController {
 // MARK: - CollectionView datasource methods:
 extension GamesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResuseIdentifiers.gamesCollectionViewCell.rawValue, for: indexPath) as! GamesCollectionViewCell
-        guard let game = viewModel?.getGame(for: indexPath.row) else { return UICollectionViewCell() }
+        let cell: GamesCollectionViewCell = collectionView.dequeue(for: indexPath)
+        let game = viewModel?.getGames(at: indexPath.row)
         cell.game = game
         return cell
     }
@@ -78,42 +85,39 @@ extension GamesViewController {
 extension GamesViewController: StatePresentable {
     func render(state: State) {
         switch state {
-        case .error(let error):
-            show(error: error)
-            setEmptyView(state: .visible)
+        case .error(let message):
+            spinner(state: .loaded)
+            show(message: message)
         case .loaded:
             collectionView?.reloadData()
-            setEmptyView(state: .hidden)
+            spinner(state: .loaded)
         case .loading:
-            setEmptyView(state: .visible)
+            spinner(state: .loading)
         case .initial:
-            setEmptyView(state: .visible)
+            spinner(state: .loading)
         }
     }
     
-    func setEmptyView(state: EmptyState) {
+    func spinner(state: EmptyState) {
         switch state {
-        case .visible:
+        case .loading:
             hud.show(in: view)
-        case .hidden:
+        case .loaded:
             hud.dismiss()
         }
     }
     
-    func show(error: Error) {
-        let alertController = UIAlertController(title: "Error",
-                                                message: ViewError.operationFaield.rawValue,
+    func show(message: String) {
+        let alertController = UIAlertController(title: ViewError.alert.rawValue,
+                                                message: message,
                                                 preferredStyle: .alert)
+        let action = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(action)
         present(alertController, animated: true, completion: nil)
     }
 }
 
 // MARK: - ResuseIdentifiers:
-enum ResuseIdentifiers: String {
+private enum ResuseIdentifiers: String {
     case gamesCollectionViewCell = "GamesCollectionViewCell"
-}
-
-// MARK: - View Error:
-enum ViewError: String {
-    case operationFaield = "The operation couldn't be completed"
 }

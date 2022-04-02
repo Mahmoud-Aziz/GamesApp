@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias NetworkResponse<T> = (Result<[T], Error>) -> Void
+typealias NetworkResponse<T> = (Result<T, Error>) -> Void
 
 class APIService: APIServiceProtocol {
     private var task: URLSessionTask?
@@ -38,7 +38,6 @@ class APIService: APIServiceProtocol {
 extension APIService {
     private func handleErrorState<T:Decodable>(decodable: T.Type, response: URLResponse?, error: Error?, completion: NetworkResponse<T>?) {
         if let error = error {
-            print(error)
             //TODO: report to error logger tool.
         }
         return
@@ -50,11 +49,10 @@ extension APIService {
     private func parseJsonResults<T:Decodable>(decodable: T.Type, data: Data, completion: NetworkResponse<T>?) {
         do {
             let object = try JSONDecoder().decode(decodable.self, from: data)
-            completion?(.success([object]))
+            completion?(.success(object))
         }
         catch let error {
             //TODO: report to error logger tool.
-            print(error)
             completion?(.failure(APIError.decodeFailure))
         }
     }

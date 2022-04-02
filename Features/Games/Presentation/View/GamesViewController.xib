@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GamesViewController" customModule="GamesApp" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="Swx-al-7Dc" id="WGh-qg-PrT"/>
-                <outlet property="searchbar" destination="sIm-AC-17Z" id="wec-1D-sNB"/>
+                <outlet property="searchBar" destination="sIm-AC-17Z" id="vke-qE-uxC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -35,9 +35,12 @@
                         <outlet property="delegate" destination="-1" id="Moi-fn-4fZ"/>
                     </connections>
                 </collectionView>
-                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="sIm-AC-17Z">
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="sIm-AC-17Z" customClass="CustomSearchBar" customModule="GamesApp" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="129" width="414" height="51"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="trK-Xk-Uy9"/>
+                    </connections>
                 </searchBar>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Games" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZH-Vj-Aw6">
                     <rect key="frame" x="16" y="60" width="114" height="60"/>
