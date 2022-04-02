@@ -8,9 +8,6 @@
 import Foundation
 typealias GamesResultHandler = Result<GamesResponse, Error>
 typealias GamesReponseHandler = (GamesResultHandler) -> Void
-typealias SearchResultHandler = Result<SearchResponse, Error>
-typealias SearchReponseHandler = (SearchResultHandler) -> Void
-
 
 class GamesDataProvider: GamesUseCase {
     func getGames(completion: @escaping GamesReponseHandler) {
@@ -33,7 +30,7 @@ class GamesDataProvider: GamesUseCase {
         })
     }
     
-    func search(for game: String, completion: @escaping SearchReponseHandler) {
+    func search(for game: String, completion: @escaping GamesReponseHandler) {
         let requestBuilder = RequestBuilder()
         requestBuilder.setBaseUrl(APIBaseURL.baseURL)
         requestBuilder.setEndpoint(APIEndpoint.games.rawValue)
@@ -44,7 +41,7 @@ class GamesDataProvider: GamesUseCase {
         requestBuilder.setQueryParameters("search", "\(game)")
         let request = requestBuilder.build()
         
-        APIService.shared.request(decodable: SearchResponse.self, request: request, completion: { result in
+        APIService.shared.request(decodable: GamesResponse.self, request: request, completion: { result in
             switch result {
             case .success(let result):
                 completion(.success(result))
