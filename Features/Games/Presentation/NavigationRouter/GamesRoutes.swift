@@ -22,7 +22,7 @@ enum GamesRoutes: Route {
     var style: NaivgationStyle {
         switch self {
         case .gameDetails:
-            return .push
+            return .modal
         }
     }
 }
