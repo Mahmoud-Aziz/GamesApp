@@ -8,10 +8,5 @@
 import Foundation
 
 enum APIError: Error {
-    case unknown
-    case unreachable
-    case unauthorized
-    case failedRequest
-    case invalidResponse
     case decodeFailure
 }

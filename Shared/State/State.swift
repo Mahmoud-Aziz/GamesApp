@@ -11,19 +11,19 @@ enum State {
     case initial
     case loading
     case loaded
-    case error(Error)
+    case error(String)
 }
 
 enum EmptyState {
-    case visible, hidden
+    case loading, loaded
 }
 
 protocol EmptyPresentable {
-    func setEmptyView(state: EmptyState)
+    func spinner(state: EmptyState)
 }
 
 protocol ErrorPresentable {
-    func show(error: Error)
+    func show(message: String)
 }
 
 protocol StatePresentable: EmptyPresentable, ErrorPresentable {

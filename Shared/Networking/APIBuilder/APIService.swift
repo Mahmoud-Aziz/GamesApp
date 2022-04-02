@@ -38,7 +38,6 @@ class APIService: APIServiceProtocol {
 extension APIService {
     private func handleErrorState<T:Decodable>(decodable: T.Type, response: URLResponse?, error: Error?, completion: NetworkResponse<T>?) {
         if let error = error {
-            print(error)
             //TODO: report to error logger tool.
         }
         return
@@ -54,7 +53,6 @@ extension APIService {
         }
         catch let error {
             //TODO: report to error logger tool.
-            print(error)
             completion?(.failure(APIError.decodeFailure))
         }
     }
