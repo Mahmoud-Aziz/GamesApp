@@ -77,7 +77,7 @@
             </constraints>
             <size key="customSize" width="402" height="308"/>
             <connections>
-                <outlet property="gameGenre" destination="u1d-fy-MEI" id="Lja-Pm-cT1"/>
+                <outlet property="gameGenre" destination="u1d-fy-MEI" id="Ygb-16-zOQ"/>
                 <outlet property="gameImageView" destination="ydJ-Mg-PNa" id="hm6-Re-6wf"/>
                 <outlet property="gameTitle" destination="egI-bq-EMe" id="5Ep-l6-Cb2"/>
                 <outlet property="metacriticScore" destination="O3P-NN-YJ5" id="gQ7-5p-Wb0"/>
