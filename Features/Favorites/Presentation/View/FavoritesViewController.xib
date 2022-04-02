@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavoritesViewController" customModule="GamesApp" customModuleProvider="target">
             <connections>
+                <outlet property="favoritesCollectionView" destination="NUV-HX-szd" id="T0M-2Q-jiw"/>
                 <outlet property="view" destination="CIg-kD-WbU" id="ySh-Ye-DoG"/>
             </connections>
         </placeholder>
@@ -28,6 +29,10 @@
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="KRN-6m-oSR"/>
+                        <outlet property="delegate" destination="-1" id="27B-yc-0fg"/>
+                    </connections>
                 </collectionView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELY-qK-pXZ">
                     <rect key="frame" x="16" y="60" width="150" height="41"/>
