@@ -18,6 +18,7 @@ protocol GamesViewModelProtocol {
     func viewDidLoad()
     func getGames(at index: Int) -> Response?
     func search(with text: String)
+    func didSelectItem(at index: Int)
 }
 
 class GamesViewModel {
@@ -107,5 +108,9 @@ extension GamesViewModel: GamesViewModelProtocol {
             //TODO: Log error
             state.render(state: .error(NetworkError.failedRequest.rawValue))
         }
+    }
+    
+    func didSelectItem(at index: Int) {
+        state.render(state: .navigate(gamesCollection[index]))
     }
 }

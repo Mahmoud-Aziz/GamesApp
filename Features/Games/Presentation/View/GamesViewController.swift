@@ -48,7 +48,6 @@ private extension GamesViewController {
     }
 }
 
-
 // MARK: - CollectionView datasource methods:
 extension GamesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -64,6 +63,11 @@ extension GamesViewController: UICollectionViewDataSource {
 }
 
 // MARK: - CollectionView delegate methods:
+extension GamesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel?.didSelectItem(at: indexPath.row)
+    }
+}
 
 // MARK: - CollectionView layout methods:
 extension GamesViewController {
@@ -95,10 +99,14 @@ extension GamesViewController: StatePresentable {
             spinner(state: .loading)
         case .initial:
             spinner(state: .loading)
+        case .navigate(let game):
+            let route = GamesRoutes.gameDetails(game)
+            navigate(to: route)
+            
         }
     }
     
-    func spinner(state: EmptyState) {
+    func spinner(state: LoadingState) {
         switch state {
         case .loading:
             hud.show(in: view)

@@ -48,7 +48,7 @@ private extension GamesCollectionViewCell {
     
     func setImage(game: Response) {
         guard let imageURL = game.backgroundImage else { return }
-        gameImageView.setImage(url: imageURL, placeHolder: UIImage(named: placeholder.image.rawValue)!)
+        gameImageView.setImage(url: imageURL, placeHolder: Images.placeholder.image)
     }
     
     enum placeholder: String {

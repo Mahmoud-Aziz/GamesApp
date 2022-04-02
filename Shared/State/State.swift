@@ -12,20 +12,26 @@ enum State {
     case loading
     case loaded
     case error(String)
+    case navigate(Response)
 }
 
-enum EmptyState {
+enum LoadingState {
     case loading, loaded
 }
 
-protocol EmptyPresentable {
-    func spinner(state: EmptyState)
+protocol LoadingPresentable {
+    func spinner(state: LoadingState)
 }
 
 protocol ErrorPresentable {
     func show(message: String)
 }
 
-protocol StatePresentable: EmptyPresentable, ErrorPresentable {
+protocol StatePresentable: LoadingPresentable, ErrorPresentable {
     func render(state: State)
 }
+
+protocol NavigationRoute {
+    func navigate(to route: Route)
+}
+
