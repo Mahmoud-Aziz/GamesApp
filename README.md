@@ -6,6 +6,8 @@
 
 ```Clone``` and run! no dependencies required for now. 
 
+Add your API key to API_KEY in GamesApp/Shared/Enviroment/.XCConfig (Make sure to include the key for the choosen build scheme config file) 
+
 ## Project Overview
 
 User can search for a game and gets information like the Metascore rating, the genre, and a description. Also, the user can save a game to store locally on his device. 
@@ -25,6 +27,10 @@ The project is following **clean architecture** and uses **MVVM** with a group o
 Every module consists of the **Presentation layer**, **Domain layer**, and **Data layer** for a better separation of concerns and single responsibility.
 
 The view is **state-driven**. The view model controls the view's current state totally depending on the delegate pattern. 
+
+## Enviroments:
+
+Project supports three enviroments: **Development**, **Stage** and **Production**. The configurations is imported from .xcconfig file for each scheme.
 
 ## More info
 
