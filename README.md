@@ -55,6 +55,8 @@ Support reachability detection and retry for networking.
 
 Add a read more button for the description label in the details screen. 
 
+Write unit testing.
+
 ## Screenshots
 
 ![Simulator Screen Shot - iPhone 13 Pro Max - 2022-04-03 at 01 48 39](https://user-images.githubusercontent.com/69410556/161405498-2547da21-41a2-4694-9d02-5c58f8723703.png)
