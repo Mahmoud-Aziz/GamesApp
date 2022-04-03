@@ -45,7 +45,7 @@ The UI adaptivity with more screen sizes and landscape better support.
 
 README will be edited with more info. 
 
-Add screen shots for the running application.
+Log errors and decode which logging techniques to follow. 
 
 Support pagination in games screen. 
 
