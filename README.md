@@ -14,7 +14,7 @@ User can search for a game and gets information like the Metascore rating, the g
 
 ## App Features
 
-**Games:** the main screen and here the user can search and find games from [rawg.io](https://rawg.io/apidocs) API. 
+**Games:** the main screen and here the user can search and find games from rawg.io API. 
 
 **Details:** a more informative screen for the selected game, including description and hyperlinks for the Reddit community and website for the selected game. On this screen, users can save games locally.
 
