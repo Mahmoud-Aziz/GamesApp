@@ -19,7 +19,6 @@ User can search for a game and gets information like the Metascore rating, the g
 **Favorites:** contains pre-saved games on the details screen. 
 
 ## Project Architecture
-![image](https://user-images.githubusercontent.com/69410556/161405516-e9b9fba6-ffc8-481a-8408-01f7537cf921.png)
 
 The project is following **clean architecture** and uses **MVVM** with a group of practices and decisions that makes the code testable with dependable components.
 
