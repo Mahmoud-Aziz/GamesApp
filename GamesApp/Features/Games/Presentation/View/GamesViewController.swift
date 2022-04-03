@@ -28,6 +28,7 @@ class GamesViewController: UIViewController {
 private extension GamesViewController {
     func setupView() {
         registerCell()
+        registerFooter()
         setupCollectionViewLayout()
         setupNavigationController()
         setupSearchBar()
@@ -35,6 +36,10 @@ private extension GamesViewController {
     
     func registerCell() {
         collectionView.register(cellClass: GamesCollectionViewCell.self)
+    }
+    
+    func registerFooter() {
+        collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: HeaderCollectionReusableView.reuseIdentifier)
     }
     
     func setupNavigationController() {
