@@ -6,7 +6,7 @@
 
 ```Clone``` and run! no dependencies required for now. 
 
-Add your API key to API_KEY in GamesApp/Shared/Enviroment/.XCConfig (Make sure to include the key for the choosen build scheme config file) 
+Add your API key to API_KEY property at path: GamesApp/Shared/Enviroment/Shared.XCConfig 
 
 ## Project Overview
 
