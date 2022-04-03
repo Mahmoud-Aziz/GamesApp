@@ -41,6 +41,10 @@ Data is saved locally using **Coredata**.
 
 The UI adaptivity with more screen sizes and landscape better support. 
 
+## Issues to ne solved 
+
+Caching is not working as expecting. 
+
 ## Work in progress
 
 README will be edited with more info. 
