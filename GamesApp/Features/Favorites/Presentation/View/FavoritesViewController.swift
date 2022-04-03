@@ -21,16 +21,26 @@ class FavoritesViewController: UIViewController {
         viewModel?.viewDidLoad()
         setupView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupCollectionViewLayout()
+    }
 }
 
 // MARK: - View setup methods:
-extension FavoritesViewController {
+private extension FavoritesViewController {
     func setupView() {
         registerCell()
-        setupCollectionViewLayout()
+        deviceIsRotated()
     }
+    
     func registerCell() {
         favoritesCollectionView.register(cellClass: FavoritesCollectionViewCell.self)
+    }
+    
+    func deviceIsRotated() {
+        NotificationCenter.default.addObserver(self, selector: #selector(setupCollectionViewLayout), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 }
 
@@ -77,13 +87,16 @@ extension FavoritesViewController: StatePresentable {
 
 // MARK: - CollectionView layout methods:
 extension FavoritesViewController {
-    func setupCollectionViewLayout() {
+    @objc func setupCollectionViewLayout() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         if UIDevice.current.orientation == .portrait {
-            layout.itemSize = CGSize(width: view.frame.size.width, height: view.frame.size.height/5)
+            print("portrait")
+            layout.itemSize = CGSize(width: view.frame.size.width/1, height: view.frame.size.height/5)
         } else {
-            layout.itemSize = CGSize(width: view.frame.size.width/1, height: view.frame.size.height/8)
+            print("landscape")
+
+            layout.itemSize = CGSize(width: view.frame.size.width/2.25, height: view.frame.size.height/3)
         }
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
