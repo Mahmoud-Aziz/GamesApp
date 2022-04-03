@@ -28,13 +28,18 @@ class GamesViewController: UIViewController {
 private extension GamesViewController {
     func setupView() {
         registerCell()
-        setupCollectionViewLayout()
+//        registerFooter()
+        deviceIsRotated()
         setupNavigationController()
         setupSearchBar()
     }
     
     func registerCell() {
         collectionView.register(cellClass: GamesCollectionViewCell.self)
+    }
+    
+    func registerFooter() {
+        collectionView.register(FooterCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterCollectionReusableView.identifier)
     }
     
     func setupNavigationController() {
@@ -45,6 +50,11 @@ private extension GamesViewController {
         self.searchBar.textDidChange = {[weak self] text in
             self?.viewModel?.search(with: text)
         }
+    }
+    
+    func deviceIsRotated() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setupCollectionViewLayout), name: UIDevice.orientationDidChangeNotification, object: nil)
+
     }
 }
 
@@ -59,6 +69,21 @@ extension GamesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel?.numberOfItems ?? 0
+    }
+    
+    
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterCollectionReusableView.identifier, for: indexPath) as! FooterCollectionReusableView
+//
+//        footer.configure()
+//
+//        return footer
+//    }
+}
+
+extension GamesViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.size.width, height: 100)
     }
 }
 
@@ -78,13 +103,13 @@ extension GamesViewController: UICollectionViewDelegate {
 
 // MARK: - CollectionView layout methods:
 extension GamesViewController {
-    func setupCollectionViewLayout() {
+     @objc func setupCollectionViewLayout() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         if UIDevice.current.orientation == .portrait {
             layout.itemSize = CGSize(width: view.frame.size.width, height: view.frame.size.height/5)
         } else {
-            layout.itemSize = CGSize(width: view.frame.size.width/1, height: view.frame.size.height/8)
+            layout.itemSize = CGSize(width: view.frame.size.width/2.25, height: view.frame.size.height/3)
         }
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
