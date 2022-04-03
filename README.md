@@ -37,6 +37,9 @@ Project supports three enviroments: **Development**, **Stage** and **Production*
 The project depends on **URLSession** for networking and the network layer is built following **builder pattern**. 
 Data is saved locally using **Coredata**.
 
+## Things to improve 
+
+The UI adaptivity with more screen sizes and landscape better support. 
 
 ## Work in progress
 
