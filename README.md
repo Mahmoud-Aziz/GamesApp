@@ -19,6 +19,7 @@ User can search for a game and gets information like the Metascore rating, the g
 **Favorites:** contains pre-saved games on the details screen. 
 
 ## Project Architecture
+![image](https://user-images.githubusercontent.com/69410556/161405516-e9b9fba6-ffc8-481a-8408-01f7537cf921.png)
 
 The project is following **clean architecture** and uses **MVVM** with a group of practices and decisions that makes the code testable with dependable components.
 
@@ -47,3 +48,10 @@ Support reachability detection and retry for networking.
 Add a read more button for the description label in the details screen. 
 
 ## Screenshots
+
+![Simulator Screen Shot - iPhone 13 Pro Max - 2022-04-03 at 01 48 39](https://user-images.githubusercontent.com/69410556/161405498-2547da21-41a2-4694-9d02-5c58f8723703.png)
+![Simulator Screen Shot - iPhone 13 Pro Max - 2022-04-03 at 01 48 44](https://user-images.githubusercontent.com/69410556/161405503-1cd27c9c-2619-46d3-98c6-ab0a0787a3ca.png)
+![Simulator Screen Shot - iPhone 13 Pro Max - 2022-04-03 at 01 49 32](https://user-images.githubusercontent.com/69410556/161405509-3ca78fcf-e660-46da-89c3-1c23d8ebdce8.png)
+![Simulator Screen Shot - iPhone 13 Pro Max - 2022-04-03 at 01 49 37](https://user-images.githubusercontent.com/69410556/161405511-690be19d-deb6-4b66-9080-1ddc8ae486ad.png)
+
+
