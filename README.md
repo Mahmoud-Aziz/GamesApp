@@ -1,6 +1,6 @@
 # Games App 
 
-**Games App** is an application that interacts with rawg.io video games API and helps the user to search and save his favorite games.
+**Games App** is an application that interacts with [rawg.io](https://rawg.io/apidocs) video games API and helps the user to search and save his favorite games.
 
 ## How to run the project
 
