@@ -30,10 +30,10 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q5P-RU-JFf" userLabel="HeaderView">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="378.33333333333331"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dao-fz-IqY">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dao-fz-IqY">
                                     <rect key="frame" x="0.0" y="8" width="414" height="370.33333333333331"/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="10R-a4-EIn">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="10R-a4-EIn">
                                     <rect key="frame" x="16" y="309.66666666666669" width="382" height="52.666666666666686"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="44"/>
                                     <color key="textColor" systemColor="systemBackgroundColor"/>
@@ -78,7 +78,7 @@
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2Zx-XH-tCX" userLabel="DescriptionStack">
-                            <rect key="frame" x="0.0" y="378.33333333333331" width="414" height="123.66666666666669"/>
+                            <rect key="frame" x="0.0" y="378.33333333333331" width="414" height="137.33333333333331"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ky-Pz-I7b">
                                     <rect key="frame" x="16.000000000000007" y="15.999999999999998" width="104.66666666666669" height="25.333333333333329"/>
@@ -87,7 +87,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgM-s3-6zf">
-                                    <rect key="frame" x="16" y="49.333333333333371" width="382" height="58.333333333333343"/>
+                                    <rect key="frame" x="16" y="65.666666666666686" width="382" height="71.666666666666686"/>
                                     <string key="text">Rockstar Games went bigger, since their previous installment of the series. You get the complicated and realistic world-building from Liberty City of GTA4 in the setting of lively and diverse Los Santos, from an old fan favorite GTA San Andreas. 561 different vehicles (including every transport you can operate)....</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" systemColor="systemGrayColor"/>
@@ -97,22 +97,22 @@
                             <constraints>
                                 <constraint firstItem="QgM-s3-6zf" firstAttribute="leading" secondItem="7ky-Pz-I7b" secondAttribute="leading" id="jBw-bv-4A4"/>
                             </constraints>
-                            <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
+                            <edgeInsets key="layoutMargins" top="16" left="16" bottom="0.0" right="16"/>
                         </stackView>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Cq6-iB-Owx">
                             <rect key="frame" x="188.66666666666666" y="407.66666666666669" width="37" height="37"/>
                         </activityIndicatorView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tX2-wA-Wrh" userLabel="WebsitesStack">
-                            <rect key="frame" x="0.0" y="502" width="414" height="137"/>
+                            <rect key="frame" x="0.0" y="515.66666666666663" width="414" height="137"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ecq-7Y-q1q">
-                                    <rect key="frame" x="16" y="16" width="343" height="1"/>
+                                    <rect key="frame" x="16" y="16" width="398" height="1"/>
                                     <color key="backgroundColor" systemColor="systemGray5Color"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="Crb-Xu-fYf"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdC-3Z-95c">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdC-3Z-95c">
                                     <rect key="frame" x="16" y="25" width="135" height="35"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="35" id="WZs-Fi-1fu"/>
@@ -128,13 +128,13 @@
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u8T-8v-BDY">
-                                    <rect key="frame" x="16" y="68" width="343" height="1"/>
+                                    <rect key="frame" x="16" y="68" width="398" height="1"/>
                                     <color key="backgroundColor" systemColor="systemGray5Color"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="9eN-L9-h8R"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaA-ZO-4lM">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaA-ZO-4lM">
                                     <rect key="frame" x="16" y="77" width="135" height="35"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="35" id="Ddl-Ry-AUi"/>
@@ -150,14 +150,19 @@
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="09E-ol-bsm">
-                                    <rect key="frame" x="16" y="120" width="343" height="1"/>
+                                    <rect key="frame" x="16" y="120" width="398" height="1"/>
                                     <color key="backgroundColor" systemColor="systemGray5Color"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="fFH-jd-XCy"/>
                                     </constraints>
                                 </view>
                             </subviews>
-                            <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="Ecq-7Y-q1q" secondAttribute="trailing" id="19Y-eR-Lwf"/>
+                                <constraint firstAttribute="trailing" secondItem="09E-ol-bsm" secondAttribute="trailing" id="KwS-Ci-FkQ"/>
+                                <constraint firstAttribute="trailing" secondItem="u8T-8v-BDY" secondAttribute="trailing" id="kyv-Oy-0ug"/>
+                            </constraints>
+                            <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="0.0"/>
                         </stackView>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="q0Y-nV-2Jl"/>
@@ -171,11 +176,11 @@
                         <constraint firstItem="2Zx-XH-tCX" firstAttribute="leading" secondItem="q0Y-nV-2Jl" secondAttribute="leading" id="Ou9-kL-588"/>
                         <constraint firstItem="tX2-wA-Wrh" firstAttribute="trailing" secondItem="q0Y-nV-2Jl" secondAttribute="trailing" id="RHZ-M9-4D9"/>
                         <constraint firstItem="Cq6-iB-Owx" firstAttribute="centerX" secondItem="YmH-re-6DP" secondAttribute="centerX" id="Y2K-JQ-PEm"/>
-                        <constraint firstAttribute="bottom" secondItem="2Zx-XH-tCX" secondAttribute="bottom" constant="350" id="Ybj-H7-QPG"/>
                         <constraint firstItem="tX2-wA-Wrh" firstAttribute="top" secondItem="2Zx-XH-tCX" secondAttribute="bottom" id="cBB-LK-ut6"/>
                         <constraint firstItem="2Zx-XH-tCX" firstAttribute="top" secondItem="q5P-RU-JFf" secondAttribute="bottom" id="cf4-jx-7g8"/>
                         <constraint firstAttribute="trailing" secondItem="q5P-RU-JFf" secondAttribute="trailing" id="h2V-mP-few"/>
                         <constraint firstItem="q5P-RU-JFf" firstAttribute="top" secondItem="YmH-re-6DP" secondAttribute="top" id="lUS-MG-9oc"/>
+                        <constraint firstItem="2Zx-XH-tCX" firstAttribute="height" secondItem="q5P-RU-JFf" secondAttribute="height" multiplier="0.362115" id="sAH-UG-KWb"/>
                     </constraints>
                 </view>
             </subviews>
