@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailsViewController" customModule="GamesApp" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="Cq6-iB-Owx" id="mUT-eQ-Af5"/>
                 <outlet property="gameDescriptionLabel" destination="QgM-s3-6zf" id="I9S-sW-b1I"/>
                 <outlet property="gameImageView" destination="Dao-fz-IqY" id="QfT-42-MFB"/>
                 <outlet property="gameTitleLabel" destination="10R-a4-EIn" id="Aho-wl-Umd"/>
@@ -134,6 +135,9 @@
                         <action selector="favoriteTapped:" destination="-1" eventType="touchUpInside" id="cNA-ds-uAx"/>
                     </connections>
                 </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Cq6-iB-Owx">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -159,11 +163,13 @@
                 <constraint firstItem="NjC-Ln-FQh" firstAttribute="top" secondItem="ZaA-ZO-4lM" secondAttribute="bottom" constant="16" id="ndQ-UZ-CuN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="10R-a4-EIn" secondAttribute="trailing" constant="16" id="oTA-va-faf"/>
                 <constraint firstItem="jGz-05-PY5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="oTC-Zu-I9K"/>
+                <constraint firstItem="Cq6-iB-Owx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qTE-Pb-idi"/>
                 <constraint firstItem="Ecq-7Y-q1q" firstAttribute="top" secondItem="Cfx-v0-bRz" secondAttribute="bottom" id="rIm-SE-WZM"/>
                 <constraint firstItem="NjC-Ln-FQh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="s5g-uk-XUL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Cfx-v0-bRz" secondAttribute="trailing" id="sFp-MB-0dI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Cfx-v0-bRz" secondAttribute="bottom" constant="352" id="spw-3c-Gnx"/>
                 <constraint firstItem="MdC-3Z-95c" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="sto-Q0-UKl"/>
+                <constraint firstItem="Cq6-iB-Owx" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="w67-Lh-4Z4"/>
                 <constraint firstItem="MdC-3Z-95c" firstAttribute="top" secondItem="Ecq-7Y-q1q" secondAttribute="bottom" constant="16" id="z1X-JO-cZY"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="134.59821428571428"/>

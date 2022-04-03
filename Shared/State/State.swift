@@ -20,7 +20,7 @@ enum LoadingState {
 }
 
 protocol LoadingPresentable {
-    func spinner(state: LoadingState)
+    func activityIndicator(state: LoadingState)
 }
 
 protocol ErrorPresentable {

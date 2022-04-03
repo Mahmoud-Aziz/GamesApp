@@ -6,16 +6,15 @@
 //
 
 import UIKit
-import JGProgressHUD
 
 class GamesViewController: UIViewController {
     
     // MARK: - IBOutlets:
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var searchBar: CustomSearchBar!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     private var viewModel: GamesViewModelProtocol?
-    private let hud = JGProgressHUD()
     
     // MARK: - View life cycle methods:
     override func viewDidLoad() {
@@ -98,15 +97,15 @@ extension GamesViewController: StatePresentable {
     func render(state: State) {
         switch state {
         case .error(let message):
-            spinner(state: .loaded)
+            activityIndicator(state: .loaded)
             show(message: message)
         case .loaded:
             collectionView?.reloadData()
-            spinner(state: .loaded)
+            activityIndicator(state: .loaded)
         case .loading:
-            spinner(state: .loading)
+            activityIndicator(state: .loading)
         case .initial:
-            spinner(state: .loading)
+            activityIndicator(state: .loading)
         case .navigate(let game):
             let route = GamesRoutes.gameDetails(game)
             navigate(to: route)
@@ -114,12 +113,15 @@ extension GamesViewController: StatePresentable {
         }
     }
     
-    func spinner(state: LoadingState) {
+    func activityIndicator(state: LoadingState) {
         switch state {
         case .loading:
-            hud.show(in: view)
+            activityIndicator.startAnimating()
+            collectionView.isUserInteractionEnabled = false
         case .loaded:
-            hud.dismiss()
+            activityIndicator.stopAnimating()
+            activityIndicator.removeFromSuperview()
+            collectionView.isUserInteractionEnabled = true
         }
     }
     

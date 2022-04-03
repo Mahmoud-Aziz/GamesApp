@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import JGProgressHUD
 import CoreData
 
 class DetailsViewController: UIViewController {
@@ -15,10 +14,10 @@ class DetailsViewController: UIViewController {
     @IBOutlet private weak var gameTitleLabel: UILabel!
     @IBOutlet private weak var gameDescriptionLabel: UILabel!
     @IBOutlet private weak var gameImageView: UIImageView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     private let viewModel: DetailsViewModelProtocol
-    private let hud = JGProgressHUD()
-
+    
     // MARK: - Initilalizer:
     init(viewModel: DetailsViewModelProtocol) {
         self.viewModel = viewModel
@@ -42,15 +41,15 @@ class DetailsViewController: UIViewController {
     }
 }
 
-    // MARK: - View setup methods:
+// MARK: - View setup methods:
 private extension DetailsViewController {
-     func setupView() {
+    func setupView() {
         self.gameTitleLabel.text = viewModel.getTitle()
         self.gameDescriptionLabel.text = viewModel.getDescription()
         setupImageView()
     }
     
-     func setupImageView() {
+    func setupImageView() {
         let url = viewModel.getImage()
         self.gameImageView.setImage(url: url, placeHolder: Images.placeholder.image)
     }
@@ -61,26 +60,29 @@ extension DetailsViewController: StatePresentable {
     func render(state: State) {
         switch state {
         case .error(let message):
-            spinner(state: .loaded)
+            activityIndicator(state: .loaded)
             show(message: message)
         case .loaded:
             self.viewWillAppear(true)
-            spinner(state: .loaded)
+            activityIndicator(state: .loaded)
         case .loading:
-            spinner(state: .loading)
+            activityIndicator(state: .loading)
         case .initial:
-            spinner(state: .loading)
+            activityIndicator(state: .loading)
         default:
-            spinner(state: .loaded)
+            activityIndicator(state: .loaded)
         }
     }
     
-    func spinner(state: LoadingState) {
+    func activityIndicator(state: LoadingState) {
         switch state {
         case .loading:
-            hud.show(in: view)
+            activityIndicator.startAnimating()
+            view.isUserInteractionEnabled = false
         case .loaded:
-            hud.dismiss()
+            activityIndicator.stopAnimating()
+            activityIndicator.removeFromSuperview()
+            view.isUserInteractionEnabled = true
         }
     }
     

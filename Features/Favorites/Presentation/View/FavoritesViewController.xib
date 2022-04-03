@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavoritesViewController" customModule="GamesApp" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="F8T-sW-V82" id="ljm-Tg-fWd"/>
                 <outlet property="favoritesCollectionView" destination="NUV-HX-szd" id="T0M-2Q-jiw"/>
                 <outlet property="view" destination="CIg-kD-WbU" id="ySh-Ye-DoG"/>
             </connections>
@@ -40,14 +41,19 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="F8T-sW-V82">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="ILv-UN-Nkp"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="F8T-sW-V82" firstAttribute="centerY" secondItem="CIg-kD-WbU" secondAttribute="centerY" id="Bjq-pp-a07"/>
                 <constraint firstItem="NUV-HX-szd" firstAttribute="leading" secondItem="ILv-UN-Nkp" secondAttribute="leading" id="GUs-Pd-052"/>
                 <constraint firstItem="ILv-UN-Nkp" firstAttribute="bottom" secondItem="NUV-HX-szd" secondAttribute="bottom" id="LVR-Q2-keF"/>
                 <constraint firstItem="ILv-UN-Nkp" firstAttribute="trailing" secondItem="NUV-HX-szd" secondAttribute="trailing" id="Mf1-i7-a0E"/>
                 <constraint firstItem="ELY-qK-pXZ" firstAttribute="leading" secondItem="ILv-UN-Nkp" secondAttribute="leading" constant="16" id="U4Y-3v-cVK"/>
+                <constraint firstItem="F8T-sW-V82" firstAttribute="centerX" secondItem="CIg-kD-WbU" secondAttribute="centerX" id="WFE-wj-kwg"/>
                 <constraint firstItem="ELY-qK-pXZ" firstAttribute="top" secondItem="ILv-UN-Nkp" secondAttribute="top" constant="16" id="aWX-Un-fh8"/>
                 <constraint firstItem="NUV-HX-szd" firstAttribute="top" secondItem="CIg-kD-WbU" secondAttribute="top" constant="180" id="g3j-rl-YNJ"/>
             </constraints>

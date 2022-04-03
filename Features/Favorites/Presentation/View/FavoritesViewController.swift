@@ -7,13 +7,12 @@
 
 import UIKit
 import CoreData
-import JGProgressHUD
 
 class FavoritesViewController: UIViewController {
     
     @IBOutlet private weak var favoritesCollectionView: UICollectionView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
-    private let hud = JGProgressHUD()
     private var viewModel: FavoritesViewModelProtocol?
     
     override func viewDidLoad() {
@@ -40,26 +39,29 @@ extension FavoritesViewController: StatePresentable {
     func render(state: State) {
         switch state {
         case .error(let message):
-            spinner(state: .loaded)
+            activityIndicator(state: .loaded)
             show(message: message)
         case .loaded:
             favoritesCollectionView.reloadData()
-            spinner(state: .loaded)
+            activityIndicator(state: .loaded)
         case .loading:
-            spinner(state: .loading)
+            activityIndicator(state: .loading)
         case .initial:
-            spinner(state: .loading)
+            activityIndicator(state: .loading)
         default:
-            spinner(state: .loaded)
+            activityIndicator(state: .loaded)
         }
     }
     
-    func spinner(state: LoadingState) {
+    func activityIndicator(state: LoadingState) {
         switch state {
         case .loading:
-            hud.show(in: view)
+            activityIndicator.startAnimating()
+            favoritesCollectionView.isUserInteractionEnabled = false
         case .loaded:
-            hud.dismiss()
+            activityIndicator.stopAnimating()
+            activityIndicator.removeFromSuperview()
+            favoritesCollectionView.isUserInteractionEnabled = true
         }
     }
     
