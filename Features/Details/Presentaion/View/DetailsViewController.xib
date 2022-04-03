@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -111,6 +112,28 @@
                     <color key="shadowColor" systemColor="systemGrayColor"/>
                     <size key="shadowOffset" width="1" height="0.0"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGz-05-PY5">
+                    <rect key="frame" x="368" y="60" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="2L7-HJ-7yl"/>
+                        <constraint firstAttribute="height" constant="30" id="v3o-eF-fE8"/>
+                    </constraints>
+                    <color key="tintColor" systemColor="systemBackgroundColor"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal">
+                        <color key="titleColor" systemColor="systemBackgroundColor"/>
+                        <color key="titleShadowColor" systemColor="systemPinkColor"/>
+                        <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                    </state>
+                    <buttonConfiguration key="configuration" style="tinted">
+                        <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                        <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                        <color key="baseBackgroundColor" systemColor="systemGray6Color"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="favoriteTapped:" destination="-1" eventType="touchUpInside" id="cNA-ds-uAx"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -118,6 +141,7 @@
                 <constraint firstItem="Cfx-v0-bRz" firstAttribute="top" secondItem="Dao-fz-IqY" secondAttribute="bottom" id="16F-tK-yKX"/>
                 <constraint firstItem="Dao-fz-IqY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="62c-2r-0OU"/>
                 <constraint firstItem="ZaA-ZO-4lM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="6Ns-UM-Z2S"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jGz-05-PY5" secondAttribute="trailing" constant="16" id="AmK-je-DSJ"/>
                 <constraint firstItem="5q5-Qx-VGa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="BY9-VB-8GG"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Dao-fz-IqY" secondAttribute="trailing" id="CB0-io-KTg"/>
                 <constraint firstItem="10R-a4-EIn" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="244" id="CE9-aE-kjR"/>
@@ -134,6 +158,7 @@
                 <constraint firstItem="ZaA-ZO-4lM" firstAttribute="top" secondItem="5q5-Qx-VGa" secondAttribute="bottom" constant="16" id="jZw-yq-9dh"/>
                 <constraint firstItem="NjC-Ln-FQh" firstAttribute="top" secondItem="ZaA-ZO-4lM" secondAttribute="bottom" constant="16" id="ndQ-UZ-CuN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="10R-a4-EIn" secondAttribute="trailing" constant="16" id="oTA-va-faf"/>
+                <constraint firstItem="jGz-05-PY5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="oTC-Zu-I9K"/>
                 <constraint firstItem="Ecq-7Y-q1q" firstAttribute="top" secondItem="Cfx-v0-bRz" secondAttribute="bottom" id="rIm-SE-WZM"/>
                 <constraint firstItem="NjC-Ln-FQh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="s5g-uk-XUL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Cfx-v0-bRz" secondAttribute="trailing" id="sFp-MB-0dI"/>
@@ -145,6 +170,7 @@
         </view>
     </objects>
     <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -154,8 +180,17 @@
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

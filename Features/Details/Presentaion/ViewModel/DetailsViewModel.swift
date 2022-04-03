@@ -15,23 +15,25 @@ protocol DetailsViewModelProtocol {
     func getReddit() -> String
     func getWebsite() -> String
     func getImage() -> String
+    func getScore() -> String
+    func getGenre() -> String
 }
 
 class DetailsViewModel: DetailsViewModelProtocol {
+    
+    //MARK: - Private properties:
     private let dataSource: DetailsUseCase
     private var gameDetails: DetailsResponse?
+    
+    //MARK: - Public properties:
     var state: StatePresentable?
     
+    //MARK: - Initializer:
     init(dataSource: DetailsUseCase) {
         self.dataSource = dataSource
     }
     
-    func viewDidLoad(statePresenter: StatePresentable) {
-        self.state = statePresenter
-        self.state?.render(state: .initial)
-        getDetails()
-    }
-
+    //MARK: - Use case execution:
     func getDetails() {
         dataSource.getDetails(completion: { [weak self] result in
             switch result {
@@ -40,9 +42,18 @@ class DetailsViewModel: DetailsViewModelProtocol {
                 self?.state?.render(state: .loaded)
             case .failure(let error):
                 self?.state?.render(state: .error(NetworkError.failedRequest.rawValue))
-                //TODO: Log error 
+                //TODO: Log error
             }
         })
+    }
+}
+
+//MARK: - DetailsViewModelProtocol conformance:
+extension DetailsViewModel {
+    func viewDidLoad(statePresenter: StatePresentable) {
+        self.state = statePresenter
+        self.state?.render(state: .initial)
+        getDetails()
     }
     
     func getTitle() -> String {
@@ -70,5 +81,17 @@ class DetailsViewModel: DetailsViewModelProtocol {
     func getImage() -> String {
         guard let image = gameDetails?.backgroundImage else { return ViewError.alert.rawValue }
         return image
+    }
+    
+    //MARK: - Additional Coredata attributes:
+    func getScore() -> String {
+        guard let score = gameDetails?.metacritic else { return ViewError.alert.rawValue }
+        return score.toString
+    }
+    
+    func getGenre() -> String {
+        guard let genre = gameDetails?.genres else { return ViewError.alert.rawValue }
+        guard let genreName = genre[safe: 0]?.name else { return ViewError.alert.rawValue }
+        return genreName
     }
 }

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Cxm-lV-LYa" customClass="FavoritesCollectionViewCell" customModule="GamesApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VBa-GX-d85">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vae-nc-dG5">
+                                <rect key="frame" x="8" y="16" width="120" height="104"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBo-Mu-pa0">
+                                <rect key="frame" x="136" y="16" width="34.5" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6NB-uC-ZE2" userLabel="Game Genre">
+                                <rect key="frame" x="136" y="104" width="22" height="16"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="metacritic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iX0-aI-Jfh">
+                                <rect key="frame" x="136" y="79" width="67" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nuw-de-Che">
+                                <rect key="frame" x="206" y="75.5" width="31.5" height="22.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6NB-uC-ZE2" firstAttribute="leading" secondItem="vae-nc-dG5" secondAttribute="trailing" constant="8" id="6iU-CU-ajH"/>
+                            <constraint firstAttribute="trailing" secondItem="vae-nc-dG5" secondAttribute="trailing" constant="247" id="Lhr-Yp-oJb"/>
+                            <constraint firstAttribute="bottom" secondItem="Nuw-de-Che" secondAttribute="bottom" constant="38" id="Q6B-2q-Dr5"/>
+                            <constraint firstItem="iX0-aI-Jfh" firstAttribute="leading" secondItem="vae-nc-dG5" secondAttribute="trailing" constant="8" id="TY5-H7-dM4"/>
+                            <constraint firstItem="vae-nc-dG5" firstAttribute="leading" secondItem="VBa-GX-d85" secondAttribute="leading" constant="8" id="XYJ-6v-g0A"/>
+                            <constraint firstAttribute="bottom" secondItem="vae-nc-dG5" secondAttribute="bottom" constant="16" id="cEi-c2-DN4"/>
+                            <constraint firstItem="Nuw-de-Che" firstAttribute="leading" secondItem="iX0-aI-Jfh" secondAttribute="trailing" constant="3" id="ciJ-P0-84k"/>
+                            <constraint firstItem="vae-nc-dG5" firstAttribute="top" secondItem="VBa-GX-d85" secondAttribute="top" constant="16" id="e7R-bG-Muh"/>
+                            <constraint firstItem="OBo-Mu-pa0" firstAttribute="top" secondItem="VBa-GX-d85" secondAttribute="top" constant="16" id="eHP-X6-1fb"/>
+                            <constraint firstItem="Nuw-de-Che" firstAttribute="firstBaseline" secondItem="iX0-aI-Jfh" secondAttribute="firstBaseline" id="f67-4d-bTB"/>
+                            <constraint firstItem="OBo-Mu-pa0" firstAttribute="leading" secondItem="vae-nc-dG5" secondAttribute="trailing" constant="8" id="ixd-qj-JlI"/>
+                            <constraint firstItem="6NB-uC-ZE2" firstAttribute="top" secondItem="iX0-aI-Jfh" secondAttribute="bottom" constant="8" id="jM5-y8-Swe"/>
+                            <constraint firstAttribute="bottom" secondItem="6NB-uC-ZE2" secondAttribute="bottom" constant="16" id="zhI-Yc-vre"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="vcD-oo-my8"/>
+            <constraints>
+                <constraint firstItem="VBa-GX-d85" firstAttribute="top" secondItem="Cxm-lV-LYa" secondAttribute="top" id="7hd-se-Fv7"/>
+                <constraint firstItem="VBa-GX-d85" firstAttribute="leading" secondItem="Cxm-lV-LYa" secondAttribute="leading" id="X7m-L5-ZD6"/>
+                <constraint firstAttribute="bottom" secondItem="VBa-GX-d85" secondAttribute="bottom" id="c2R-v4-OgT"/>
+                <constraint firstAttribute="trailing" secondItem="VBa-GX-d85" secondAttribute="trailing" id="gWb-fg-bry"/>
+            </constraints>
+            <size key="customSize" width="402" height="308"/>
+            <connections>
+                <outlet property="gameImageView" destination="vae-nc-dG5" id="E5G-hq-ZSQ"/>
+                <outlet property="gameTitleLabel" destination="OBo-Mu-pa0" id="u0j-DG-ckl"/>
+                <outlet property="genreLabel" destination="6NB-uC-ZE2" id="8UQ-KN-dSg"/>
+                <outlet property="metacriticScoreLabel" destination="Nuw-de-Che" id="ORa-Uf-PQT"/>
+            </connections>
+            <point key="canvasLocation" x="-117.39130434782609" y="237.05357142857142"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

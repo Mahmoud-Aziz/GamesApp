@@ -7,15 +7,19 @@
 
 import UIKit
 import JGProgressHUD
+import CoreData
 
 class DetailsViewController: UIViewController {
+    
+    // MARK: - IBOutlets:
     @IBOutlet private weak var gameTitleLabel: UILabel!
     @IBOutlet private weak var gameDescriptionLabel: UILabel!
     @IBOutlet private weak var gameImageView: UIImageView!
     
     private let viewModel: DetailsViewModelProtocol
     private let hud = JGProgressHUD()
-    
+
+    // MARK: - Initilalizer:
     init(viewModel: DetailsViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: DetailsViewController.nibName, bundle: nil)
@@ -25,6 +29,7 @@ class DetailsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - View life cycle methods:
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
@@ -35,24 +40,23 @@ class DetailsViewController: UIViewController {
         super.viewWillAppear(animated)
         setupView()
     }
-    
-    func setupView() {
+}
+
+    // MARK: - View setup methods:
+private extension DetailsViewController {
+     func setupView() {
         self.gameTitleLabel.text = viewModel.getTitle()
         self.gameDescriptionLabel.text = viewModel.getDescription()
         setupImageView()
-        setupDescriptionLabel()
     }
     
-    func setupImageView() {
+     func setupImageView() {
         let url = viewModel.getImage()
         self.gameImageView.setImage(url: url, placeHolder: Images.placeholder.image)
     }
-    
-    func setupDescriptionLabel() {
-
-    }
 }
 
+// MARK: - State Presentable Protocol conformance:
 extension DetailsViewController: StatePresentable {
     func render(state: State) {
         switch state {
@@ -90,6 +94,7 @@ extension DetailsViewController: StatePresentable {
     }
 }
 
+// MARK: - IBAction methods:
 extension DetailsViewController {
     @IBAction private func redditButtonTapped(_ sender: UIButton) {
         let url = viewModel.getReddit().toURL
@@ -99,5 +104,19 @@ extension DetailsViewController {
     @IBAction private func websiteButtonTapped(_ sender: UIButton) {
         let url = viewModel.getWebsite().toURL
         UIApplication.shared.open(url)
+    }
+    
+    @IBAction private func favoriteTapped(_ sender: UIButton) {
+        let favorite = Favorite(context: CoreDataStack.shared.viewContext)
+        favorite.title = viewModel.getTitle()
+        favorite.image = viewModel.getImage()
+        favorite.score = viewModel.getScore()
+        favorite.genre = viewModel.getGenre()
+        do {
+            try CoreDataStack.shared.saveContext()
+        }
+        catch {
+            //TODO: Log error
+        }
     }
 }
