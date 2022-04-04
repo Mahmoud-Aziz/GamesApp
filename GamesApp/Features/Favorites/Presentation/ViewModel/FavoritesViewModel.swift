@@ -34,7 +34,7 @@ class FavoritesViewModel: FavoritesViewModelProtocol {
                 self?.state.render(state: .loaded)
             case .failure(let error):
                 self?.state.render(state: .loaded)
-                print(error)
+                //TODO: Log error 
             }
         })
     }
