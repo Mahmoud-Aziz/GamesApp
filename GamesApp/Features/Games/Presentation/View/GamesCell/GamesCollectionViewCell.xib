@@ -24,8 +24,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ydJ-Mg-PNa">
                                 <rect key="frame" x="8" y="16" width="120" height="104"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egI-bq-EMe">
-                                <rect key="frame" x="136" y="16" width="34.5" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="egI-bq-EMe">
+                                <rect key="frame" x="136" y="16" width="231" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -56,6 +56,7 @@
                             <constraint firstItem="ydJ-Mg-PNa" firstAttribute="top" secondItem="CcQ-Eq-Z91" secondAttribute="top" constant="16" id="NaP-n4-ki2"/>
                             <constraint firstItem="u1d-fy-MEI" firstAttribute="top" secondItem="vWk-VG-UEt" secondAttribute="bottom" constant="8" id="WRI-hd-8M6"/>
                             <constraint firstItem="egI-bq-EMe" firstAttribute="leading" secondItem="ydJ-Mg-PNa" secondAttribute="trailing" constant="8" id="XDt-ql-fz1"/>
+                            <constraint firstAttribute="trailing" secondItem="egI-bq-EMe" secondAttribute="trailing" constant="8" id="aXu-EW-qjL"/>
                             <constraint firstItem="O3P-NN-YJ5" firstAttribute="firstBaseline" secondItem="vWk-VG-UEt" secondAttribute="firstBaseline" id="e28-Yn-2j1"/>
                             <constraint firstItem="vWk-VG-UEt" firstAttribute="leading" secondItem="ydJ-Mg-PNa" secondAttribute="trailing" constant="8" id="gjI-tv-xUK"/>
                             <constraint firstItem="O3P-NN-YJ5" firstAttribute="leading" secondItem="vWk-VG-UEt" secondAttribute="trailing" constant="3" id="hIU-dV-f64"/>
