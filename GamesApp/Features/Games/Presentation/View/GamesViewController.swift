@@ -23,27 +23,24 @@ class GamesViewController: UIViewController {
         viewModel?.viewDidLoad()
         setupView()
     }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setupCollectionViewLayout()
+        navigationController?.isNavigationBarHidden = false
+    }
 }
+
 // MARK: - View setup methods:
 private extension GamesViewController {
     func setupView() {
         registerCell()
-//        registerFooter()
         deviceIsRotated()
-        setupNavigationController()
         setupSearchBar()
     }
     
     func registerCell() {
         collectionView.register(cellClass: GamesCollectionViewCell.self)
-    }
-    
-    func registerFooter() {
-        collectionView.register(FooterCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterCollectionReusableView.identifier)
-    }
-    
-    func setupNavigationController() {
-        navigationController?.isNavigationBarHidden = true
     }
     
     func setupSearchBar() {
@@ -54,7 +51,6 @@ private extension GamesViewController {
     
     func deviceIsRotated() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.setupCollectionViewLayout), name: UIDevice.orientationDidChangeNotification, object: nil)
-
     }
 }
 
@@ -69,21 +65,6 @@ extension GamesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel?.numberOfItems ?? 0
-    }
-    
-    
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterCollectionReusableView.identifier, for: indexPath) as! FooterCollectionReusableView
-//
-//        footer.configure()
-//
-//        return footer
-//    }
-}
-
-extension GamesViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.size.width, height: 100)
     }
 }
 
@@ -134,7 +115,6 @@ extension GamesViewController: StatePresentable {
         case .navigate(let game):
             let route = GamesRoutes.gameDetails(game)
             navigate(to: route)
-            
         }
     }
     
