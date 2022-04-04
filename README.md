@@ -45,6 +45,12 @@ The UI adaptivity with more screen sizes and landscape better support.
 
 Caching is not working as expecting. 
 
+Details screen in landscape mode doesn't show the game image correctly, and description label is very compact. 
+
+Games title label in Games view controller disappear with scrolling down. 
+
+When using UIActivityIndicator in Games view controller, the app cruches after trying to search due to nil value for the IBOutlet of the indicator. Added JGProgressHUD to Games screen temporary.
+
 ## Work in progress
 
 README will be edited with more info. 
