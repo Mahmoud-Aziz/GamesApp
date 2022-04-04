@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="landscape" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -18,11 +18,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="CIg-kD-WbU">
-            <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="NUV-HX-szd">
-                    <rect key="frame" x="44" y="60" width="808" height="333"/>
+                    <rect key="frame" x="0.0" y="110" width="414" height="703"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="xd6-Wn-kPB">
                         <size key="itemSize" width="314" height="128"/>
@@ -36,17 +36,17 @@
                     </connections>
                 </collectionView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELY-qK-pXZ">
-                    <rect key="frame" x="60" y="16" width="150" height="41"/>
+                    <rect key="frame" x="16" y="60" width="150" height="34"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="34"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="F8T-sW-V82">
-                    <rect key="frame" x="429.5" y="188.5" width="37" height="37"/>
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                 </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="ILv-UN-Nkp"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" systemColor="systemGray6Color"/>
             <constraints>
                 <constraint firstItem="F8T-sW-V82" firstAttribute="centerY" secondItem="CIg-kD-WbU" secondAttribute="centerY" id="Bjq-pp-a07"/>
                 <constraint firstItem="NUV-HX-szd" firstAttribute="leading" secondItem="ILv-UN-Nkp" secondAttribute="leading" id="GUs-Pd-052"/>
@@ -55,16 +55,21 @@
                 <constraint firstItem="ELY-qK-pXZ" firstAttribute="leading" secondItem="ILv-UN-Nkp" secondAttribute="leading" constant="16" id="U4Y-3v-cVK"/>
                 <constraint firstItem="F8T-sW-V82" firstAttribute="centerX" secondItem="CIg-kD-WbU" secondAttribute="centerX" id="WFE-wj-kwg"/>
                 <constraint firstItem="ELY-qK-pXZ" firstAttribute="top" secondItem="ILv-UN-Nkp" secondAttribute="top" constant="16" id="aWX-Un-fh8"/>
-                <constraint firstItem="NUV-HX-szd" firstAttribute="top" secondItem="CIg-kD-WbU" secondAttribute="top" constant="110" id="g3j-rl-YNJ">
+                <constraint firstItem="NUV-HX-szd" firstAttribute="top" secondItem="ILv-UN-Nkp" secondAttribute="top" constant="66" id="g3j-rl-YNJ">
                     <variation key="heightClass=compact-widthClass=regular" constant="60"/>
                 </constraint>
+                <constraint firstItem="NUV-HX-szd" firstAttribute="top" secondItem="ELY-qK-pXZ" secondAttribute="bottom" constant="16" id="mn0-be-4N0"/>
             </constraints>
+            <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
             <point key="canvasLocation" x="139" y="127"/>
         </view>
     </objects>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
