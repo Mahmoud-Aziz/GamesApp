@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class GamesViewController: UIViewController {
     
@@ -14,6 +15,7 @@ class GamesViewController: UIViewController {
     @IBOutlet private weak var searchBar: CustomSearchBar!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
+    private let hud = JGProgressHUD()
     private var viewModel: GamesViewModelProtocol?
     
     // MARK: - View life cycle methods:
@@ -94,7 +96,9 @@ extension GamesViewController {
         }
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
-        collectionView!.collectionViewLayout = layout
+         guard let cv = collectionView else { return }
+         cv.reloadData()
+         cv.collectionViewLayout = layout
     }
 }
 
@@ -121,12 +125,14 @@ extension GamesViewController: StatePresentable {
     func activityIndicator(state: LoadingState) {
         switch state {
         case .loading:
-            activityIndicator.startAnimating()
-            collectionView.isUserInteractionEnabled = false
+//            activityIndicator.startAnimating()
+//            collectionView.isUserInteractionEnabled = false
+            hud.show(in: view)
         case .loaded:
-            activityIndicator.stopAnimating()
-            activityIndicator.removeFromSuperview()
-            collectionView.isUserInteractionEnabled = true
+            hud.dismiss()
+//            activityIndicator.stopAnimating()
+//            activityIndicator.removeFromSuperview()
+//            collectionView.isUserInteractionEnabled = true
         }
     }
     

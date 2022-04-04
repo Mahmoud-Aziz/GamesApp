@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 enum HomeState: Equatable {
-    case searching(text: String)
+    case searching
     case notSearching
 }
 
@@ -27,7 +27,6 @@ class GamesViewModel {
     private var searchedGames: [Response] = []
     private let dataSource: GamesUseCase
     private let state: StatePresentable
-    private var hasMoreItems = true
     private(set) var currentState: HomeState = .notSearching
     private var pendingRequestWorkItem: DispatchWorkItem?
 
@@ -75,13 +74,12 @@ extension GamesViewModel: GamesViewModelProtocol {
             currentState = .notSearching
             getGames()
         } else {
-            currentState = .searching(text: text)
+            currentState = .searching
             let requestWorkItem = DispatchWorkItem { [weak self] in
                 guard let self = self else { return }
-                self.currentState = .searching(text: text)
+                self.state.render(state: .loading)
                 self.dataSource.search(for: text, completion:  { [weak self] result in
                     guard let self = self else { return }
-                    self.state.render(state: .loading)
                     self.handleSearchResult(result: result)
                 })
             }

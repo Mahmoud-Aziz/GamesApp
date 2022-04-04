@@ -78,6 +78,11 @@
                 </constraint>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="Nm9-g6-3Mp"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="139" y="127"/>
         </view>
     </objects>
