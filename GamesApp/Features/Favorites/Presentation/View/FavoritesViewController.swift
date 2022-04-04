@@ -22,9 +22,10 @@ class FavoritesViewController: UIViewController {
         setupView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         setupCollectionViewLayout()
+        navigationController?.isNavigationBarHidden = true
     }
 }
 
