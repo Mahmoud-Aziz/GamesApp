@@ -31,7 +31,6 @@ class DetailsViewController: UIViewController {
     // MARK: - View life cycle methods:
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = false
         viewModel.viewDidLoad(statePresenter: self)
     }
     
@@ -44,9 +43,15 @@ class DetailsViewController: UIViewController {
 // MARK: - View setup methods:
 private extension DetailsViewController {
     func setupView() {
-        self.gameTitleLabel.text = viewModel.getTitle()
-        self.gameDescriptionLabel.text = viewModel.getDescription()
+        gameTitleLabel.text = viewModel.getTitle()
+        gameDescriptionLabel.text = viewModel.getDescription()
         setupImageView()
+        setupFavoriteBarButton()
+    }
+    
+    func setupFavoriteBarButton() {
+        let favoriteBarButton = UIBarButtonItem(title: "Favorite",style: .plain, target: self, action: #selector(favoriteBarButtonTapped))
+        self.navigationItem.rightBarButtonItem = favoriteBarButton
     }
     
     func setupImageView() {
@@ -97,18 +102,18 @@ extension DetailsViewController: StatePresentable {
 }
 
 // MARK: - IBAction methods:
-extension DetailsViewController {
-    @IBAction private func redditButtonTapped(_ sender: UIButton) {
+private extension DetailsViewController {
+    @IBAction func redditButtonTapped(_ sender: UIButton) {
         let url = viewModel.getReddit().toURL
         UIApplication.shared.open(url)
     }
     
-    @IBAction private func websiteButtonTapped(_ sender: UIButton) {
+    @IBAction func websiteButtonTapped(_ sender: UIButton) {
         let url = viewModel.getWebsite().toURL
         UIApplication.shared.open(url)
     }
     
-    @IBAction private func favoriteTapped(_ sender: UIButton) {
+    @objc func favoriteBarButtonTapped() {
         let favorite = Favorite(context: CoreDataStack.shared.viewContext)
         favorite.title = viewModel.getTitle()
         favorite.image = viewModel.getImage()
