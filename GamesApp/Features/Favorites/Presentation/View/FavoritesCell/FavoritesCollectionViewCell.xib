@@ -24,8 +24,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vae-nc-dG5">
                                 <rect key="frame" x="8" y="16" width="120" height="104"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBo-Mu-pa0">
-                                <rect key="frame" x="136" y="16" width="34.5" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="OBo-Mu-pa0">
+                                <rect key="frame" x="136" y="16" width="231" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -61,6 +61,7 @@
                             <constraint firstItem="vae-nc-dG5" firstAttribute="top" secondItem="VBa-GX-d85" secondAttribute="top" constant="16" id="e7R-bG-Muh"/>
                             <constraint firstItem="OBo-Mu-pa0" firstAttribute="top" secondItem="VBa-GX-d85" secondAttribute="top" constant="16" id="eHP-X6-1fb"/>
                             <constraint firstItem="Nuw-de-Che" firstAttribute="firstBaseline" secondItem="iX0-aI-Jfh" secondAttribute="firstBaseline" id="f67-4d-bTB"/>
+                            <constraint firstAttribute="trailing" secondItem="OBo-Mu-pa0" secondAttribute="trailing" constant="8" id="hN7-Dj-9MU"/>
                             <constraint firstItem="OBo-Mu-pa0" firstAttribute="leading" secondItem="vae-nc-dG5" secondAttribute="trailing" constant="8" id="ixd-qj-JlI"/>
                             <constraint firstItem="6NB-uC-ZE2" firstAttribute="top" secondItem="iX0-aI-Jfh" secondAttribute="bottom" constant="8" id="jM5-y8-Swe"/>
                             <constraint firstAttribute="bottom" secondItem="6NB-uC-ZE2" secondAttribute="bottom" constant="16" id="zhI-Yc-vre"/>
