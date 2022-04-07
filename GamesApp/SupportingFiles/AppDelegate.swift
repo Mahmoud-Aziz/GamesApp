@@ -15,8 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let rootViewController = TabBarViewController()
         rootViewController.navigationItem.title = "Games"
-        rootViewController.navigationController?.navigationBar.prefersLargeTitles = true
-        rootViewController.navigationController?.navigationItem.largeTitleDisplayMode = .always
         let navigationController = UINavigationController(rootViewController: rootViewController)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

@@ -46,7 +46,6 @@ class GamesViewModel {
     
     //MARK: - Data Source execution:
     func getGames(page: Int) {
-        searchedGames.removeAll()
         dataSource.getGames(page: page.toString, completion: { [weak self] result in
             switch result {
             case .success(let games):
