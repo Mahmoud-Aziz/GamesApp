@@ -9,6 +9,7 @@ import Foundation
 
 protocol FavoritesViewModelProtocol {
     func viewDidLoad()
+    func viewWillAppear() 
     func getFavorite(at index: Int) -> Favorite
     var numberOfItems: Int { get }
 }
@@ -41,6 +42,10 @@ class FavoritesViewModel: FavoritesViewModelProtocol {
     
     func viewDidLoad() {
         state.render(state: .initial)
+        fetchFavorite()
+    }
+    
+    func viewWillAppear() {
         fetchFavorite()
     }
     

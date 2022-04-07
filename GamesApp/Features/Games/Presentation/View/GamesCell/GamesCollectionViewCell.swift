@@ -11,7 +11,7 @@ class GamesCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var gameTitle: UILabel!
     @IBOutlet private weak var gameGenre: UILabel!
     @IBOutlet private weak var metacriticScore: UILabel!
-    @IBOutlet private weak var gameImageView: UIImageView!
+    @IBOutlet weak var gameImageView: UIImageView!
     
     var game: Response? {
         didSet {

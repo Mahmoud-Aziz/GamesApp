@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import JGProgressHUD
 
 class FavoritesViewController: UIViewController {
     
@@ -14,12 +15,18 @@ class FavoritesViewController: UIViewController {
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     private var viewModel: FavoritesViewModelProtocol?
+    private let hud = JGProgressHUD()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = FavoritesViewModel(dataSource: FavoritesDataProvider(), statePresenter: self)
         viewModel?.viewDidLoad()
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.viewWillAppear()
     }
     
     override func viewWillLayoutSubviews() {
@@ -67,11 +74,13 @@ extension FavoritesViewController: StatePresentable {
     func activityIndicator(state: LoadingState) {
         switch state {
         case .loading:
-            activityIndicator.startAnimating()
+//            activityIndicator.startAnimating()
+            hud.show(in: view)
             favoritesCollectionView.isUserInteractionEnabled = false
         case .loaded:
-            activityIndicator.stopAnimating()
-            activityIndicator.removeFromSuperview()
+//            activityIndicator.stopAnimating()
+//            activityIndicator.removeFromSuperview()
+            hud.dismiss(animated: true)
             favoritesCollectionView.isUserInteractionEnabled = true
         }
     }
