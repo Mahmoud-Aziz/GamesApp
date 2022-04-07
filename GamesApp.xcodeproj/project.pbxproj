@@ -58,11 +58,6 @@
 		62BAF7A027F73353006DD705 /* GamesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BAF79F27F73353006DD705 /* GamesCollectionViewCell.swift */; };
 		62BAF7A227F7336D006DD705 /* GamesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62BAF7A127F7336D006DD705 /* GamesCollectionViewCell.xib */; };
 		62BAF7A527F74488006DD705 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BAF7A427F74487006DD705 /* State.swift */; };
-		62BAF7AD27F760BE006DD705 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BAF7AC27F760BE006DD705 /* UIImageView.swift */; };
-		62BAF7B027F7646A006DD705 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BAF7AF27F7646A006DD705 /* ImageDownloader.swift */; };
-		62BAF7B227F764AE006DD705 /* ImageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BAF7B127F764AE006DD705 /* ImageDataSource.swift */; };
-		62BAF7B427F764D5006DD705 /* ImageLoaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BAF7B327F764D5006DD705 /* ImageLoaderError.swift */; };
-		62BAF7B627F7819D006DD705 /* ImageDataUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BAF7B527F7819D006DD705 /* ImageDataUtility.swift */; };
 		62BAF7B827F78822006DD705 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BAF7B727F78822006DD705 /* Numeric.swift */; };
 /* End PBXBuildFile section */
 
@@ -122,11 +117,6 @@
 		62BAF79F27F73353006DD705 /* GamesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesCollectionViewCell.swift; sourceTree = "<group>"; };
 		62BAF7A127F7336D006DD705 /* GamesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GamesCollectionViewCell.xib; sourceTree = "<group>"; };
 		62BAF7A427F74487006DD705 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		62BAF7AC27F760BE006DD705 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
-		62BAF7AF27F7646A006DD705 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
-		62BAF7B127F764AE006DD705 /* ImageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataSource.swift; sourceTree = "<group>"; };
-		62BAF7B327F764D5006DD705 /* ImageLoaderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderError.swift; sourceTree = "<group>"; };
-		62BAF7B527F7819D006DD705 /* ImageDataUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataUtility.swift; sourceTree = "<group>"; };
 		62BAF7B727F78822006DD705 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -438,7 +428,6 @@
 				6234791427F8D0ED008967BA /* TabBar */,
 				62A171ED27F8069C002B0ACA /* Navigation */,
 				62A171CC27F7D344002B0ACA /* Error */,
-				62BAF7AE27F76451006DD705 /* ImageLoader */,
 				62BAF7A327F7447E006DD705 /* State */,
 				62BAF76327F65CA6006DD705 /* Enviroment */,
 				62AF603827F6451F00248EBB /* Extensions */,
@@ -486,7 +475,6 @@
 				62A171D427F7F268002B0ACA /* CollectionView */,
 				62A171CF27F7EBAD002B0ACA /* Collection */,
 				62AF603927F6453A00248EBB /* Codable */,
-				62BAF7B927F78D2B006DD705 /* UIImageView */,
 				62BAF7BA27F78D3B006DD705 /* Numeric */,
 			);
 			path = Extensions;
@@ -600,25 +588,6 @@
 			path = State;
 			sourceTree = "<group>";
 		};
-		62BAF7AE27F76451006DD705 /* ImageLoader */ = {
-			isa = PBXGroup;
-			children = (
-				62BAF7AF27F7646A006DD705 /* ImageDownloader.swift */,
-				62BAF7B127F764AE006DD705 /* ImageDataSource.swift */,
-				62BAF7B327F764D5006DD705 /* ImageLoaderError.swift */,
-				62BAF7B527F7819D006DD705 /* ImageDataUtility.swift */,
-			);
-			path = ImageLoader;
-			sourceTree = "<group>";
-		};
-		62BAF7B927F78D2B006DD705 /* UIImageView */ = {
-			isa = PBXGroup;
-			children = (
-				62BAF7AC27F760BE006DD705 /* UIImageView.swift */,
-			);
-			path = UIImageView;
-			sourceTree = "<group>";
-		};
 		62BAF7BA27F78D3B006DD705 /* Numeric */ = {
 			isa = PBXGroup;
 			children = (
@@ -721,11 +690,9 @@
 				62AF602D27F6419A00248EBB /* APIService.swift in Sources */,
 				62BAF7B827F78822006DD705 /* Numeric.swift in Sources */,
 				62A171D127F7EBF0002B0ACA /* SafeCollection.swift in Sources */,
-				62BAF7B427F764D5006DD705 /* ImageLoaderError.swift in Sources */,
 				62BAF78027F66831006DD705 /* GamesDataProvider.swift in Sources */,
 				6234793327F8EF8F008967BA /* FavoritesCollectionViewCell.swift in Sources */,
 				62A171EF27F806B3002B0ACA /* Router.swift in Sources */,
-				62BAF7B027F7646A006DD705 /* ImageDownloader.swift in Sources */,
 				6234791F27F8E744008967BA /* FavoritesDataProvider.swift in Sources */,
 				62AF603727F6421200248EBB /* APIBaseURL.swift in Sources */,
 				6234792827F8ED9F008967BA /* FavoritesViewController.swift in Sources */,
@@ -745,8 +712,6 @@
 				62A171FC27F88358002B0ACA /* DataProvider.swift in Sources */,
 				6234791927F8E3FF008967BA /* CoreDataStack.swift in Sources */,
 				62AF603B27F6454600248EBB /* Encodable.swift in Sources */,
-				62BAF7AD27F760BE006DD705 /* UIImageView.swift in Sources */,
-				62BAF7B227F764AE006DD705 /* ImageDataSource.swift in Sources */,
 				6234791B27F8E726008967BA /* FavoritesViewModel.swift in Sources */,
 				62BAF77D27F66802006DD705 /* GamesUseCase.swift in Sources */,
 				6234791D27F8E737008967BA /* FavouritesUseCase.swift in Sources */,
@@ -754,7 +719,6 @@
 				62A171F527F872FF002B0ACA /* GamesRoutes.swift in Sources */,
 				62BAF77327F662AC006DD705 /* APIKey.swift in Sources */,
 				62A171EC27F80611002B0ACA /* DetailsViewModel.swift in Sources */,
-				62BAF7B627F7819D006DD705 /* ImageDataUtility.swift in Sources */,
 				62BAF7A027F73353006DD705 /* GamesCollectionViewCell.swift in Sources */,
 				62AF603327F641EC00248EBB /* APIError.swift in Sources */,
 				62A171FF27F883B3002B0ACA /* DetailsResponse.swift in Sources */,
