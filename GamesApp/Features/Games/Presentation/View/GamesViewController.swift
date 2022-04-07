@@ -25,15 +25,12 @@ class GamesViewController: UIViewController {
         self.viewModel = GamesViewModel(dataSource: GamesDataProvider(), statePresenter: self)
         viewModel?.viewDidLoad()
         setupView()
-        navigationItem.largeTitleDisplayMode = .always
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.navigationItem.largeTitleDisplayMode = .always
-        self.navigationController?.navigationItem.title = "Games"
-
     }
     
     override func viewWillLayoutSubviews() {
@@ -46,12 +43,17 @@ class GamesViewController: UIViewController {
 private extension GamesViewController {
     func setupView() {
         registerCell()
+        registerFooter()
         setupSearchBar()
         setupCaching()
     }
     
     func registerCell() {
         collectionView.register(cellClass: GamesCollectionViewCell.self)
+    }
+    
+    func registerFooter() {
+        collectionView.register(FooterReusableCollection.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerReuseIdentifier)
     }
     
     func setupSearchBar() {
@@ -102,6 +104,25 @@ extension GamesViewController: UICollectionViewDelegate {
         highlightCell(cell: cell)
         viewModel?.didSelectItem(at: indexPath.row)
     }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                       viewForSupplementaryElementOfKind kind: String,
+                       at indexPath: IndexPath) -> UICollectionReusableView {
+
+       switch kind {
+       case UICollectionView.elementKindSectionFooter:
+           let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerReuseIdentifier, for: indexPath)
+           footerView.backgroundColor = .clear
+           return footerView
+       default:
+           return UICollectionReusableView(frame: .zero)
+       }
+   }
+    
+    //Footer size
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 30.0)
+}
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout methods:
@@ -110,14 +131,9 @@ extension GamesViewController: UICollectionViewDelegateFlowLayout {
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
         let columns: Int = {
             var count = 1
-            if traitCollection.horizontalSizeClass == .regular {
-                count = 2
-            } else {
-                count = 1
-            }
-            if collectionView.bounds.width > collectionView.bounds.height {
-                count = 2
-            }
+            if traitCollection.horizontalSizeClass == .regular { count = 2 }
+            else { count = 1 }
+            if collectionView.bounds.width > collectionView.bounds.height { count = 2 }
             return count
         }()
         let totalSpace = flowLayout.sectionInset.left
