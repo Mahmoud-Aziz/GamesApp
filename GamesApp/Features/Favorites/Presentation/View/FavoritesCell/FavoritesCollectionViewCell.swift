@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Nuke
 
 class FavoritesCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var gameTitleLabel: UILabel!
@@ -13,11 +14,18 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var metacriticScoreLabel: UILabel!
     @IBOutlet private weak var gameImageView: UIImageView!
     
+    private var task: ImageTask?
+    
     var game: Favorite? {
         didSet {
             guard let game = game else { return }
             setupCell(game: game)
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        task?.cancel()
     }
 }
 
@@ -46,9 +54,26 @@ private extension FavoritesCollectionViewCell {
         metacriticScoreLabel.text = score
     }
     
+    /// Setup image using Nuke's ImagePipeLine to load images in background thread.
     func setImage(game: Favorite) {
-        guard let imageURL = game.image else { return }
-        gameImageView.setImage(url: imageURL, placeHolder: Images.placeholder.image)
+        guard let imageURL = game.image?.toURL else { return }
+        gameImageView.image = ImageLoadingOptions.shared.placeholder
+        gameImageView.contentMode = .scaleAspectFit
+        
+        let task = ImagePipeline.shared.loadImage(with: imageURL) { [weak self] response in
+            guard let self = self else {
+                return
+            }
+            switch response {
+            case .failure:
+                self.gameImageView.image = ImageLoadingOptions.shared.failureImage
+                self.gameImageView.contentMode = .scaleAspectFit
+            case let .success(imageResponse):
+                self.gameImageView.image = imageResponse.image
+                self.gameImageView.contentMode = .scaleAspectFill
+            }
+        }
+        self.task = task
     }
     
     enum placeholder: String {
