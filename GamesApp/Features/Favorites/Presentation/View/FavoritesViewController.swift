@@ -75,12 +75,12 @@ extension FavoritesViewController: StatePresentable {
     func activityIndicator(state: LoadingState) {
         switch state {
         case .loading:
-//            activityIndicator.startAnimating()
+            //            activityIndicator.startAnimating()
             hud.show(in: view)
             favoritesCollectionView.isUserInteractionEnabled = false
         case .loaded:
-//            activityIndicator.stopAnimating()
-//            activityIndicator.removeFromSuperview()
+            //            activityIndicator.stopAnimating()
+            //            activityIndicator.removeFromSuperview()
             hud.dismiss(animated: true)
             favoritesCollectionView.isUserInteractionEnabled = true
         }
@@ -102,11 +102,9 @@ extension FavoritesViewController {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         if UIDevice.current.orientation == .portrait {
-            print("portrait")
             layout.itemSize = CGSize(width: view.frame.size.width/1, height: view.frame.size.height/5)
         } else {
-            print("landscape")
-
+            
             layout.itemSize = CGSize(width: view.frame.size.width/2.25, height: view.frame.size.height/3)
         }
         layout.minimumInteritemSpacing = 0

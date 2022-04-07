@@ -123,7 +123,7 @@ extension GamesViewModel: GamesViewModelProtocol {
     }
     
     func didSelectItem(at index: Int) {
-        state.render(state: .navigate(gamesCollection[index]))
+        state.render(state: .navigate(paginationGames[index]))
     }
     
     func setPaginationGames(gamesPerPage: Int) {

@@ -105,6 +105,7 @@ extension GamesViewController: UICollectionViewDelegate {
         viewModel?.didSelectItem(at: indexPath.row)
     }
     
+    //MARK: - UICollectionReusableView Footer:
     func collectionView(_ collectionView: UICollectionView,
                        viewForSupplementaryElementOfKind kind: String,
                        at indexPath: IndexPath) -> UICollectionReusableView {
@@ -131,7 +132,7 @@ extension GamesViewController: UICollectionViewDelegateFlowLayout {
         let columns: Int = {
             var count = 1
             if traitCollection.horizontalSizeClass == .regular { count = 2 }
-            else { count = 1 }
+            else if traitCollection.horizontalSizeClass == .compact { count = 1 }
             if collectionView.bounds.width > collectionView.bounds.height { count = 2 }
             return count
         }()

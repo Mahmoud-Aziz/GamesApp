@@ -46,7 +46,7 @@
                 </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="ILv-UN-Nkp"/>
-            <color key="backgroundColor" systemColor="systemGray6Color"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="F8T-sW-V82" firstAttribute="centerY" secondItem="CIg-kD-WbU" secondAttribute="centerY" id="Bjq-pp-a07"/>
                 <constraint firstItem="NUV-HX-szd" firstAttribute="leading" secondItem="ILv-UN-Nkp" secondAttribute="leading" id="GUs-Pd-052"/>
@@ -72,9 +72,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
