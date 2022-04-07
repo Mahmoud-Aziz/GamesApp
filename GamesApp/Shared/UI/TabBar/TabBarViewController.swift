@@ -16,7 +16,6 @@ class TabBarViewController: UITabBarController {
         
         let gamesTabItem = UITabBarItem(title: "Games", image: UIImage(named: "Games"), selectedImage: UIImage(named: "Games-Selected"))
         gamesTab.tabBarItem = gamesTabItem
-        gamesTab.title = "Games"
         
         let favoritesTabItem = UITabBarItem(title: "Favorites", image: UIImage(named: "Favorites"), selectedImage: UIImage(named: "Favorites-Selected"))
         favoritesTab.tabBarItem = favoritesTabItem
