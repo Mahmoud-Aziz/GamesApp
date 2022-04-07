@@ -18,7 +18,7 @@ class GamesViewController: UIViewController {
     
     private let hud = JGProgressHUD()
     private var viewModel: GamesViewModelProtocol?
-    
+
     // MARK: - View life cycle methods:
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,7 +108,6 @@ extension GamesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView,
                        viewForSupplementaryElementOfKind kind: String,
                        at indexPath: IndexPath) -> UICollectionReusableView {
-
        switch kind {
        case UICollectionView.elementKindSectionFooter:
            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerReuseIdentifier, for: indexPath)

@@ -20,7 +20,7 @@ class FooterReusableCollection: UICollectionReusableView {
         super.init(coder: aDecoder)
      }
     
-    private func configure() {
+     private func configure() {
         activityIndicator.color = .red
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
