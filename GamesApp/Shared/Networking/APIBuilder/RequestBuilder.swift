@@ -17,7 +17,8 @@ class RequestBuilder {
     // TODO: after finish setup for base url and config file
      
     func setBaseUrl(_ string: String) {
-        baseURL = string.toURL
+        guard let url = URL(string: string) else { return }
+        baseURL = url
     }
     func setEndpoint(_ value: String) {
         endpoint = value

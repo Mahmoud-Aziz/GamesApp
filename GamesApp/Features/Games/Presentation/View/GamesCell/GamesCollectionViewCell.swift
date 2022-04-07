@@ -57,7 +57,7 @@ private extension GamesCollectionViewCell {
     
     /// Setup image using Nuke's ImagePipeLine to load images in background thread.
     func setImage(game: Response) {
-        guard let imageURL = game.backgroundImage?.toURL else { return }
+        guard let imageURL = URL(string: game.backgroundImage ?? "") else { return }
         gameImageView.image = ImageLoadingOptions.shared.placeholder
         gameImageView.contentMode = .scaleAspectFit
         

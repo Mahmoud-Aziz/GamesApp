@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import JGProgressHUD
+import Nuke
 
 class FavoritesViewController: UIViewController {
     
@@ -124,5 +125,18 @@ extension FavoritesViewController: UICollectionViewDataSource {
         let cell: FavoritesCollectionViewCell = collectionView.dequeue(for: indexPath)
         cell.game = viewModel?.getFavorite(at: indexPath.row)
         return cell
+    }
+}
+
+//MARK: - Setup image caching using Nuke:
+private extension FavoritesViewController {
+    func setupCaching() {
+        DataLoader.sharedUrlCache.diskCapacity = 0
+        let pipeline = ImagePipeline {
+            let dataCache = try? DataCache(name: "rawg.io_CachedImages")
+            dataCache?.sizeLimit = 200 * 1024 * 1024
+            $0.dataCache = dataCache
+        }
+        ImagePipeline.shared = pipeline
     }
 }

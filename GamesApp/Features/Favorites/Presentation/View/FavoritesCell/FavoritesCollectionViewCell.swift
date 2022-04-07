@@ -56,7 +56,7 @@ private extension FavoritesCollectionViewCell {
     
     /// Setup image using Nuke's ImagePipeLine to load images in background thread.
     func setImage(game: Favorite) {
-        guard let imageURL = game.image?.toURL else { return }
+        guard let imageURL = URL(string: game.image ?? "") else { return }
         gameImageView.image = ImageLoadingOptions.shared.placeholder
         gameImageView.contentMode = .scaleAspectFit
         

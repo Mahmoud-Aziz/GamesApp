@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import Nuke
 
 class DetailsViewController: UIViewController {
     
@@ -56,7 +57,13 @@ private extension DetailsViewController {
     
     func setupImageView() {
         let url = viewModel.getImage()
-        self.gameImageView.setImage(url: url, placeHolder: Images.placeholder.image)
+        guard let url = URL(string: url) else { return }
+        var resizedImageProcessors: [ImageProcessing] {
+            let imageSize = CGSize(width: gameImageView.frame.width, height: gameImageView.frame.height)
+          return [ImageProcessors.Resize(size: imageSize, contentMode: .aspectFill)]
+        }
+        let request = ImageRequest(url: url, processors: resizedImageProcessors, cachePolicy: .default)
+        Nuke.loadImage(with: request, into: gameImageView)
     }
 }
 
@@ -104,12 +111,12 @@ extension DetailsViewController: StatePresentable {
 // MARK: - IBAction methods:
 private extension DetailsViewController {
     @IBAction func redditButtonTapped(_ sender: UIButton) {
-        let url = viewModel.getReddit().toURL
+        guard let url = URL(string: viewModel.getReddit()) else { return }
         UIApplication.shared.open(url)
     }
     
     @IBAction func websiteButtonTapped(_ sender: UIButton) {
-        let url = viewModel.getWebsite().toURL
+        guard let url = URL(string: viewModel.getWebsite()) else { return }
         UIApplication.shared.open(url)
     }
     
@@ -125,5 +132,18 @@ private extension DetailsViewController {
         catch {
             //TODO: Log error
         }
+    }
+}
+
+//MARK: - Setup image caching using Nuke:
+private extension DetailsViewController {
+    func setupCaching() {
+        DataLoader.sharedUrlCache.diskCapacity = 0
+        let pipeline = ImagePipeline {
+            let dataCache = try? DataCache(name: "rawg.io_CachedImages")
+            dataCache?.sizeLimit = 200 * 1024 * 1024
+            $0.dataCache = dataCache
+        }
+        ImagePipeline.shared = pipeline
     }
 }
