@@ -43,29 +43,29 @@ The UI adaptivity with more screen sizes and landscape better support.
 
 ## Issues to be solved 
 
-Caching is not working as expecting. 
+- [ ] Caching is not working as expected. 
 
-Details screen in landscape mode doesn't show the game image correctly, and description label is very compact. 
+- [X] Details screen in landscape mode doesn't show the game image correctly, and description label is very compact. 
 
-Games title label in Games view controller disappear with scrolling down. 
+- [X] Games title label in Games view controller disappear with scrolling down. 
 
-When using UIActivityIndicator in Games view controller, the app cruches after trying to search due to nil value for the IBOutlet of the indicator. Added JGProgressHUD to Games screen temporary.
+- [ ] When using UIActivityIndicator in Games view controller, the app cruches after trying to search due to nil value for the IBOutlet of the indicator. Added JGProgressHUD to Games screen temporary.
 
 ## Work in progress
 
-README will be edited with more info. 
+- [X] README will be edited with more info. 
 
-Log errors and decode which logging techniques to follow. 
+- [ ] Log errors and decode which logging techniques to follow. 
 
-Support pagination in games screen. 
+- [X] Support Pagination in gamesVC. 
 
-Add swipe to delete to favorites screen, considering removing correctly from core data store. 
+- [ ] Add swipe to delete to favorites screen, considering removing correctly from core data store. 
 
-Support reachability detection and retry for networking. 
+- [ ] Support reachability detection and retry for networking. 
 
-Add a read more button for the description label in the details screen. 
+- [ ] Add a read more button for the description label in the details screen. 
 
-Write unit testing.
+- [ ] Write unit testing.
 
 ## Screenshots
 
