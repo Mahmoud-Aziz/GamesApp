@@ -10,15 +10,6 @@
       }
     },
     {
-      "identity" : "netfox",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/kasketis/netfox",
-      "state" : {
-        "branch" : "develop",
-        "revision" : "f53d5783edbf2232f7baa576831d5dc49dabedba"
-      }
-    },
-    {
       "identity" : "nuke",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kean/Nuke",

@@ -17,8 +17,8 @@
 		6234792827F8ED9F008967BA /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6234792627F8ED9F008967BA /* FavoritesViewController.swift */; };
 		6234793227F8EF25008967BA /* FavoritesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6234793127F8EF25008967BA /* FavoritesCollectionViewCell.xib */; };
 		6234793327F8EF8F008967BA /* FavoritesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6234792D27F8EE1E008967BA /* FavoritesCollectionViewCell.swift */; };
-		6281565127FA976200F9AAAA /* netfox in Frameworks */ = {isa = PBXBuildFile; productRef = 6281565027FA976200F9AAAA /* netfox */; };
 		6281565427FA9A8700F9AAAA /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 6281565327FA9A8700F9AAAA /* JGProgressHUD */; };
+		62920F5027FEADDC00FB157D /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 62920F4F27FEADDC00FB157D /* Nuke */; };
 		62A171CB27F7C37D002B0ACA /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A171CA27F7C37D002B0ACA /* CustomSearchBar.swift */; };
 		62A171CE27F7D353002B0ACA /* BetterDecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A171CD27F7D353002B0ACA /* BetterDecodingError.swift */; };
 		62A171D127F7EBF0002B0ACA /* SafeCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A171D027F7EBF0002B0ACA /* SafeCollection.swift */; };
@@ -133,8 +133,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62920F5027FEADDC00FB157D /* Nuke in Frameworks */,
 				6281565427FA9A8700F9AAAA /* JGProgressHUD in Frameworks */,
-				6281565127FA976200F9AAAA /* netfox in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,8 +633,8 @@
 			);
 			name = GamesApp;
 			packageProductDependencies = (
-				6281565027FA976200F9AAAA /* netfox */,
 				6281565327FA9A8700F9AAAA /* JGProgressHUD */,
+				62920F4F27FEADDC00FB157D /* Nuke */,
 			);
 			productName = GamesApp;
 			productReference = 62AF600627F4ECDC00248EBB /* GamesApp.app */;
@@ -665,8 +665,8 @@
 			);
 			mainGroup = 62AF5FFD27F4ECDC00248EBB;
 			packageReferences = (
-				6281564F27FA976200F9AAAA /* XCRemoteSwiftPackageReference "netfox" */,
 				6281565227FA9A8700F9AAAA /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				62920F4E27FEADDC00FB157D /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = 62AF600727F4ECDC00248EBB /* Products */;
 			projectDirPath = "";
@@ -1044,14 +1044,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6281564F27FA976200F9AAAA /* XCRemoteSwiftPackageReference "netfox" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kasketis/netfox";
-			requirement = {
-				branch = develop;
-				kind = branch;
-			};
-		};
 		6281565227FA9A8700F9AAAA /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
@@ -1060,18 +1052,26 @@
 				kind = branch;
 			};
 		};
+		62920F4E27FEADDC00FB157D /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = exactVersion;
+				version = 9.6.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6281565027FA976200F9AAAA /* netfox */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6281564F27FA976200F9AAAA /* XCRemoteSwiftPackageReference "netfox" */;
-			productName = netfox;
-		};
 		6281565327FA9A8700F9AAAA /* JGProgressHUD */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6281565227FA9A8700F9AAAA /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
 			productName = JGProgressHUD;
+		};
+		62920F4F27FEADDC00FB157D /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 62920F4E27FEADDC00FB157D /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
 		};
 /* End XCSwiftPackageProductDependency section */
 
