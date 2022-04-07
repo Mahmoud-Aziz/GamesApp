@@ -15,21 +15,29 @@ enum HomeState: Equatable {
 
 protocol GamesViewModelProtocol {
     var numberOfItems: Int { get }
+    var currentPage: Int { get set }
+    var currentState: HomeState { get set }
     func viewDidLoad()
     func getGames(at index: Int) -> Response?
     func search(with text: String)
     func didSelectItem(at index: Int)
+    func setPaginationGames(gamesPerPage: Int)
+    func getGames(page: Int)
 }
 
 class GamesViewModel {
     //MARK: - Private properties:
     private var gamesCollection: [Response] = []
     private var searchedGames: [Response] = []
+    private var paginationGames: [Response] = []
     private let dataSource: GamesUseCase
     private let state: StatePresentable
-    private(set) var currentState: HomeState = .notSearching
     private var pendingRequestWorkItem: DispatchWorkItem?
-
+    private var gamesLimit = 10
+    private var gamesPerPage : Int = 10
+    var currentState: HomeState = .notSearching
+    var currentPage = 1
+    
     //MARK: - Initializer:
     init(dataSource: GamesUseCase, statePresenter: StatePresentable) {
         self.dataSource = dataSource
@@ -37,12 +45,18 @@ class GamesViewModel {
     }
     
     //MARK: - Data Source execution:
-    private func getGames() {
-        dataSource.getGames(completion: { [weak self] result in
+    func getGames(page: Int) {
+        dataSource.getGames(page: page.toString, completion: { [weak self] result in
             switch result {
             case .success(let games):
                 guard let results = games.results else { return }
                 self?.gamesCollection = results
+                self?.gamesPerPage = results.count
+                self?.gamesLimit = games.count
+                for i in 0..<results.count {
+                    self?.paginationGames.append(results[i])
+                }
+                self?.setPaginationGames(gamesPerPage: results.count)
                 self?.state.render(state: .loaded)
             case .failure(let error):
                 self?.state.render(state: .error(NetworkError.failedRequest.rawValue))
@@ -55,16 +69,16 @@ class GamesViewModel {
 //MARK: - GamesViewModelProtocol conformance:
 extension GamesViewModel: GamesViewModelProtocol {
     var numberOfItems: Int {
-        currentState == .notSearching ? gamesCollection.count : searchedGames.count
+        currentState == .notSearching ? paginationGames.count : searchedGames.count
     }
     
     func viewDidLoad() {
         state.render(state: .initial)
-        getGames()
+        getGames(page: currentPage)
     }
     
     func getGames(at index: Int) -> Response? {
-        currentState == .notSearching ? gamesCollection[safe: index] : searchedGames[safe: index]
+        currentState == .notSearching ? paginationGames[safe: index] : searchedGames[safe: index]
     }
     
     func search(with text: String) {
@@ -72,7 +86,7 @@ extension GamesViewModel: GamesViewModelProtocol {
         pendingRequestWorkItem?.cancel()
         if text.isEmpty {
             currentState = .notSearching
-            getGames()
+            getGames(page: currentPage)
         } else {
             currentState = .searching
             let requestWorkItem = DispatchWorkItem { [weak self] in
@@ -110,5 +124,23 @@ extension GamesViewModel: GamesViewModelProtocol {
     
     func didSelectItem(at index: Int) {
         state.render(state: .navigate(gamesCollection[index]))
+    }
+    
+    func setPaginationGames(gamesPerPage: Int) {
+        if gamesPerPage >= gamesLimit {
+            return
+        } else {
+            if gamesPerPage >= gamesLimit - gamesPerPage {
+                for i in gamesPerPage..<gamesLimit {
+                    paginationGames.append(gamesCollection[i])
+                }
+                self.gamesPerPage += gamesCollection.count
+                self.currentPage += 1
+            } else {
+                self.gamesPerPage += gamesCollection.count
+                self.currentPage += 1
+            }
+            self.state.render(state: .loaded)
+        }
     }
 }

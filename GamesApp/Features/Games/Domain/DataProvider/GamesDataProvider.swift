@@ -10,14 +10,14 @@ typealias GamesResultHandler = Result<GamesResponse, Error>
 typealias GamesReponseHandler = (GamesResultHandler) -> Void
 
 class GamesDataProvider: GamesUseCase {
-    func getGames(completion: @escaping GamesReponseHandler) {
+    func getGames(page: String, completion: @escaping GamesReponseHandler) {
         let requestBuilder = RequestBuilder()
         requestBuilder.setBaseUrl(APIBaseURL.baseURL)
         requestBuilder.setEndpoint(APIEndpoint.games.rawValue)
         requestBuilder.setMethod(.get)
         requestBuilder.setQueryParameters("page_size", "10")
         requestBuilder.setQueryParameters("key", APIKey.apiKey)
-        requestBuilder.setQueryParameters("page", "1")
+        requestBuilder.setQueryParameters("page", page)
         let request = requestBuilder.build()
         APIService.shared.request(decodable: GamesResponse.self, request: request, completion: { result in
             switch result {

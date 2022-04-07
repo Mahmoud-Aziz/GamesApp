@@ -8,9 +8,11 @@
 import Foundation
 
 struct GamesResponse: Codable {
+    let count: Int
     let results: [Response]?
     
     enum CodingKeys: String, CodingKey {
+        case count 
         case results
     }
 }

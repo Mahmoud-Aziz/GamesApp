@@ -7,6 +7,7 @@
 
 import UIKit
 import JGProgressHUD
+import Nuke
 
 class GamesViewController: UIViewController {
     
@@ -17,7 +18,7 @@ class GamesViewController: UIViewController {
     
     private let hud = JGProgressHUD()
     private var viewModel: GamesViewModelProtocol?
-    
+
     // MARK: - View life cycle methods:
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +26,15 @@ class GamesViewController: UIViewController {
         viewModel?.viewDidLoad()
         setupView()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationItem.largeTitleDisplayMode = .always
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        setupCollectionViewLayout()
         navigationController?.isNavigationBarHidden = false
     }
 }
@@ -37,12 +43,17 @@ class GamesViewController: UIViewController {
 private extension GamesViewController {
     func setupView() {
         registerCell()
-        deviceIsRotated()
+        registerFooter()
         setupSearchBar()
+        setupCaching()
     }
     
     func registerCell() {
         collectionView.register(cellClass: GamesCollectionViewCell.self)
+    }
+    
+    func registerFooter() {
+        collectionView.register(FooterReusableCollection.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerReuseIdentifier)
     }
     
     func setupSearchBar() {
@@ -51,8 +62,9 @@ private extension GamesViewController {
         }
     }
     
-    func deviceIsRotated() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.setupCollectionViewLayout), name: UIDevice.orientationDidChangeNotification, object: nil)
+    func highlightCell(cell: UICollectionViewCell?) {
+        cell?.layer.borderWidth = 2.0
+        cell?.layer.borderColor = UIColor.gray.cgColor
     }
 }
 
@@ -70,6 +82,21 @@ extension GamesViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - CollectionView scroll view delegate method:
+extension GamesViewController {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView == collectionView {
+            if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
+                if viewModel?.currentState == .notSearching {
+                    viewModel?.getGames(page: viewModel?.currentPage ?? 1)
+                } else {
+                    return
+                }
+            }
+        }
+    }
+}
+
 // MARK: - CollectionView delegate methods:
 extension GamesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -78,27 +105,48 @@ extension GamesViewController: UICollectionViewDelegate {
         viewModel?.didSelectItem(at: indexPath.row)
     }
     
-    func highlightCell(cell: UICollectionViewCell?) {
-        cell?.layer.borderWidth = 2.0
-        cell?.layer.borderColor = UIColor.gray.cgColor
-    }
+    func collectionView(_ collectionView: UICollectionView,
+                       viewForSupplementaryElementOfKind kind: String,
+                       at indexPath: IndexPath) -> UICollectionReusableView {
+       switch kind {
+       case UICollectionView.elementKindSectionFooter:
+           let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerReuseIdentifier, for: indexPath)
+           footerView.backgroundColor = .clear
+           return footerView
+       default:
+           return UICollectionReusableView(frame: .zero)
+       }
+   }
+    
+    //Footer size
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 30.0)
+}
 }
 
-// MARK: - CollectionView layout methods:
-extension GamesViewController {
-     @objc func setupCollectionViewLayout() {
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        if UIDevice.current.orientation == .portrait {
-            layout.itemSize = CGSize(width: view.frame.size.width, height: view.frame.size.height/5)
-        } else {
-            layout.itemSize = CGSize(width: view.frame.size.width/2.25, height: view.frame.size.height/3)
-        }
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-         guard let cv = collectionView else { return }
-         cv.reloadData()
-         cv.collectionViewLayout = layout
+// MARK: - UICollectionViewDelegateFlowLayout methods:
+extension GamesViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        let columns: Int = {
+            var count = 1
+            if traitCollection.horizontalSizeClass == .regular { count = 2 }
+            else { count = 1 }
+            if collectionView.bounds.width > collectionView.bounds.height { count = 2 }
+            return count
+        }()
+        let totalSpace = flowLayout.sectionInset.left
+        + flowLayout.sectionInset.right
+        + (flowLayout.minimumInteritemSpacing * CGFloat(columns - 1))
+        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(columns))
+        return CGSize(width: size, height: 180)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { [weak self] context in
+            self?.collectionView?.collectionViewLayout.invalidateLayout()
+        }, completion: nil)
     }
 }
 
@@ -125,14 +173,14 @@ extension GamesViewController: StatePresentable {
     func activityIndicator(state: LoadingState) {
         switch state {
         case .loading:
-//            activityIndicator.startAnimating()
-//            collectionView.isUserInteractionEnabled = false
+            //            activityIndicator.startAnimating()
+            //            collectionView.isUserInteractionEnabled = false
             hud.show(in: view)
         case .loaded:
             hud.dismiss()
-//            activityIndicator.stopAnimating()
-//            activityIndicator.removeFromSuperview()
-//            collectionView.isUserInteractionEnabled = true
+            //            activityIndicator.stopAnimating()
+            //            activityIndicator.removeFromSuperview()
+            //            collectionView.isUserInteractionEnabled = true
         }
     }
     
@@ -143,5 +191,18 @@ extension GamesViewController: StatePresentable {
         let action = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(action)
         present(alertController, animated: true, completion: nil)
+    }
+}
+
+//MARK: - Setup image caching using Nuke:
+private extension GamesViewController {
+    func setupCaching() {
+        DataLoader.sharedUrlCache.diskCapacity = 0
+        let pipeline = ImagePipeline {
+            let dataCache = try? DataCache(name: "rawg.io_CachedImages")
+            dataCache?.sizeLimit = 200 * 1024 * 1024
+            $0.dataCache = dataCache
+        }
+        ImagePipeline.shared = pipeline
     }
 }
