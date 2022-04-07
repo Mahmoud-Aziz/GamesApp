@@ -8,6 +8,6 @@
 import Foundation
 
 protocol GamesUseCase {
-    func getGames(completion: @escaping GamesReponseHandler)
+    func getGames(page: String, completion: @escaping GamesReponseHandler)
     func search(for: String, completion: @escaping GamesReponseHandler)
 }
