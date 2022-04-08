@@ -51,6 +51,11 @@ The UI adaptivity with more screen sizes and landscape better support.
 
 - [ ] When using UIActivityIndicator in Games view controller, the app cruches after trying to search due to nil value for the IBOutlet of the indicator. Added JGProgressHUD to Games screen temporary.
 
+- [X] Duplicated objects from core data in favorites.
+
+- [ ] Deleting an item in favorites doesn't work as expected.
+
+
 ## Work in progress
 
 - [X] README will be edited with more info. 
