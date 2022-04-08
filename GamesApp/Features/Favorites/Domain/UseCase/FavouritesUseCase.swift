@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import CoreData
 
 typealias favoritesResultHandler = Result<[Favorite], Error>
 
 protocol FavouritesUseCase {
     func fetchFavorites(completion: @escaping (favoritesResultHandler) -> Void)
+    func removeFavorite(object: NSManagedObject)
 }
 

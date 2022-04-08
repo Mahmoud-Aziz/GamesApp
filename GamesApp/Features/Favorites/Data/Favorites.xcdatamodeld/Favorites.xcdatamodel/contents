@@ -5,6 +5,11 @@
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="score" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="title"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="Favorite" positionX="-63" positionY="9" width="128" height="89"/>

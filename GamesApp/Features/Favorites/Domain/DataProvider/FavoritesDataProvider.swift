@@ -9,15 +9,28 @@ import Foundation
 import CoreData
 
 class FavoritesDataProvider: FavouritesUseCase {
+    let context = CoreDataStack.shared.persistentContainer.viewContext
     func fetchFavorites(completion: @escaping (favoritesResultHandler) -> Void) {
         let fetchRequest: NSFetchRequest<Favorite> = Favorite.fetchRequest()
-        CoreDataStack.shared.persistentContainer.viewContext.perform {
+        context.perform {
             do {
                 let result = try fetchRequest.execute()
                 completion(.success(result))
             } catch {
                 //TODO: Log error
                 completion(.failure(error))
+            }
+        }
+    }
+    
+    func removeFavorite(object: NSManagedObject) {
+        context.delete(object)
+        if context.hasChanges {
+            do {
+              try context.save()
+            } catch {
+                print("error saving")
+                //TODO: Log error
             }
         }
     }

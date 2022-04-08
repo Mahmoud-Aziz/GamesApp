@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import UIKit
+import CoreData
 
 protocol FavoritesViewModelProtocol {
     func viewDidLoad()
-    func viewWillAppear() 
+    func viewWillAppear()
     func getFavorite(at index: Int) -> Favorite
+    func removeAtIndex(index: Int?)
     var numberOfItems: Int { get }
 }
 
@@ -35,7 +38,7 @@ class FavoritesViewModel: FavoritesViewModelProtocol {
                 self?.state.render(state: .loaded)
             case .failure(let error):
                 self?.state.render(state: .loaded)
-                //TODO: Log error 
+                //TODO: Log error
             }
         })
     }
@@ -56,5 +59,12 @@ class FavoritesViewModel: FavoritesViewModelProtocol {
     
     var numberOfItems: Int {
         return favorites?.count ?? 0
+    }
+    
+    func removeAtIndex(index: Int?) {
+        guard let index = index else { return }
+        favorites?.remove(at: index)
+        guard let object = favorites?[index] as? NSManagedObject else { return }
+        dataSource.removeFavorite(object: object)
     }
 }

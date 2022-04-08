@@ -18,7 +18,7 @@ class GamesViewController: UIViewController {
     
     private let hud = JGProgressHUD()
     private var viewModel: GamesViewModelProtocol?
-
+    
     // MARK: - View life cycle methods:
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,22 +107,22 @@ extension GamesViewController: UICollectionViewDelegate {
     
     //MARK: - UICollectionReusableView Footer:
     func collectionView(_ collectionView: UICollectionView,
-                       viewForSupplementaryElementOfKind kind: String,
-                       at indexPath: IndexPath) -> UICollectionReusableView {
-       switch kind {
-       case UICollectionView.elementKindSectionFooter:
-           let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerReuseIdentifier, for: indexPath)
-           footerView.backgroundColor = .clear
-           return footerView
-       default:
-           return UICollectionReusableView(frame: .zero)
-       }
-   }
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionFooter:
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerReuseIdentifier, for: indexPath)
+            footerView.backgroundColor = .clear
+            return footerView
+        default:
+            return UICollectionReusableView(frame: .zero)
+        }
+    }
     
     //Footer size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 30.0)
-}
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout methods:
@@ -175,13 +175,13 @@ extension GamesViewController: StatePresentable {
         switch state {
         case .loading:
             //            activityIndicator.startAnimating()
-            //            collectionView.isUserInteractionEnabled = false
+            collectionView.isUserInteractionEnabled = false
             hud.show(in: view)
         case .loaded:
             hud.dismiss()
             //            activityIndicator.stopAnimating()
             //            activityIndicator.removeFromSuperview()
-            //            collectionView.isUserInteractionEnabled = true
+            collectionView.isUserInteractionEnabled = true
         }
     }
     

@@ -20,6 +20,7 @@ struct CoreDataStack {
             if let error = error as NSError? {
                 //TODO: Log error
             }
+            container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         })
         return container
     }()
@@ -30,7 +31,7 @@ struct CoreDataStack {
             do {
                 try context.save()
             } catch {
-                let nserror = error as NSError
+                let error = error as NSError
                 //TODO: Log error
             }
         }

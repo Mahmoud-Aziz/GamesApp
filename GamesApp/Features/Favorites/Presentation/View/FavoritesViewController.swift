@@ -9,6 +9,7 @@ import UIKit
 import CoreData
 import JGProgressHUD
 import Nuke
+import SwipeCellKit
 
 class FavoritesViewController: UIViewController {
     
@@ -121,6 +122,8 @@ extension FavoritesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: FavoritesCollectionViewCell = collectionView.dequeue(for: indexPath)
+        cell.delegate = self
+        cell.gameImageView.image = nil
         cell.game = viewModel?.getFavorite(at: indexPath.row)
         return cell
     }
@@ -136,5 +139,18 @@ private extension FavoritesViewController {
             $0.dataCache = dataCache
         }
         ImagePipeline.shared = pipeline
+    }
+}
+
+//MARK: - SwipeCollectionViewCell Delegate:
+extension FavoritesViewController: SwipeCollectionViewCellDelegate {
+    func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { [weak self] action, indexPath in
+            self?.viewModel?.removeAtIndex(index: indexPath.row)
+            self?.favoritesCollectionView.reloadData()
+        }
+        deleteAction.image = UIImage(named: "delete")
+        return [deleteAction]
     }
 }

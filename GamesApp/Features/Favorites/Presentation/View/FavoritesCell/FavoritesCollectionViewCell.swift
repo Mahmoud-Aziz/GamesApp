@@ -7,12 +7,13 @@
 
 import UIKit
 import Nuke
+import SwipeCellKit
 
-class FavoritesCollectionViewCell: UICollectionViewCell {
+class FavoritesCollectionViewCell: SwipeCollectionViewCell {
     @IBOutlet private weak var gameTitleLabel: UILabel!
     @IBOutlet private weak var genreLabel: UILabel!
     @IBOutlet private weak var metacriticScoreLabel: UILabel!
-    @IBOutlet private weak var gameImageView: UIImageView!
+    @IBOutlet  weak var gameImageView: UIImageView!
     
     private var task: ImageTask?
     
@@ -25,7 +26,8 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        task?.cancel()
+//        task?.cancel()
+//        gameImageView.image = nil
     }
 }
 
@@ -57,23 +59,25 @@ private extension FavoritesCollectionViewCell {
     /// Setup image using Nuke's ImagePipeLine to load images in background thread.
     func setImage(game: Favorite) {
         guard let imageURL = URL(string: game.image ?? "") else { return }
-        gameImageView.image = ImageLoadingOptions.shared.placeholder
-        gameImageView.contentMode = .scaleAspectFit
+//        gameImageView.image = ImageLoadingOptions.shared.placeholder
+//        gameImageView.contentMode = .scaleAspectFit
+//
+//        let task = ImagePipeline.shared.loadImage(with: imageURL) { [weak self] response in
+//            guard let self = self else {
+//                return
+//            }
+//            switch response {
+//            case .failure:
+//                self.gameImageView.image = ImageLoadingOptions.shared.failureImage
+//                self.gameImageView.contentMode = .scaleAspectFit
+//            case let .success(imageResponse):
+//                self.gameImageView.image = imageResponse.image
+//                self.gameImageView.contentMode = .scaleAspectFill
+//            }
+//        }
+//        self.task = task
         
-        let task = ImagePipeline.shared.loadImage(with: imageURL) { [weak self] response in
-            guard let self = self else {
-                return
-            }
-            switch response {
-            case .failure:
-                self.gameImageView.image = ImageLoadingOptions.shared.failureImage
-                self.gameImageView.contentMode = .scaleAspectFit
-            case let .success(imageResponse):
-                self.gameImageView.image = imageResponse.image
-                self.gameImageView.contentMode = .scaleAspectFill
-            }
-        }
-        self.task = task
+        Nuke.loadImage(with: imageURL, into: gameImageView)
     }
     
     enum placeholder: String {
