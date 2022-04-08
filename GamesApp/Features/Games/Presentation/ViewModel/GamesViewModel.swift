@@ -23,6 +23,7 @@ protocol GamesViewModelProtocol {
     func didSelectItem(at index: Int)
     func setPaginationGames(gamesPerPage: Int)
     func getGames(page: Int)
+    func removeAtIndex(index: Int)
 }
 
 class GamesViewModel {
@@ -142,5 +143,9 @@ extension GamesViewModel: GamesViewModelProtocol {
             }
             self.state.render(state: .loaded)
         }
+    }
+    
+    func removeAtIndex(index: Int) {
+        paginationGames.remove(at: index)
     }
 }

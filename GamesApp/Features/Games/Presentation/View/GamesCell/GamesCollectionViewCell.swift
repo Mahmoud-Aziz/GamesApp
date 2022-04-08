@@ -7,8 +7,9 @@
 
 import UIKit
 import Nuke
+import SwipeCellKit
 
-class GamesCollectionViewCell: UICollectionViewCell {
+class GamesCollectionViewCell: SwipeCollectionViewCell {
     @IBOutlet private weak var gameTitle: UILabel!
     @IBOutlet private weak var gameGenre: UILabel!
     @IBOutlet private weak var metacriticScore: UILabel!
