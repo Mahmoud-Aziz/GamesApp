@@ -59,6 +59,7 @@ private extension GamesViewController {
     
     func setupSearchBar() {
         self.searchBar.textDidChange = {[weak self] text in
+            guard text.count >= 3 else { return }
             self?.viewModel?.search(with: text)
         }
     }
@@ -218,10 +219,7 @@ extension GamesViewController: SwipeCollectionViewCellDelegate {
             self?.viewModel?.removeAtIndex(index: indexPath.row)
             self?.collectionView.reloadData()
         }
-
-        // customize the action appearance
         deleteAction.image = UIImage(named: "delete")
-
         return [deleteAction]
     }
 }
