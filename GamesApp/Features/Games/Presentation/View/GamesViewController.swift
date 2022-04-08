@@ -8,7 +8,6 @@
 import UIKit
 import JGProgressHUD
 import Nuke
-import SwipeCellKit
 
 class GamesViewController: UIViewController {
     
@@ -59,7 +58,6 @@ private extension GamesViewController {
     
     func setupSearchBar() {
         self.searchBar.textDidChange = {[weak self] text in
-            guard text.count >= 3 else { return }
             self?.viewModel?.search(with: text)
         }
     }
@@ -74,7 +72,6 @@ private extension GamesViewController {
 extension GamesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: GamesCollectionViewCell = collectionView.dequeue(for: indexPath)
-        cell.delegate = self
         let game = viewModel?.getGames(at: indexPath.row)
         cell.game = game
         return cell
@@ -208,18 +205,5 @@ private extension GamesViewController {
             $0.dataCache = dataCache
         }
         ImagePipeline.shared = pipeline
-    }
-}
-
-extension GamesViewController: SwipeCollectionViewCellDelegate {
-    func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { [weak self] action, indexPath in
-            self?.viewModel?.removeAtIndex(index: indexPath.row)
-            self?.collectionView.reloadData()
-        }
-        deleteAction.image = UIImage(named: "delete")
-        return [deleteAction]
     }
 }

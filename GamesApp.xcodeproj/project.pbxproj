@@ -20,7 +20,6 @@
 		6281565427FA9A8700F9AAAA /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 6281565327FA9A8700F9AAAA /* JGProgressHUD */; };
 		62920F5027FEADDC00FB157D /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 62920F4F27FEADDC00FB157D /* Nuke */; };
 		62920F5827FED93900FB157D /* FooterReusableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62920F5727FED93900FB157D /* FooterReusableCollection.swift */; };
-		62920F6627FFC3D000FB157D /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 62920F6527FFC3D000FB157D /* SwipeCellKit */; };
 		62A171CB27F7C37D002B0ACA /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A171CA27F7C37D002B0ACA /* CustomSearchBar.swift */; };
 		62A171CE27F7D353002B0ACA /* BetterDecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A171CD27F7D353002B0ACA /* BetterDecodingError.swift */; };
 		62A171D127F7EBF0002B0ACA /* SafeCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A171D027F7EBF0002B0ACA /* SafeCollection.swift */; };
@@ -127,7 +126,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				62920F5027FEADDC00FB157D /* Nuke in Frameworks */,
-				62920F6627FFC3D000FB157D /* SwipeCellKit in Frameworks */,
 				6281565427FA9A8700F9AAAA /* JGProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -617,7 +615,6 @@
 			packageProductDependencies = (
 				6281565327FA9A8700F9AAAA /* JGProgressHUD */,
 				62920F4F27FEADDC00FB157D /* Nuke */,
-				62920F6527FFC3D000FB157D /* SwipeCellKit */,
 			);
 			productName = GamesApp;
 			productReference = 62AF600627F4ECDC00248EBB /* GamesApp.app */;
@@ -650,7 +647,6 @@
 			packageReferences = (
 				6281565227FA9A8700F9AAAA /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				62920F4E27FEADDC00FB157D /* XCRemoteSwiftPackageReference "Nuke" */,
-				62920F6427FFC3D000FB157D /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
 			);
 			productRefGroup = 62AF600727F4ECDC00248EBB /* Products */;
 			projectDirPath = "";
@@ -1040,14 +1036,6 @@
 				version = 9.6.1;
 			};
 		};
-		62920F6427FFC3D000FB157D /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit";
-			requirement = {
-				kind = exactVersion;
-				version = 2.7.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1060,11 +1048,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 62920F4E27FEADDC00FB157D /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = Nuke;
-		};
-		62920F6527FFC3D000FB157D /* SwipeCellKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 62920F6427FFC3D000FB157D /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
-			productName = SwipeCellKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 
