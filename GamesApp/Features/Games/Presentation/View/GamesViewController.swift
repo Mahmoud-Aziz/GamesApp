@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import JGProgressHUD
 import Nuke
 
 class GamesViewController: UIViewController {
@@ -16,9 +15,9 @@ class GamesViewController: UIViewController {
     @IBOutlet private weak var searchBar: CustomSearchBar!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
-    private let hud = JGProgressHUD()
     private var viewModel: GamesViewModelProtocol?
-    
+    private var footerActivityIndicator = UIActivityIndicatorView()
+
     // MARK: - View life cycle methods:
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +52,18 @@ private extension GamesViewController {
     }
     
     func registerFooter() {
-        collectionView.register(FooterReusableCollection.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerReuseIdentifier)
+        collectionView.register(CollectionViewFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CollectionViewFooterView")
+        (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.footerReferenceSize = CGSize(width: collectionView.bounds.width, height: 50)
+
     }
     
     func setupSearchBar() {
         self.searchBar.textDidChange = {[weak self] text in
+            if text.isEmpty {
+                self?.viewModel?.currentState = .notSearching
+                self?.collectionView.reloadData()
+            }
+            guard text.count >= 3 else { return }
             self?.viewModel?.search(with: text)
         }
     }
@@ -84,14 +90,11 @@ extension GamesViewController: UICollectionViewDataSource {
 
 // MARK: - CollectionView scroll view delegate method:
 extension GamesViewController {
+    //Responsible for pagination
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView == collectionView {
             if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
-                if viewModel?.currentState == .notSearching {
-                    viewModel?.getGames(page: viewModel?.currentPage ?? 1)
-                } else {
-                    return
-                }
+                viewModel?.loadMoreGames()
             }
         }
     }
@@ -104,19 +107,19 @@ extension GamesViewController: UICollectionViewDelegate {
         highlightCell(cell: cell)
         viewModel?.didSelectItem(at: indexPath.row)
     }
-    
-    //MARK: - UICollectionReusableView Footer:
-    func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionFooter:
-            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerReuseIdentifier, for: indexPath)
-            footerView.backgroundColor = .clear
-            return footerView
-        default:
-            return UICollectionReusableView(frame: .zero)
+}
+
+//MARK: - UICollectionReusableView Footer:
+extension GamesViewController {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionFooter {
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CollectionViewFooterView", for: indexPath)
+            footerActivityIndicator.color = .red
+            footer.addSubview(footerActivityIndicator)
+            footerActivityIndicator.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 30)
+            return footer
         }
+        return UICollectionReusableView()
     }
     
     //Footer size
@@ -168,20 +171,24 @@ extension GamesViewController: StatePresentable {
         case .navigate(let game):
             let route = GamesRoutes.gameDetails(game)
             navigate(to: route)
+        case .loadingMore:
+            footerActivityIndicator.startAnimating()
+            activityIndicator.stopAnimating()
+        default:
+            collectionView?.reloadData()
+            activityIndicator(state: .loaded)
         }
     }
     
     func activityIndicator(state: LoadingState) {
         switch state {
         case .loading:
-            //            activityIndicator.startAnimating()
-            collectionView.isUserInteractionEnabled = false
-            hud.show(in: view)
+            activityIndicator.startAnimating()
+            view.isUserInteractionEnabled = false
         case .loaded:
-            hud.dismiss()
-            //            activityIndicator.stopAnimating()
-            //            activityIndicator.removeFromSuperview()
-            collectionView.isUserInteractionEnabled = true
+            footerActivityIndicator.stopAnimating()
+            activityIndicator.stopAnimating()
+            view.isUserInteractionEnabled = true
         }
     }
     
