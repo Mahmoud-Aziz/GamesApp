@@ -63,7 +63,7 @@ extension DetailsViewModel {
     
     func getDescription() -> String {
         guard let description = gameDetails?.description else { return "-" }
-        let symbols = ["<p>":"", "</p>":"","<br />":""]
+        let symbols = ["<p>": "", "</p>": "", "<br />": "", "<br>": "", "<strong>": "", "</strong>": ""]
         let clearDescription = symbols.reduce(description) { $0.replacingOccurrences(of: $1.key, with: $1.value) }
         return clearDescription
     }
