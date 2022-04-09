@@ -143,8 +143,7 @@
 			children = (
 				6234791527F8D0FE008967BA /* TabBarViewController.swift */,
 			);
-			name = TabBar;
-			path = "New Group/TabBar";
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		6234791727F8E3ED008967BA /* CoreData */ = {
@@ -447,12 +446,9 @@
 			isa = PBXGroup;
 			children = (
 				62920F6C2801467400FB157D /* Logger */,
-				62920F5627FED92800FB157D /* Footer */,
+				62F93271280157920037B4B9 /* UI Helpers */,
 				6234791727F8E3ED008967BA /* CoreData */,
-				6234791427F8D0ED008967BA /* TabBar */,
-				62A171ED27F8069C002B0ACA /* Navigation */,
 				62A171CC27F7D344002B0ACA /* Error */,
-				62BAF7A327F7447E006DD705 /* State */,
 				62BAF76327F65CA6006DD705 /* Enviroment */,
 				62AF603827F6451F00248EBB /* Extensions */,
 				62AF602727F6414B00248EBB /* Networking */,
@@ -495,8 +491,7 @@
 			isa = PBXGroup;
 			children = (
 				62A1720627F8B693002B0ACA /* String */,
-				62A171F027F806C8002B0ACA /* UIViewController */,
-				62A171D427F7F268002B0ACA /* CollectionView */,
+				62F93272280157CF0037B4B9 /* UIKit */,
 				62A171CF27F7EBAD002B0ACA /* Collection */,
 				62AF603927F6453A00248EBB /* Codable */,
 				62BAF7BA27F78D3B006DD705 /* Numeric */,
@@ -618,6 +613,26 @@
 				62BAF7B727F78822006DD705 /* Numeric.swift */,
 			);
 			path = Numeric;
+			sourceTree = "<group>";
+		};
+		62F93271280157920037B4B9 /* UI Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				62BAF7A327F7447E006DD705 /* State */,
+				62A171ED27F8069C002B0ACA /* Navigation */,
+				62920F5627FED92800FB157D /* Footer */,
+				6234791427F8D0ED008967BA /* TabBar */,
+			);
+			path = "UI Helpers";
+			sourceTree = "<group>";
+		};
+		62F93272280157CF0037B4B9 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				62A171F027F806C8002B0ACA /* UIViewController */,
+				62A171D427F7F268002B0ACA /* CollectionView */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
