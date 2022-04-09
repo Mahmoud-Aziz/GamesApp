@@ -47,6 +47,7 @@ private extension DetailsViewController {
     func setupView() {
         setupOutlets()
         setupFavoriteBarButton()
+        navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
     func setupOutlets() {
