@@ -17,9 +17,7 @@
 		6234792827F8ED9F008967BA /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6234792627F8ED9F008967BA /* FavoritesViewController.swift */; };
 		6234793227F8EF25008967BA /* FavoritesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6234793127F8EF25008967BA /* FavoritesCollectionViewCell.xib */; };
 		6234793327F8EF8F008967BA /* FavoritesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6234792D27F8EE1E008967BA /* FavoritesCollectionViewCell.swift */; };
-		62920F5027FEADDC00FB157D /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 62920F4F27FEADDC00FB157D /* Nuke */; };
 		62920F5827FED93900FB157D /* CollectionViewFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62920F5727FED93900FB157D /* CollectionViewFooterView.swift */; };
-		62920F6927FFC8AD00FB157D /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 62920F6827FFC8AD00FB157D /* SwipeCellKit */; };
 		62920F712801467400FB157D /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62920F6D2801467400FB157D /* LogLevel.swift */; };
 		62920F732801467400FB157D /* LogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62920F6F2801467400FB157D /* LogHelper.swift */; };
 		62A171CB27F7C37D002B0ACA /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A171CA27F7C37D002B0ACA /* CustomSearchBar.swift */; };
@@ -130,8 +128,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62920F5027FEADDC00FB157D /* Nuke in Frameworks */,
-				62920F6927FFC8AD00FB157D /* SwipeCellKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,8 +649,6 @@
 			);
 			name = GamesApp;
 			packageProductDependencies = (
-				62920F4F27FEADDC00FB157D /* Nuke */,
-				62920F6827FFC8AD00FB157D /* SwipeCellKit */,
 			);
 			productName = GamesApp;
 			productReference = 62AF600627F4ECDC00248EBB /* GamesApp.app */;
@@ -685,8 +679,6 @@
 			);
 			mainGroup = 62AF5FFD27F4ECDC00248EBB;
 			packageReferences = (
-				62920F4E27FEADDC00FB157D /* XCRemoteSwiftPackageReference "Nuke" */,
-				62920F6727FFC8AD00FB157D /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
 			);
 			productRefGroup = 62AF600727F4ECDC00248EBB /* Products */;
 			projectDirPath = "";
@@ -1081,38 +1073,6 @@
 			defaultConfigurationName = Development;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		62920F4E27FEADDC00FB157D /* XCRemoteSwiftPackageReference "Nuke" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kean/Nuke";
-			requirement = {
-				kind = exactVersion;
-				version = 9.6.1;
-			};
-		};
-		62920F6727FFC8AD00FB157D /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit";
-			requirement = {
-				kind = exactVersion;
-				version = 2.7.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		62920F4F27FEADDC00FB157D /* Nuke */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 62920F4E27FEADDC00FB157D /* XCRemoteSwiftPackageReference "Nuke" */;
-			productName = Nuke;
-		};
-		62920F6827FFC8AD00FB157D /* SwipeCellKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 62920F6727FFC8AD00FB157D /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
-			productName = SwipeCellKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		6234791127F8C419008967BA /* Favorites.xcdatamodeld */ = {
