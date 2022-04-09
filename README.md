@@ -41,32 +41,13 @@ Data is saved locally using **Coredata**.
 
 ## Things to improve 
 
-The UI adaptivity with more screen sizes and landscape better support. 
+Work offline customizations. 
 
 ## Issues to be solved 
 
-- [ ] Caching is not working as expected. 
-
-- [X] Details screen in landscape mode doesn't show the game image correctly, and description label is very compact. 
-
-- [X] Games title label in Games view controller disappear with scrolling down. 
-
-- [ ] When using UIActivityIndicator in Games view controller, the app cruches after trying to search due to nil value for the IBOutlet of the indicator. Added JGProgressHUD to Games screen temporary.
-
-- [X] Duplicated objects from core data in favorites.
-
-- [ ] Deleting an item in favorites doesn't work as expected.
-
+- [ ] After search for a not found result and empty view is added, the search bar become disabled.
 
 ## Work in progress
-
-- [X] README will be edited with more info. 
-
-- [ ] Log errors and decode which logging techniques to follow. 
-
-- [X] Support Pagination in gamesVC. 
-
-- [ ] Add swipe to delete to favorites screen, considering removing correctly from core data store. 
 
 - [ ] Support reachability detection and retry for networking. 
 
@@ -80,5 +61,3 @@ The UI adaptivity with more screen sizes and landscape better support.
 ![Simulator Screen Shot - iPhone 13 Pro Max - 2022-04-03 at 01 48 44](https://user-images.githubusercontent.com/69410556/161405503-1cd27c9c-2619-46d3-98c6-ab0a0787a3ca.png)
 ![Simulator Screen Shot - iPhone 13 Pro Max - 2022-04-03 at 01 49 32](https://user-images.githubusercontent.com/69410556/161405509-3ca78fcf-e660-46da-89c3-1c23d8ebdce8.png)
 ![Simulator Screen Shot - iPhone 13 Pro Max - 2022-04-03 at 01 49 37](https://user-images.githubusercontent.com/69410556/161405511-690be19d-deb6-4b66-9080-1ddc8ae486ad.png)
-
-
