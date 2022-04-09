@@ -25,13 +25,11 @@ class FavoritesDataProvider: FavouritesUseCase {
     
     func removeFavorite(object: NSManagedObject) {
         context.delete(object)
-        if context.hasChanges {
             do {
               try context.save()
             } catch {
                 print("error saving")
                 //TODO: Log error
             }
-        }
     }
 }
