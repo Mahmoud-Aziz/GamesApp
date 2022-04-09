@@ -67,7 +67,7 @@ private extension GamesViewModel {
                 })
             }
             pendingRequestWorkItem = requestWorkItem
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000),
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250),
                                           execute: requestWorkItem)
         }
     }
@@ -116,7 +116,7 @@ private extension GamesViewModel {
             setPaginationSearch(gamesPerPage: gamesPerPage)
             state.render(state: .loaded)
         case .failure(let error):
-            state.render(state: .error(NetworkError.failedRequest.rawValue))
+            state.render(state: .empty)
             print("Error occured in Search: \(error.localizedDescription)", logLevel: .error)
         }
     }
@@ -169,6 +169,7 @@ extension GamesViewModel: GamesViewModelProtocol {
     
     func search(with text: String) {
         paginationSearch.removeAll()
+        state.render(state: .populated)
         search(with: text, page: currentPage)
     }
     
@@ -183,7 +184,8 @@ extension GamesViewModel: GamesViewModelProtocol {
     }
     
     func getGames(at index: Int) -> Response? {
-        currentState == .notSearching ? paginationGames[safe: index] : paginationSearch[safe: index]
+        state.render(state: .populated)
+        return currentState == .notSearching ? paginationGames[safe: index] : paginationSearch[safe: index]
     }
     
     func didSelectItem(at index: Int) {

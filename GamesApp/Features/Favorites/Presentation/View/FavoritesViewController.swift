@@ -69,7 +69,7 @@ extension FavoritesViewController: StatePresentable {
         case .populated:
             favoritesCollectionView.restore()
         case .empty:
-            favoritesCollectionView.setEmptyView(title: "Please add your favorites!")
+            favoritesCollectionView.setEmptyView(title: "Please add your favorites!", image: .noFavorites)
             favoritesCollectionView.reloadData()
         default:
             activityIndicator(state: .loaded)

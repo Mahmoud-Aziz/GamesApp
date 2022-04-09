@@ -174,6 +174,14 @@ extension GamesViewController: StatePresentable {
         case .loadingMore:
             footerActivityIndicator.startAnimating()
             activityIndicator.stopAnimating()
+        case .empty:
+            collectionView.setEmptyView(title: "No results found!", image: .noResults)
+            activityIndicator.stopAnimating()
+            collectionView.reloadData()
+            collectionView.resignFirstResponder()
+            searchBar.becomeFirstResponder()
+        case .populated:
+            collectionView.restore()
         default:
             collectionView?.reloadData()
             activityIndicator(state: .loaded)

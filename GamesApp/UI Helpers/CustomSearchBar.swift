@@ -8,13 +8,13 @@
 import UIKit
 
 class CustomSearchBar: UISearchBar {
-
+    
     var textDidChange: ((String) -> Void)?
     override func awakeFromNib() {
         super.awakeFromNib()
         setupSearchBar()
     }
-
+    
     private func setupSearchBar() {
         self.delegate = self
     }
@@ -38,7 +38,16 @@ extension CustomSearchBar: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.becomeFirstResponder()
         dismissKeyboard(with: searchBar.text ?? "")
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        DispatchQueue.main.async {
+            if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
+                cancelButton.isEnabled = true
+            }
+        }
     }
     
 }
