@@ -9,20 +9,18 @@ import Foundation
 import UIKit
 
 enum HomeState: Equatable {
-    case searching
+    case searching(text: String)
     case notSearching
 }
 
 protocol GamesViewModelProtocol {
     var numberOfItems: Int { get }
-    var currentPage: Int { get set }
     var currentState: HomeState { get set }
     func viewDidLoad()
     func getGames(at index: Int) -> Response?
     func search(with text: String)
     func didSelectItem(at index: Int)
-    func setPaginationGames(gamesPerPage: Int)
-    func getGames(page: Int)
+    func loadMoreGames()
 }
 
 class GamesViewModel {
@@ -30,71 +28,42 @@ class GamesViewModel {
     private var gamesCollection: [Response] = []
     private var searchedGames: [Response] = []
     private var paginationGames: [Response] = []
+    private var paginationSearch: [Response] = []
     private let dataSource: GamesUseCase
     private let state: StatePresentable
     private var pendingRequestWorkItem: DispatchWorkItem?
     private var gamesLimit = 10
-    private var gamesPerPage : Int = 10
+    private var gamesPerPage = 10
+    private var currentPage = 1
     var currentState: HomeState = .notSearching
-    var currentPage = 1
-    
+
     //MARK: - Initializer:
     init(dataSource: GamesUseCase, statePresenter: StatePresentable) {
         self.dataSource = dataSource
         self.state = statePresenter
     }
-    
-    //MARK: - Data Source execution:
-    func getGames(page: Int) {
-        dataSource.getGames(page: page.toString, completion: { [weak self] result in
-            switch result {
-            case .success(let games):
-                guard let results = games.results else { return }
-                self?.gamesCollection = results
-                self?.gamesPerPage = results.count
-                self?.gamesLimit = games.count
-                for i in 0..<results.count {
-                    self?.paginationGames.append(results[i])
-                }
-                self?.setPaginationGames(gamesPerPage: results.count)
-                self?.state.render(state: .loaded)
-            case .failure(let error):
-                self?.state.render(state: .error(NetworkError.failedRequest.rawValue))
-                //TODO: Log error
-            }
-        })
-    }
 }
 
-//MARK: - GamesViewModelProtocol conformance:
-extension GamesViewModel: GamesViewModelProtocol {
-    var numberOfItems: Int {
-        currentState == .notSearching ? paginationGames.count : searchedGames.count
+//MARK: - Use case execution:
+private extension GamesViewModel {
+    func getGames(page: Int) {
+        dataSource.getGames(page: page.toString, completion: { [weak self] result in
+            self?.handleGamesResults(result: result)
+        })
     }
     
-    func viewDidLoad() {
-        state.render(state: .initial)
-        getGames(page: currentPage)
-    }
-    
-    func getGames(at index: Int) -> Response? {
-        currentState == .notSearching ? paginationGames[safe: index] : searchedGames[safe: index]
-    }
-    
-    func search(with text: String) {
-        searchedGames.removeAll()
+    func search(with text: String, page: Int) {
         pendingRequestWorkItem?.cancel()
         if text.isEmpty {
             currentState = .notSearching
             getGames(page: currentPage)
         } else {
-            currentState = .searching
+            currentState = .searching(text: text)
             let requestWorkItem = DispatchWorkItem { [weak self] in
                 guard let self = self else { return }
                 self.state.render(state: .loading)
-                self.dataSource.search(for: text, completion:  { [weak self] result in
-                    guard let self = self else { return }
-                    self.handleSearchResult(result: result)
+                self.dataSource.search(for: text, page: page.toString, completion:  { [weak self] result in
+                    self?.handleSearchResult(query: text, result: result)
                 })
             }
             pendingRequestWorkItem = requestWorkItem
@@ -102,8 +71,32 @@ extension GamesViewModel: GamesViewModelProtocol {
                                           execute: requestWorkItem)
         }
     }
+}
+
+//MARK: - Handle use case results:
+private extension GamesViewModel {
+    func handleGamesResults(result: GamesResultHandler) {
+        switch result {
+        case .success(let games):
+            guard let results = games.results else {
+                state.render(state: .error(ViewError.operationFaield.rawValue))
+                return
+            }
+            gamesCollection = results
+            gamesPerPage = results.count
+            gamesLimit = games.count
+            for i in 0..<results.count {
+                paginationGames.append(results[i])
+            }
+            setPaginationGames(gamesPerPage: results.count)
+            state.render(state: .loaded)
+        case .failure(let error):
+            state.render(state: .error(NetworkError.failedRequest.rawValue))
+            //TODO: Log error
+        }
+    }
     
-    func handleSearchResult(result: GamesResultHandler) {
+    func handleSearchResult(query: String, result: GamesResultHandler) {
         switch result {
         case .success(let games):
             guard let results = games.results else {
@@ -115,17 +108,22 @@ extension GamesViewModel: GamesViewModelProtocol {
                 return
             }
             searchedGames = results
+            gamesPerPage = results.count
+            gamesLimit = results.count
+            for i in 0..<results.count {
+                paginationSearch.append(results[i])
+            }
+            setPaginationSearch(gamesPerPage: gamesPerPage)
             state.render(state: .loaded)
         case .failure(let error):
             //TODO: Log error
             state.render(state: .error(NetworkError.failedRequest.rawValue))
         }
     }
-    
-    func didSelectItem(at index: Int) {
-        state.render(state: .navigate(paginationGames[index]))
-    }
-    
+}
+
+//MARK: - Setup pagination:
+private extension GamesViewModel {
     func setPaginationGames(gamesPerPage: Int) {
         if gamesPerPage >= gamesLimit {
             return
@@ -140,7 +138,60 @@ extension GamesViewModel: GamesViewModelProtocol {
                 self.gamesPerPage += gamesCollection.count
                 self.currentPage += 1
             }
+        }
+    }
+    
+    func setPaginationSearch(gamesPerPage: Int) {
+            if gamesPerPage >= gamesLimit - gamesPerPage {
+                for i in gamesPerPage..<gamesLimit {
+                    paginationSearch.append(searchedGames[i])
+                }
+                self.gamesPerPage += searchedGames.count
+                self.currentPage += 1
+            } else {
+                self.gamesPerPage += searchedGames.count
+                self.currentPage += 1
+            }
             self.state.render(state: .loaded)
+        }
+    }
+
+//MARK: - GamesViewModelProtocol conformance:
+extension GamesViewModel: GamesViewModelProtocol {
+    var numberOfItems: Int {
+        currentState == .notSearching ? paginationGames.count : paginationSearch.count
+    }
+    
+    func viewDidLoad() {
+        state.render(state: .initial)
+        getGames(page: currentPage)
+    }
+    
+    func search(with text: String) {
+        paginationSearch.removeAll()
+        search(with: text, page: currentPage)
+    }
+    
+    func loadMoreGames() {
+        state.render(state: .loadingMore)
+        switch currentState {
+        case .searching(text: let text):
+            search(with: text, page: currentPage)
+        case .notSearching:
+            getGames(page: currentPage)
+        }
+    }
+    
+    func getGames(at index: Int) -> Response? {
+        currentState == .notSearching ? paginationGames[safe: index] : paginationSearch[safe: index]
+    }
+    
+    func didSelectItem(at index: Int) {
+        switch currentState {
+        case .notSearching:
+            state.render(state: .navigate(paginationGames[index]))
+        case .searching:
+            state.render(state: .navigate(paginationSearch[index]))
         }
     }
 }

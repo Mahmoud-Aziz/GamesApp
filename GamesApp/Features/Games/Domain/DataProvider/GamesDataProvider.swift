@@ -30,14 +30,14 @@ class GamesDataProvider: GamesUseCase {
         })
     }
     
-    func search(for game: String, completion: @escaping GamesReponseHandler) {
+    func search(for game: String, page: String, completion: @escaping GamesReponseHandler) {
         let requestBuilder = RequestBuilder()
         requestBuilder.setBaseUrl(APIBaseURL.baseURL)
         requestBuilder.setEndpoint(APIEndpoint.games.rawValue)
         requestBuilder.setMethod(.get)
         requestBuilder.setQueryParameters("page_size", "10")
         requestBuilder.setQueryParameters("key", APIKey.apiKey)
-        requestBuilder.setQueryParameters("page", "1")
+        requestBuilder.setQueryParameters("page", page)
         requestBuilder.setQueryParameters("search", "\(game)")
         let request = requestBuilder.build()
         
