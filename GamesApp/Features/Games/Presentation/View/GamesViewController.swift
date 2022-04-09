@@ -60,7 +60,7 @@ private extension GamesViewController {
     func setupSearchBar() {
         self.searchBar.textDidChange = {[weak self] text in
             if text.isEmpty {
-                self?.viewModel?.currentState = .notSearching
+                self?.viewModel?.stateDidChange(state: .notSearching)
                 self?.collectionView.reloadData()
             }
             guard text.count >= 3 else { return }

@@ -15,12 +15,12 @@ enum HomeState: Equatable {
 
 protocol GamesViewModelProtocol {
     var numberOfItems: Int { get }
-    var currentState: HomeState { get set }
     func viewDidLoad()
     func getGames(at index: Int) -> Response?
     func search(with text: String)
     func didSelectItem(at index: Int)
     func loadMoreGames()
+    func stateDidChange(state: HomeState)
 }
 
 class GamesViewModel {
@@ -35,7 +35,7 @@ class GamesViewModel {
     private var gamesLimit = 10
     private var gamesPerPage = 10
     private var currentPage = 1
-    var currentState: HomeState = .notSearching
+    private var currentState: HomeState = .notSearching
 
     // MARK: - Initializer:
     init(dataSource: GamesUseCase, statePresenter: StatePresentable) {
@@ -194,6 +194,15 @@ extension GamesViewModel: GamesViewModelProtocol {
             state.render(state: .navigate(paginationGames[index]))
         case .searching:
             state.render(state: .navigate(paginationSearch[index]))
+        }
+    }
+    
+    func stateDidChange(state: HomeState) {
+        switch state {
+        case .notSearching:
+            currentState = .notSearching
+        default:
+            currentState = .notSearching
         }
     }
 }
