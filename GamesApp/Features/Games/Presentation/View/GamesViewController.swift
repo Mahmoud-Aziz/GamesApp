@@ -70,7 +70,9 @@ private extension GamesViewController {
     }
     
     func highlightCell(cell: UICollectionViewCell?) {
-        cell?.contentView.backgroundColor = .lightGray
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor.lightGray
+        cell?.backgroundView = bgColorView
     }
 }
 
