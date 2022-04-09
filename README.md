@@ -45,7 +45,6 @@ Work offline customizations.
 
 ## Issues to be solved 
 
-- [ ] After search for a not found result and empty view is added, the search bar become disabled.
 
 ## Work in progress
 
