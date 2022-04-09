@@ -14,7 +14,7 @@ class GamesCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var metacriticScore: UILabel!
     @IBOutlet weak var gameImageView: UIImageView!
     
-    private var task: ImageTask?
+    private weak var task: ImageTask?
     
     var game: Response? {
         didSet {
@@ -60,8 +60,8 @@ private extension GamesCollectionViewCell {
         guard let imageURL = URL(string: game.backgroundImage ?? "") else { return }
         gameImageView.image = ImageLoadingOptions.shared.placeholder
         gameImageView.contentMode = .scaleAspectFit
-        
-        let task = ImagePipeline.shared.loadImage(with: imageURL) { [weak self] response in
+        let imageSize = gameImageView.frame.size
+        let task = ImagePipeline.shared.loadImage(with: ImageRequest(url: imageURL, processors: [ImageProcessors.Resize(size: imageSize)], cachePolicy: .default, priority: .high)) { [weak self] response in
             guard let self = self else {
                 return
             }
