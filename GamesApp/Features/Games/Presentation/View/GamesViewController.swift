@@ -69,8 +69,7 @@ private extension GamesViewController {
     }
     
     func highlightCell(cell: UICollectionViewCell?) {
-        cell?.layer.borderWidth = 2.0
-        cell?.layer.borderColor = UIColor.gray.cgColor
+        cell?.contentView.backgroundColor = .lightGray
     }
 }
 
