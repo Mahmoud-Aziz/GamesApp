@@ -33,6 +33,7 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.viewDidLoad(statePresenter: self)
+        navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,23 +45,27 @@ class DetailsViewController: UIViewController {
 // MARK: - View setup methods:
 private extension DetailsViewController {
     func setupView() {
-        gameTitleLabel.text = viewModel.getTitle()
-        gameDescriptionLabel.text = viewModel.getDescription()
-        setupImageView()
+        setupOutlets()
         setupFavoriteBarButton()
     }
     
+    func setupOutlets() {
+        setupImageView()
+        gameTitleLabel.text = viewModel.getTitle()
+        gameDescriptionLabel.text = viewModel.getDescription()
+    }
+    
     func setupFavoriteBarButton() {
-        let favoriteBarButton = UIBarButtonItem(title: "Favorite",style: .plain, target: self, action: #selector(favoriteBarButtonTapped))
-        self.navigationItem.rightBarButtonItem = favoriteBarButton
+        let favoriteBarButtonItem = UIBarButtonItem(title: "Favorite",style: .plain, target: self, action: #selector(favoriteBarButtonTapped))
+        self.navigationItem.rightBarButtonItem = favoriteBarButtonItem
     }
     
     func setupImageView() {
         let url = viewModel.getImage()
         guard let url = URL(string: url) else { return }
         var resizedImageProcessors: [ImageProcessing] {
-            let imageSize = CGSize(width: gameImageView.frame.width, height: gameImageView.frame.height)
-          return [ImageProcessors.Resize(size: imageSize, contentMode: .aspectFill)]
+            let imageSize = gameImageView.frame.size
+            return [ImageProcessors.Resize(size: imageSize, contentMode: .aspectFill)]
         }
         let request = ImageRequest(url: url, processors: resizedImageProcessors, cachePolicy: .default)
         Nuke.loadImage(with: request, into: gameImageView)
@@ -89,12 +94,15 @@ extension DetailsViewController: StatePresentable {
     func activityIndicator(state: LoadingState) {
         switch state {
         case .loading:
+            navigationItem.rightBarButtonItem?.isEnabled = false
             activityIndicator.startAnimating()
             view.isUserInteractionEnabled = false
+            navigationItem.hidesBackButton = true
         case .loaded:
             activityIndicator.stopAnimating()
-            activityIndicator.removeFromSuperview()
             view.isUserInteractionEnabled = true
+            navigationItem.hidesBackButton = false
+            navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }
     
