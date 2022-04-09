@@ -4,7 +4,9 @@
 
 ## How to run the project
 
-```Clone``` and run! no dependencies required for now. 
+```Clone``` and run!. 
+
+in case a "Missing package produnct" or "Fails to reslove dependency graph" error occured, please navigate to file/packages/reset package caches. 
 
 Add your API key to API_KEY property at path: GamesApp/Shared/Enviroment/Shared.XCConfig 
 
