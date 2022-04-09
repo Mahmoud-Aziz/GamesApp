@@ -13,6 +13,9 @@ enum State {
     case loaded
     case error(String)
     case navigate(Response)
+    case empty
+    case populated
+    case loadingMore
 }
 
 enum LoadingState {
