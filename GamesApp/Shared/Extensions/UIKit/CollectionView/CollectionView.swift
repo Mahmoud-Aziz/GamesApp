@@ -46,11 +46,12 @@ extension UICollectionView {
             messageImageView.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor),
             messageImageView.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor, constant: -20),
             messageImageView.widthAnchor.constraint(equalToConstant: 225),
-            messageImageView.heightAnchor.constraint(equalToConstant: 185),
+            messageImageView.heightAnchor.constraint(equalToConstant: 225),
             titleLabel.topAnchor.constraint(equalTo: messageImageView.bottomAnchor, constant: 5),
             titleLabel.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor)
         ])
         messageImageView.image = UIImage(named: image.rawValue)
+        messageImageView.contentMode = .scaleAspectFit
         titleLabel.text = title
         self.backgroundView = emptyView
     }

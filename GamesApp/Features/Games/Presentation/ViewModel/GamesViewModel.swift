@@ -117,6 +117,7 @@ private extension GamesViewModel {
             state.render(state: .loaded)
         case .failure(let error):
             state.render(state: .empty)
+            state.render(state: .loaded)
             print("Error occured in Search: \(error.localizedDescription)", logLevel: .error)
         }
     }

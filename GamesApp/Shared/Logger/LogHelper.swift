@@ -25,7 +25,8 @@ class Logger {
              column: Int = #column) {
         
         let level = prefixLevel(logLevel: logLevel)
-#if DEBUG
+        
+        #if DEV
         Swift.print(
             """
         \(level)
@@ -34,11 +35,13 @@ class Logger {
             file: \((file as NSString).lastPathComponent)
             line: \(line)
             column: \(column)
-            Message: \(context.input)
+            Message: \(output)
         ]
         """
         )
-#endif
+        #else
+        Swift.print("Please switch to Development enviroment to show logs")
+        #endif
     }
 
     // MARK: - Private Helpers

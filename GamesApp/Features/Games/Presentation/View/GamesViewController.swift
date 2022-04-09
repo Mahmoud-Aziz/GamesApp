@@ -45,6 +45,7 @@ private extension GamesViewController {
         registerFooter()
         setupSearchBar()
         setupCaching()
+        collectionView.keyboardDismissMode = .onDrag
     }
     
     func registerCell() {
@@ -175,15 +176,8 @@ extension GamesViewController: StatePresentable {
             activityIndicator.stopAnimating()
         case .empty:
             collectionView.setEmptyView(title: "No results found!", image: .noResults)
-            activityIndicator.stopAnimating()
-            collectionView.reloadData()
-            collectionView.resignFirstResponder()
-            searchBar.becomeFirstResponder()
         case .populated:
             collectionView.restore()
-        default:
-            collectionView?.reloadData()
-            activityIndicator(state: .loaded)
         }
     }
     

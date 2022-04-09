@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DetailsViewModelProtocol {
-    func getTitle() -> String
+    func getTitle() -> String?
     func getDetails()
     func viewDidLoad(statePresenter: StatePresentable)
     func getDescription() -> String
@@ -56,7 +56,7 @@ extension DetailsViewModel {
         getDetails()
     }
     
-    func getTitle() -> String {
+    func getTitle() -> String? {
         guard let title = gameDetails?.name else { return "-" }
         return title
     }

@@ -77,7 +77,7 @@
 		62920F5727FED93900FB157D /* CollectionViewFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewFooterView.swift; sourceTree = "<group>"; };
 		62920F6D2801467400FB157D /* LogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogLevel.swift; sourceTree = "<group>"; };
 		62920F6F2801467400FB157D /* LogHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogHelper.swift; sourceTree = "<group>"; };
-		62920F7628014B6900FB157D /* SwiftLint.pkg */ = {isa = PBXFileReference; lastKnownFileType = file; name = SwiftLint.pkg; path = ../../Downloads/SwiftLint.pkg; sourceTree = "<group>"; };
+		62920F7628014B6900FB157D /* SwiftLint.pkg */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.installer-pkg"; name = SwiftLint.pkg; path = ../../Downloads/SwiftLint.pkg; sourceTree = "<group>"; };
 		62A171CA27F7C37D002B0ACA /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		62A171CD27F7D353002B0ACA /* BetterDecodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterDecodingError.swift; sourceTree = "<group>"; };
 		62A171D027F7EBF0002B0ACA /* SafeCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCollection.swift; sourceTree = "<group>"; };
@@ -1054,6 +1054,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = MahmoudAziz.GamesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = DEV;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

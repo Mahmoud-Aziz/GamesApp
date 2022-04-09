@@ -131,7 +131,8 @@ private extension DetailsViewController {
     
     @objc func favoriteBarButtonTapped() {
         let favorite = Favorite(context: CoreDataStack.shared.viewContext)
-        favorite.title = viewModel.getTitle()
+        guard let title = viewModel.getTitle() else { return }
+        favorite.title = title
         favorite.image = viewModel.getImage()
         favorite.score = viewModel.getScore()
         favorite.genre = viewModel.getGenre()
