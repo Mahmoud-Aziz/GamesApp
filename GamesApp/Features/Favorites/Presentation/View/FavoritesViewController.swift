@@ -7,7 +7,6 @@
 
 import UIKit
 import CoreData
-import JGProgressHUD
 import Nuke
 import SwipeCellKit
 
@@ -17,7 +16,6 @@ class FavoritesViewController: UIViewController {
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     private var viewModel: FavoritesViewModelProtocol?
-    private let hud = JGProgressHUD()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +66,11 @@ extension FavoritesViewController: StatePresentable {
             activityIndicator(state: .loading)
         case .initial:
             activityIndicator(state: .loading)
+        case .populated:
+            favoritesCollectionView.restore()
+        case .empty:
+            favoritesCollectionView.setEmptyView(title: "Please add your favorites!")
+            favoritesCollectionView.reloadData()
         default:
             activityIndicator(state: .loaded)
         }
@@ -76,13 +79,10 @@ extension FavoritesViewController: StatePresentable {
     func activityIndicator(state: LoadingState) {
         switch state {
         case .loading:
-            //            activityIndicator.startAnimating()
-            hud.show(in: view)
+            activityIndicator.startAnimating()
             favoritesCollectionView.isUserInteractionEnabled = false
         case .loaded:
-            //            activityIndicator.stopAnimating()
-            //            activityIndicator.removeFromSuperview()
-            hud.dismiss(animated: true)
+            activityIndicator.stopAnimating()
             favoritesCollectionView.isUserInteractionEnabled = true
         }
     }
