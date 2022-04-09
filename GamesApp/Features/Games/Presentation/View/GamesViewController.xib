@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GamesViewController" customModule="GamesApp" customModuleProvider="target">
             <connections>
-                <outlet property="activityIndicator" destination="Nm9-g6-3Mp" id="iTT-t2-oFd"/>
+                <outlet property="activityIndicator" destination="Nm9-g6-3Mp" id="pt5-ON-Uf2"/>
                 <outlet property="collectionView" destination="Swx-al-7Dc" id="WGh-qg-PrT"/>
                 <outlet property="searchBar" destination="sIm-AC-17Z" id="vke-qE-uxC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -25,8 +25,8 @@
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Swx-al-7Dc">
                     <rect key="frame" x="0.0" y="95" width="414" height="737"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" sectionInsetReference="safeArea" id="myy-Zm-IoW">
-                        <size key="itemSize" width="314" height="128"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5O6-ME-U26">
+                        <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="50" height="50"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -70,7 +70,6 @@
             </constraints>
             <variation key="default">
                 <mask key="subviews">
-                    <exclude reference="Nm9-g6-3Mp"/>
                     <exclude reference="WZH-Vj-Aw6"/>
                 </mask>
             </variation>
