@@ -25,12 +25,12 @@ class GamesCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        //Cancel task when cell is prepared for reuse to handle wrong images issue.
+        // Cancel task when cell is prepared for reuse to handle wrong images issue.
         task?.cancel()
     }
 }
 
-//MARK: - Setup cell data:
+// MARK: - Setup cell data:
 private extension GamesCollectionViewCell {
     func setupCell(game: Response) {
         gameTitle.text = game.name
@@ -41,7 +41,7 @@ private extension GamesCollectionViewCell {
     
     func setGenre(game: Response) {
         guard let genre = game.genres?[safe: 0]?.name else {
-            gameGenre.text = placeholder.genre.rawValue
+            gameGenre.text = Placeholder.genre.rawValue
             return
         }
         gameGenre.text = genre
@@ -49,7 +49,7 @@ private extension GamesCollectionViewCell {
     
     func setMetacritic(game: Response) {
         guard let score = game.metacritic?.toString else {
-            metacriticScore.text = placeholder.score.rawValue
+            metacriticScore.text = Placeholder.score.rawValue
             return
         }
         metacriticScore.text = score
@@ -61,7 +61,9 @@ private extension GamesCollectionViewCell {
         gameImageView.image = ImageLoadingOptions.shared.placeholder
         gameImageView.contentMode = .scaleAspectFit
         let imageSize = gameImageView.frame.size
-        let task = ImagePipeline.shared.loadImage(with: ImageRequest(url: imageURL, processors: [ImageProcessors.Resize(size: imageSize)], cachePolicy: .default, priority: .high)) { [weak self] response in
+        let imageProcessors = [ImageProcessors.Resize(size: imageSize)]
+        let pipeline = ImagePipeline.shared
+        let task = pipeline.loadImage(with: ImageRequest(url: imageURL, processors: imageProcessors, cachePolicy: .default, priority: .high)) { [weak self] response in
             guard let self = self else {
                 return
             }
@@ -75,11 +77,5 @@ private extension GamesCollectionViewCell {
             }
         }
         self.task = task
-    }
-    
-    enum placeholder: String {
-        case title = "No available name"
-        case genre = "No available genre"
-        case score = "No available score"
     }
 }

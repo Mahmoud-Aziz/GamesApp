@@ -8,5 +8,5 @@
 import Foundation
 
 protocol APIServiceProtocol {
-    func request<T:Decodable>(decodable: T.Type, request: URLRequest, completion: NetworkResponse<T>?)
+    func request<T: Decodable>(decodable: T.Type, request: URLRequest, completion: NetworkResponse<T>?)
 }

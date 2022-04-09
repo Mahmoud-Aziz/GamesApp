@@ -56,7 +56,7 @@ private extension DetailsViewController {
     }
     
     func setupFavoriteBarButton() {
-        let favoriteBarButtonItem = UIBarButtonItem(title: "Favorite",style: .plain, target: self, action: #selector(favoriteBarButtonTapped))
+        let favoriteBarButtonItem = UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(favoriteBarButtonTapped))
         self.navigationItem.rightBarButtonItem = favoriteBarButtonItem
     }
     
@@ -136,14 +136,13 @@ private extension DetailsViewController {
         favorite.genre = viewModel.getGenre()
         do {
             try CoreDataStack.shared.saveContext()
-        }
-        catch {
-            //TODO: Log error
+        } catch {
+            print("Error saving data to core data: \(error.localizedDescription)", logLevel: .error)
         }
     }
 }
 
-//MARK: - Setup image caching using Nuke:
+// MARK: - Setup image caching using Nuke:
 private extension DetailsViewController {
     func setupCaching() {
         DataLoader.sharedUrlCache.diskCapacity = 0

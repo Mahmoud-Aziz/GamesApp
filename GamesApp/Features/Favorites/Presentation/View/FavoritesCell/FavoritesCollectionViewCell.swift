@@ -26,12 +26,11 @@ class FavoritesCollectionViewCell: SwipeCollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-//        task?.cancel()
-//        gameImageView.image = nil
+        gameImageView.image = nil
     }
 }
 
-//MARK: - Cell data:
+// MARK: - Cell data:
 private extension FavoritesCollectionViewCell {
     func setupCell(game: Favorite) {
         gameTitleLabel.text = game.title
@@ -42,7 +41,7 @@ private extension FavoritesCollectionViewCell {
     
     func setGenre(game: Favorite) {
         guard let genre = game.genre else {
-            genreLabel.text = placeholder.genre.rawValue
+            genreLabel.text = Placeholder.genre.rawValue
             return
         }
         genreLabel.text = genre
@@ -50,7 +49,7 @@ private extension FavoritesCollectionViewCell {
     
     func setMetacritic(game: Favorite) {
         guard let score = game.score else {
-            metacriticScoreLabel.text = placeholder.score.rawValue
+            metacriticScoreLabel.text = Placeholder.score.rawValue
             return
         }
         metacriticScoreLabel.text = score
@@ -60,12 +59,5 @@ private extension FavoritesCollectionViewCell {
     func setImage(game: Favorite) {
         guard let imageURL = URL(string: game.image ?? "") else { return }
         Nuke.loadImage(with: imageURL, into: gameImageView)
-    }
-    
-    enum placeholder: String {
-        case title = "No available name"
-        case genre = "No available genre"
-        case score = "No available score"
-        case image = "placeholder"
     }
 }

@@ -27,4 +27,3 @@ struct DetailsResponse: Codable {
         case genres
     }
 }
-

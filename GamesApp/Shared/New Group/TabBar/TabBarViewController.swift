@@ -20,7 +20,7 @@ class TabBarViewController: UITabBarController {
         let favoritesTabItem = UITabBarItem(title: "Favorites", image: UIImage(named: "Favorites"), selectedImage: UIImage(named: "Favorites-Selected"))
         favoritesTab.tabBarItem = favoritesTabItem
         
-        let controllers = [gamesTab,favoritesTab]
+        let controllers = [gamesTab, favoritesTab]
         self.viewControllers = controllers
     }
 }

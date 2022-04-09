@@ -19,3 +19,9 @@ enum ViewError: String {
 enum SearchError: String {
     case noResults = "We couldn't find a mathing game :("
 }
+
+enum Placeholder: String {
+    case title = "No available name"
+    case genre = "No available genre"
+    case score = "No available score"
+}

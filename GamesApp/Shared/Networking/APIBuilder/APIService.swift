@@ -17,8 +17,8 @@ class APIService: APIServiceProtocol {
 
     private init() {}
     
-    //MARK: - URLSession request
-    func request<T:Decodable>(decodable: T.Type, request: URLRequest, completion: NetworkResponse<T>?) {
+    // MARK: - URLSession request
+    func request<T: Decodable>(decodable: T.Type, request: URLRequest, completion: NetworkResponse<T>?) {
         task = session.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
@@ -34,26 +34,25 @@ class APIService: APIServiceProtocol {
     }
 }
 
-//MARK: - Handle error state
+// MARK: - Handle error state
 extension APIService {
-    private func handleErrorState<T:Decodable>(decodable: T.Type, response: URLResponse?, error: Error?, completion: NetworkResponse<T>?) {
+    private func handleErrorState<T: Decodable>(decodable: T.Type, response: URLResponse?, error: Error?, completion: NetworkResponse<T>?) {
         if let error = error {
-            //TODO: report to error logger tool.
+            print("Error occured in URLSession request: \(error.localizedDescription)", logLevel: .error)
         }
         return
     }
 }
 
-//MARK: - Parsing Response
+// MARK: - Parsing Response
 extension APIService {
-    private func parseJsonResults<T:Decodable>(decodable: T.Type, data: Data, completion: NetworkResponse<T>?) {
+    private func parseJsonResults<T: Decodable>(decodable: T.Type, data: Data, completion: NetworkResponse<T>?) {
         do {
             let object = try JSONDecoder().decode(decodable.self, from: data)
             completion?(.success(object))
-        }
-        catch let error {
-            //TODO: report to error logger tool.
+        } catch let error {
             completion?(.failure(APIError.decodeFailure))
+            print("Error occured in Decoding URLSession response: \(error.localizedDescription)", logLevel: .error)
         }
     }
 }

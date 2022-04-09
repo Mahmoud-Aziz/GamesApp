@@ -31,6 +31,8 @@ enum BetterDecodingError: CustomStringConvertible {
             self = .typeMismatch("Type mismatch. \(context.debugDescription), at: \(context.prettyPath())")
         case let .valueNotFound(_, context):
             self = .valueNotFound("Value not found. -> \(context.prettyPath()) <- \(context.debugDescription)")
+        @unknown default:
+            self = .dataCorrupted("Data corrupted.")
         }
     }
     var description: String {

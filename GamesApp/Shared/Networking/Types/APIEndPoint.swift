@@ -8,7 +8,7 @@
 import Foundation
 
 enum APIEndpoint: String {
-    case games = "games"
+    case games
     
     static func deetailsPath(id: Int) -> String {
         return games.rawValue + "/" + id.toString

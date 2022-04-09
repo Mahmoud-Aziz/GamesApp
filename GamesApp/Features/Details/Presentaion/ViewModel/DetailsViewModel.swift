@@ -21,19 +21,19 @@ protocol DetailsViewModelProtocol {
 
 class DetailsViewModel: DetailsViewModelProtocol {
     
-    //MARK: - Private properties:
+    // MARK: - Private properties:
     private let dataSource: DetailsUseCase
     private var gameDetails: DetailsResponse?
     
-    //MARK: - Public properties:
+    // MARK: - Public properties:
     var state: StatePresentable?
     
-    //MARK: - Initializer:
+    // MARK: - Initializer:
     init(dataSource: DetailsUseCase) {
         self.dataSource = dataSource
     }
     
-    //MARK: - Use case execution:
+    // MARK: - Use case execution:
     func getDetails() {
         dataSource.getDetails(completion: { [weak self] result in
             switch result {
@@ -42,13 +42,13 @@ class DetailsViewModel: DetailsViewModelProtocol {
                 self?.state?.render(state: .loaded)
             case .failure(let error):
                 self?.state?.render(state: .error(NetworkError.failedRequest.rawValue))
-                //TODO: Log error
+                print("Error occured in getting details: \(error.localizedDescription)", logLevel: .error)
             }
         })
     }
 }
 
-//MARK: - DetailsViewModelProtocol conformance:
+// MARK: - DetailsViewModelProtocol conformance:
 extension DetailsViewModel {
     func viewDidLoad(statePresenter: StatePresentable) {
         self.state = statePresenter
@@ -83,7 +83,7 @@ extension DetailsViewModel {
         return image
     }
     
-    //MARK: - Additional Coredata attributes:
+    // MARK: - Additional Coredata attributes:
     func getScore() -> String {
         guard let score = gameDetails?.metacritic else { return ViewError.alert.rawValue }
         return score.toString

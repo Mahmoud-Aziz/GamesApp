@@ -52,9 +52,9 @@ private extension GamesViewController {
     }
     
     func registerFooter() {
-        collectionView.register(CollectionViewFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CollectionViewFooterView")
-        (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.footerReferenceSize = CGSize(width: collectionView.bounds.width, height: 50)
-
+        collectionView.register(footer: CollectionViewFooterView.self)
+        let collectionViewLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        collectionViewLayout?.footerReferenceSize = CGSize(width: collectionView.bounds.width, height: 50)
     }
     
     func setupSearchBar() {
@@ -90,7 +90,7 @@ extension GamesViewController: UICollectionViewDataSource {
 
 // MARK: - CollectionView scroll view delegate method:
 extension GamesViewController {
-    //Responsible for pagination
+    // Responsible for pagination
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView == collectionView {
             if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
@@ -109,7 +109,7 @@ extension GamesViewController: UICollectionViewDelegate {
     }
 }
 
-//MARK: - UICollectionReusableView Footer:
+// MARK: - UICollectionReusableView Footer:
 extension GamesViewController {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionFooter {
@@ -122,7 +122,7 @@ extension GamesViewController {
         return UICollectionReusableView()
     }
     
-    //Footer size
+    // Footer size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 30.0)
     }
@@ -134,8 +134,8 @@ extension GamesViewController: UICollectionViewDelegateFlowLayout {
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
         let columns: Int = {
             var count = 1
-            if traitCollection.horizontalSizeClass == .regular { count = 2 }
-            else if traitCollection.horizontalSizeClass == .compact { count = 1 }
+            if traitCollection.horizontalSizeClass == .regular {
+                count = 2 } else if traitCollection.horizontalSizeClass == .compact { count = 1 }
             if collectionView.bounds.width > collectionView.bounds.height { count = 2 }
             return count
         }()
@@ -148,7 +148,7 @@ extension GamesViewController: UICollectionViewDelegateFlowLayout {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: { [weak self] context in
+        coordinator.animate(alongsideTransition: { [weak self] _ in
             self?.collectionView?.collectionViewLayout.invalidateLayout()
         }, completion: nil)
     }
@@ -202,7 +202,7 @@ extension GamesViewController: StatePresentable {
     }
 }
 
-//MARK: - Setup image caching using Nuke:
+// MARK: - Setup image caching using Nuke:
 private extension GamesViewController {
     func setupCaching() {
         DataLoader.sharedUrlCache.diskCapacity = 0

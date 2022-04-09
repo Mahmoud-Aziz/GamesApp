@@ -14,7 +14,6 @@ class RequestBuilder {
     private var headers: [String: String] = ["Content-Type": "application/json"]
     private var parameters: [String: String] = [:]
     private var httpBodyParams: Data?
-    // TODO: after finish setup for base url and config file
      
     func setBaseUrl(_ string: String) {
         guard let url = URL(string: string) else { return }
@@ -37,13 +36,12 @@ class RequestBuilder {
         do {
             let httpbodyData = try JSONSerialization.data(withJSONObject: body.toDictionary(), options: [])
             httpBody = httpbodyData } catch {
-            //TODO: Log, after adding logging utility
+                print("Error serializing body parameters: \(error.localizedDescription)", logLevel: .error)
         }
         httpBodyParams = httpBody
     }
     func build() -> URLRequest {
         guard let endpoint = endpoint, let baseURL = baseURL else {
-            //TODO: REFACTOR
             return URLRequest(url: URL(string: "")!)
         }
         let url = baseURL.appendingPathComponent(endpoint)

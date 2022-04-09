@@ -24,7 +24,7 @@ protocol GamesViewModelProtocol {
 }
 
 class GamesViewModel {
-    //MARK: - Private properties:
+    // MARK: - Private properties:
     private var gamesCollection: [Response] = []
     private var searchedGames: [Response] = []
     private var paginationGames: [Response] = []
@@ -37,14 +37,14 @@ class GamesViewModel {
     private var currentPage = 1
     var currentState: HomeState = .notSearching
 
-    //MARK: - Initializer:
+    // MARK: - Initializer:
     init(dataSource: GamesUseCase, statePresenter: StatePresentable) {
         self.dataSource = dataSource
         self.state = statePresenter
     }
 }
 
-//MARK: - Use case execution:
+// MARK: - Use case execution:
 private extension GamesViewModel {
     func getGames(page: Int) {
         dataSource.getGames(page: page.toString, completion: { [weak self] result in
@@ -62,7 +62,7 @@ private extension GamesViewModel {
             let requestWorkItem = DispatchWorkItem { [weak self] in
                 guard let self = self else { return }
                 self.state.render(state: .loading)
-                self.dataSource.search(for: text, page: page.toString, completion:  { [weak self] result in
+                self.dataSource.search(for: text, page: page.toString, completion: {[weak self] result in
                     self?.handleSearchResult(query: text, result: result)
                 })
             }
@@ -73,7 +73,7 @@ private extension GamesViewModel {
     }
 }
 
-//MARK: - Handle use case results:
+// MARK: - Handle use case results:
 private extension GamesViewModel {
     func handleGamesResults(result: GamesResultHandler) {
         switch result {
@@ -85,14 +85,14 @@ private extension GamesViewModel {
             gamesCollection = results
             gamesPerPage = results.count
             gamesLimit = games.count
-            for i in 0..<results.count {
-                paginationGames.append(results[i])
+            for game in 0..<results.count {
+                paginationGames.append(results[game])
             }
             setPaginationGames(gamesPerPage: results.count)
             state.render(state: .loaded)
         case .failure(let error):
             state.render(state: .error(NetworkError.failedRequest.rawValue))
-            //TODO: Log error
+            print("Error occured in URLSession request: \(error.localizedDescription)", logLevel: .error)
         }
     }
     
@@ -110,27 +110,27 @@ private extension GamesViewModel {
             searchedGames = results
             gamesPerPage = results.count
             gamesLimit = results.count
-            for i in 0..<results.count {
-                paginationSearch.append(results[i])
+            for game in 0..<results.count {
+                paginationSearch.append(results[game])
             }
             setPaginationSearch(gamesPerPage: gamesPerPage)
             state.render(state: .loaded)
         case .failure(let error):
-            //TODO: Log error
             state.render(state: .error(NetworkError.failedRequest.rawValue))
+            print("Error occured in Search: \(error.localizedDescription)", logLevel: .error)
         }
     }
 }
 
-//MARK: - Setup pagination:
+// MARK: - Setup pagination:
 private extension GamesViewModel {
     func setPaginationGames(gamesPerPage: Int) {
         if gamesPerPage >= gamesLimit {
             return
         } else {
             if gamesPerPage >= gamesLimit - gamesPerPage {
-                for i in gamesPerPage..<gamesLimit {
-                    paginationGames.append(gamesCollection[i])
+                for game in gamesPerPage..<gamesLimit {
+                    paginationGames.append(gamesCollection[game])
                 }
                 self.gamesPerPage += gamesCollection.count
                 self.currentPage += 1
@@ -143,8 +143,8 @@ private extension GamesViewModel {
     
     func setPaginationSearch(gamesPerPage: Int) {
             if gamesPerPage >= gamesLimit - gamesPerPage {
-                for i in gamesPerPage..<gamesLimit {
-                    paginationSearch.append(searchedGames[i])
+                for game in gamesPerPage..<gamesLimit {
+                    paginationSearch.append(searchedGames[game])
                 }
                 self.gamesPerPage += searchedGames.count
                 self.currentPage += 1
@@ -156,7 +156,7 @@ private extension GamesViewModel {
         }
     }
 
-//MARK: - GamesViewModelProtocol conformance:
+// MARK: - GamesViewModelProtocol conformance:
 extension GamesViewModel: GamesViewModelProtocol {
     var numberOfItems: Int {
         currentState == .notSearching ? paginationGames.count : paginationSearch.count

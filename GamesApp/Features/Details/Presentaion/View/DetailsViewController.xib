@@ -75,8 +75,8 @@
                             </constraints>
                             <edgeInsets key="layoutMargins" top="16" left="16" bottom="0.0" right="16"/>
                         </stackView>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Cq6-iB-Owx">
-                            <rect key="frame" x="188.66666666666666" y="407.66666666666669" width="37" height="37"/>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Cq6-iB-Owx">
+                            <rect key="frame" x="197" y="416" width="20" height="20"/>
                         </activityIndicatorView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tX2-wA-Wrh" userLabel="WebsitesStack">
                             <rect key="frame" x="0.0" y="515.66666666666663" width="414" height="137"/>

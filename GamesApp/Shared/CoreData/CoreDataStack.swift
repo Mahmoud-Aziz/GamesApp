@@ -16,9 +16,9 @@ struct CoreDataStack {
     
     var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Favorites")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
-                //TODO: Log error
+                print("error loading persistence container: \(error)", logLevel: .error)
             }
             container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         })
@@ -32,7 +32,7 @@ struct CoreDataStack {
                 try context.save()
             } catch {
                 let error = error as NSError
-                //TODO: Log error
+                print("Error occured in Saving data in core data: \(error.localizedDescription)", logLevel: .error)
             }
         }
     }

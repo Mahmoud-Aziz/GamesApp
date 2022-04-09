@@ -10,15 +10,15 @@ import CoreData
 
 class FavoritesDataProvider: FavouritesUseCase {
     let context = CoreDataStack.shared.persistentContainer.viewContext
-    func fetchFavorites(completion: @escaping (favoritesResultHandler) -> Void) {
+    func fetchFavorites(completion: @escaping (FavoritesResultHandler) -> Void) {
         let fetchRequest: NSFetchRequest<Favorite> = Favorite.fetchRequest()
         context.perform {
             do {
                 let result = try fetchRequest.execute()
                 completion(.success(result))
             } catch {
-                //TODO: Log error
                 completion(.failure(error))
+                print("Error fetching data from core data: \(error.localizedDescription)", logLevel: .error)
             }
         }
     }
@@ -29,7 +29,7 @@ class FavoritesDataProvider: FavouritesUseCase {
               try context.save()
             } catch {
                 print("error saving")
-                //TODO: Log error
+                print("Error saving data to core data: \(error.localizedDescription)", logLevel: .error)
             }
     }
 }

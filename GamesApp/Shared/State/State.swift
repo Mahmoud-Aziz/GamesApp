@@ -37,4 +37,3 @@ protocol StatePresentable: LoadingPresentable, ErrorPresentable {
 protocol NavigationRoute {
     func navigate(to route: Route)
 }
-

@@ -31,7 +31,7 @@ class FavoritesViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        setupCollectionViewLayout()
+        setupCollectionLayout()
         navigationController?.isNavigationBarHidden = true
     }
 }
@@ -48,7 +48,7 @@ private extension FavoritesViewController {
     }
     
     func deviceIsRotated() {
-        NotificationCenter.default.addObserver(self, selector: #selector(setupCollectionViewLayout), name: UIDevice.orientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupCollectionLayout), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 }
 
@@ -99,7 +99,7 @@ extension FavoritesViewController: StatePresentable {
 
 // MARK: - CollectionView layout methods:
 extension FavoritesViewController {
-    @objc func setupCollectionViewLayout() {
+    @objc func setupCollectionLayout() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         if UIDevice.current.orientation == .portrait {
@@ -129,7 +129,7 @@ extension FavoritesViewController: UICollectionViewDataSource {
     }
 }
 
-//MARK: - Setup image caching using Nuke:
+// MARK: - Setup image caching using Nuke:
 private extension FavoritesViewController {
     func setupCaching() {
         DataLoader.sharedUrlCache.diskCapacity = 0
@@ -142,11 +142,11 @@ private extension FavoritesViewController {
     }
 }
 
-//MARK: - SwipeCollectionViewCell Delegate:
+// MARK: - SwipeCollectionViewCell Delegate:
 extension FavoritesViewController: SwipeCollectionViewCellDelegate {
     func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { [weak self] action, indexPath in
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { [weak self] _, indexPath in
             self?.viewModel?.removeAtIndex(index: indexPath.row)
             self?.favoritesCollectionView.reloadData()
         }

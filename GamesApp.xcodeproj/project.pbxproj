@@ -20,6 +20,8 @@
 		62920F5027FEADDC00FB157D /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 62920F4F27FEADDC00FB157D /* Nuke */; };
 		62920F5827FED93900FB157D /* CollectionViewFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62920F5727FED93900FB157D /* CollectionViewFooterView.swift */; };
 		62920F6927FFC8AD00FB157D /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 62920F6827FFC8AD00FB157D /* SwipeCellKit */; };
+		62920F712801467400FB157D /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62920F6D2801467400FB157D /* LogLevel.swift */; };
+		62920F732801467400FB157D /* LogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62920F6F2801467400FB157D /* LogHelper.swift */; };
 		62A171CB27F7C37D002B0ACA /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A171CA27F7C37D002B0ACA /* CustomSearchBar.swift */; };
 		62A171CE27F7D353002B0ACA /* BetterDecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A171CD27F7D353002B0ACA /* BetterDecodingError.swift */; };
 		62A171D127F7EBF0002B0ACA /* SafeCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A171D027F7EBF0002B0ACA /* SafeCollection.swift */; };
@@ -73,6 +75,9 @@
 		6234792D27F8EE1E008967BA /* FavoritesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritesCollectionViewCell.swift; path = GamesApp/Features/Favorites/Presentation/View/FavoritesCell/FavoritesCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		6234793127F8EF25008967BA /* FavoritesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesCollectionViewCell.xib; sourceTree = "<group>"; };
 		62920F5727FED93900FB157D /* CollectionViewFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewFooterView.swift; sourceTree = "<group>"; };
+		62920F6D2801467400FB157D /* LogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogLevel.swift; sourceTree = "<group>"; };
+		62920F6F2801467400FB157D /* LogHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogHelper.swift; sourceTree = "<group>"; };
+		62920F7628014B6900FB157D /* SwiftLint.pkg */ = {isa = PBXFileReference; lastKnownFileType = file; name = SwiftLint.pkg; path = ../../Downloads/SwiftLint.pkg; sourceTree = "<group>"; };
 		62A171CA27F7C37D002B0ACA /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		62A171CD27F7D353002B0ACA /* BetterDecodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterDecodingError.swift; sourceTree = "<group>"; };
 		62A171D027F7EBF0002B0ACA /* SafeCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCollection.swift; sourceTree = "<group>"; };
@@ -165,6 +170,23 @@
 				62920F5727FED93900FB157D /* CollectionViewFooterView.swift */,
 			);
 			path = Footer;
+			sourceTree = "<group>";
+		};
+		62920F6C2801467400FB157D /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				62920F6D2801467400FB157D /* LogLevel.swift */,
+				62920F6F2801467400FB157D /* LogHelper.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		62920F7528014B6900FB157D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				62920F7628014B6900FB157D /* SwiftLint.pkg */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		62A171CC27F7D344002B0ACA /* Error */ = {
@@ -358,6 +380,7 @@
 			children = (
 				62AF600827F4ECDC00248EBB /* GamesApp */,
 				62AF600727F4ECDC00248EBB /* Products */,
+				62920F7528014B6900FB157D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -423,6 +446,7 @@
 		62AF602627F6414200248EBB /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				62920F6C2801467400FB157D /* Logger */,
 				62920F5627FED92800FB157D /* Footer */,
 				6234791727F8E3ED008967BA /* CoreData */,
 				6234791427F8D0ED008967BA /* TabBar */,
@@ -606,6 +630,7 @@
 				62AF600227F4ECDC00248EBB /* Sources */,
 				62AF600327F4ECDC00248EBB /* Frameworks */,
 				62AF600427F4ECDC00248EBB /* Resources */,
+				62920F7728014BC700FB157D /* Swift Lint */,
 			);
 			buildRules = (
 			);
@@ -674,6 +699,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		62920F7728014BC700FB157D /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		62AF600227F4ECDC00248EBB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -694,6 +740,7 @@
 				6234793327F8EF8F008967BA /* FavoritesCollectionViewCell.swift in Sources */,
 				62A171EF27F806B3002B0ACA /* Router.swift in Sources */,
 				6234791F27F8E744008967BA /* FavoritesDataProvider.swift in Sources */,
+				62920F712801467400FB157D /* LogLevel.swift in Sources */,
 				62AF603727F6421200248EBB /* APIBaseURL.swift in Sources */,
 				6234792827F8ED9F008967BA /* FavoritesViewController.swift in Sources */,
 				62BAF77027F65DD3006DD705 /* Configurations.swift in Sources */,
@@ -711,6 +758,7 @@
 				62A171CE27F7D353002B0ACA /* BetterDecodingError.swift in Sources */,
 				62A171FC27F88358002B0ACA /* DataProvider.swift in Sources */,
 				6234791927F8E3FF008967BA /* CoreDataStack.swift in Sources */,
+				62920F732801467400FB157D /* LogHelper.swift in Sources */,
 				62AF603B27F6454600248EBB /* Encodable.swift in Sources */,
 				6234791B27F8E726008967BA /* FavoritesViewModel.swift in Sources */,
 				62BAF77D27F66802006DD705 /* GamesUseCase.swift in Sources */,

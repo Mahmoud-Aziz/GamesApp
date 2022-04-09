@@ -41,8 +41,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="F8T-sW-V82">
-                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="F8T-sW-V82">
+                    <rect key="frame" x="197" y="438" width="20" height="20"/>
                 </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="ILv-UN-Nkp"/>
@@ -61,11 +61,6 @@
                 <constraint firstItem="NUV-HX-szd" firstAttribute="top" secondItem="ELY-qK-pXZ" secondAttribute="bottom" constant="16" id="mn0-be-4N0"/>
             </constraints>
             <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="F8T-sW-V82"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="139" y="127"/>
         </view>
     </objects>

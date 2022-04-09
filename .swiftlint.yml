@@ -1,0 +1,14 @@
+included:
+  - GamesApp
+
+excluded:
+  - GamesApp/framework
+  
+disabled_rules:
+  - trailing_whitespace
+  - force_cast
+  - force_try
+ 
+line_length:
+    warning: 170
+    ignores_comments: true

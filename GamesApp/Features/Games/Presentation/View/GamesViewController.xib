@@ -36,8 +36,8 @@
                         <outlet property="delegate" destination="-1" id="Moi-fn-4fZ"/>
                     </connections>
                 </collectionView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Nm9-g6-3Mp">
-                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Nm9-g6-3Mp">
+                    <rect key="frame" x="197" y="438" width="20" height="20"/>
                 </activityIndicatorView>
                 <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="sIm-AC-17Z" customClass="CustomSearchBar" customModule="GamesApp" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="44" width="414" height="51"/>
@@ -46,33 +46,20 @@
                         <outlet property="delegate" destination="-1" id="trK-Xk-Uy9"/>
                     </connections>
                 </searchBar>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Games" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZH-Vj-Aw6">
-                    <rect key="frame" x="16" y="0.0" width="114" height="41"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="34"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="WZH-Vj-Aw6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="3WQ-k1-ndw"/>
                 <constraint firstItem="sIm-AC-17Z" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Aj1-2M-yD7"/>
                 <constraint firstItem="sIm-AC-17Z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Jbl-t2-80L"/>
                 <constraint firstItem="Swx-al-7Dc" firstAttribute="top" secondItem="sIm-AC-17Z" secondAttribute="bottom" id="N6D-Sr-jty"/>
                 <constraint firstItem="Swx-al-7Dc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="RkW-7h-dZE"/>
                 <constraint firstItem="sIm-AC-17Z" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="S2t-Y6-sLA"/>
                 <constraint firstItem="Nm9-g6-3Mp" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="bi6-T7-Wb9"/>
-                <constraint firstItem="WZH-Vj-Aw6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="oci-1A-WGQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Swx-al-7Dc" secondAttribute="trailing" id="pyy-hf-InO"/>
                 <constraint firstItem="Nm9-g6-3Mp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="uQ1-dF-fQu"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Swx-al-7Dc" secondAttribute="bottom" constant="30" id="xlx-1r-wPX"/>
             </constraints>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="WZH-Vj-Aw6"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="139" y="127"/>
         </view>
     </objects>

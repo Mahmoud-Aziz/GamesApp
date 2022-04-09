@@ -26,7 +26,7 @@ class FavoritesViewModel: FavoritesViewModelProtocol {
         self.state = statePresenter
     }
     
-    //MARK: - Use case execution:
+    // MARK: - Use case execution:
     private func getFavorites() {
         dataSource.fetchFavorites(completion: { [weak self] result in
             switch result {
@@ -35,13 +35,13 @@ class FavoritesViewModel: FavoritesViewModelProtocol {
                 self?.state.render(state: .loaded)
             case .failure(let error):
                 self?.state.render(state: .loaded)
-                //TODO: Log error
+                print("Error occured in getting favorites: \(error.localizedDescription)", logLevel: .error)
             }
         })
     }
 }
 
-//MARK: - FavoritesViewModel Protocol conformance:
+// MARK: - FavoritesViewModel Protocol conformance:
 extension FavoritesViewModel {
     func viewDidLoad() {
         state.render(state: .initial)
