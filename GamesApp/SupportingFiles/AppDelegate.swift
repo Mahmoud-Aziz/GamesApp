@@ -12,7 +12,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        print("print", logLevel: .info)
         window = UIWindow(frame: UIScreen.main.bounds)
         let rootViewController = TabBarViewController()
         rootViewController.navigationItem.title = "Games"

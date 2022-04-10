@@ -61,6 +61,8 @@
 		62BAF7B827F78822006DD705 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BAF7B727F78822006DD705 /* Numeric.swift */; };
 		62F9328A2801609A0037B4B9 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 62F932892801609A0037B4B9 /* Nuke */; };
 		62F9328D280160A60037B4B9 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 62F9328C280160A60037B4B9 /* SwipeCellKit */; };
+		62F93290280259A00037B4B9 /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F9328F280259A00037B4B9 /* StorageType.swift */; };
+		62F93292280259AD0037B4B9 /* LocalJSONStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F93291280259AD0037B4B9 /* LocalJSONStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,6 +125,8 @@
 		62BAF7A127F7336D006DD705 /* GamesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GamesCollectionViewCell.xib; sourceTree = "<group>"; };
 		62BAF7A427F74487006DD705 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		62BAF7B727F78822006DD705 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
+		62F9328F280259A00037B4B9 /* StorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageType.swift; sourceTree = "<group>"; };
+		62F93291280259AD0037B4B9 /* LocalJSONStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalJSONStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,6 +449,7 @@
 		62AF602627F6414200248EBB /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				62F9328E2802598F0037B4B9 /* Storage */,
 				62920F6C2801467400FB157D /* Logger */,
 				62F93271280157920037B4B9 /* UI Helpers */,
 				6234791727F8E3ED008967BA /* CoreData */,
@@ -635,6 +640,15 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		62F9328E2802598F0037B4B9 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				62F9328F280259A00037B4B9 /* StorageType.swift */,
+				62F93291280259AD0037B4B9 /* LocalJSONStore.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -770,9 +784,11 @@
 				62BAF78227F66923006DD705 /* GamesResponse.swift in Sources */,
 				62AF603127F641D100248EBB /* APIEndPoint.swift in Sources */,
 				62BAF78E27F68D25006DD705 /* Images.swift in Sources */,
+				62F93292280259AD0037B4B9 /* LocalJSONStore.swift in Sources */,
 				62A171CE27F7D353002B0ACA /* BetterDecodingError.swift in Sources */,
 				62A171FC27F88358002B0ACA /* DataProvider.swift in Sources */,
 				6234791927F8E3FF008967BA /* CoreDataStack.swift in Sources */,
+				62F93290280259A00037B4B9 /* StorageType.swift in Sources */,
 				62920F732801467400FB157D /* LogHelper.swift in Sources */,
 				62AF603B27F6454600248EBB /* Encodable.swift in Sources */,
 				6234791B27F8E726008967BA /* FavoritesViewModel.swift in Sources */,

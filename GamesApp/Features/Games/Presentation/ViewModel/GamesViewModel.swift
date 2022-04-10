@@ -36,6 +36,7 @@ class GamesViewModel {
     private var gamesPerPage = 10
     private var currentPage = 1
     private var currentState: HomeState = .notSearching
+    private let gamesStore: LocalJSONStore<[Response]> = LocalJSONStore(storageType: .cache, filename: "games.json")
 
     // MARK: - Initializer:
     init(dataSource: GamesUseCase, statePresenter: StatePresentable) {
@@ -76,13 +77,20 @@ private extension GamesViewModel {
 // MARK: - Handle use case results:
 private extension GamesViewModel {
     func handleGamesResults(result: GamesResultHandler) {
+        var gamesResponse: [Response] = []
         switch result {
         case .success(let games):
             guard let results = games.results else {
                 state.render(state: .error(ViewError.operationFaield.rawValue))
                 return
             }
-            gamesCollection = results
+            if let cachedGames = gamesStore.storedValue {
+                gamesResponse = cachedGames
+            } else {
+                gamesResponse = results
+                gamesStore.save(results)
+            }
+            gamesCollection = gamesResponse
             gamesPerPage = results.count
             gamesLimit = games.count
             for game in 0..<results.count {
@@ -92,6 +100,7 @@ private extension GamesViewModel {
             state.render(state: .loaded)
         case .failure(let error):
             state.render(state: .error(NetworkError.failedRequest.rawValue))
+            state.render(state: .loaded)
             print("Error occured in URLSession request: \(error.localizedDescription)", logLevel: .error)
         }
     }
